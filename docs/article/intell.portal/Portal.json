@@ -1,0 +1,131 @@
+{
+    "kind": "class",
+    "title": "Portal Class",
+    "description": "Represents a portal containing multiple applications.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new instance of the Menu class from element.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create Menu control."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
+        { "name": "readonly elementHeader: HTMLElement", "type": "HTMLElement", "description": "" },
+        { "name": "readonly elementMain: HTMLElement", "type": "HTMLElement", "description": "" },
+        { "name": "readonly elementContent: HTMLElement", "type": "HTMLElement", "description": "" },
+        { "name": "readonly elementContentApplications: HTMLElement", "type": "HTMLElement", "description": "" },
+
+        { 
+            "name": "readonly applications: Application[]", 
+            "type": { "name": "Application[]", "href": "?q=intell.portal.Application" }, 
+            "description": "Gets all applications available in the portal."
+        },
+        { 
+            "name": "readonly selectedApplication: Application", 
+            "type": {"name": "Application", "href": "?q=intell.portal.Application"}, 
+            "description": "Gets the current active application."
+        },
+        { 
+            "name": "readonly taskbar: Taskbar", "type": "Taskbar", 
+            "description": "Gets the taskbar of the portal."
+        },
+        { 
+            "name": "readonly overlay: Overlay", "type": "Overlay", 
+            "description": "Gets the overlay of the portal."
+        }
+    ],
+
+    "methods": [
+        {
+            "name": "add(application: Application): Application",
+            "description": "Adds an application to the portal.",
+            "parameters": [
+                {
+                    "name": "application",
+                    "type": { "name": "Application", "href": "?q=intell.portal.Application" },
+                    "description": "The application to be added to the portal."
+                }
+            ],
+            "returns": {
+                "type": { "name": "Application", "href": "?q=intell.portal.Application" },
+                "description":  "Returns the same application instance to allow for method chaining."
+            }
+        },
+        {
+            "name": "addManifest(manifest: ApplicationManifest): Application", 
+            "description": "Adds an application manifest to the portal and returns the newly created application.",
+            "parameters": [
+                {
+                    "name": "manifest", 
+                    "type": { "name": "ApplicationManifest", "href": "?q=intell.portal.ApplicationManifest" },
+                    "description": "The manifest used to create the application."
+                }
+            ],
+            "returns": { 
+                "type": { "name": "Application", "href": "?q=intell.portal.Application" },
+                "description": "Returns the newly created application."
+            }
+        },
+
+        {
+            "name": "get(id: string): Application | undefined", 
+            "description": "Gets the application by its unique id.",
+            "parameters": [
+                {
+                    "name": "id", "type": "string",
+                    "description": "The unique id of the application."
+                }
+            ],
+            "returns": { 
+                "type": { "name": "Application", "href": "?q=intell.portal.Application" },
+                "description": "Returns the first matching application."
+            }
+        },
+        {
+            "name": "open", 
+            "description": "Opens the application.",
+        
+            "overloads": [
+                { 
+                    "name": "open(): Promise&lt;void&gt;",
+                    "description": "Opens the first application that has manifest.startup set to true.",
+                    "remarks": "An error is thrown if no application has manifest.startup set to true. <mark>No application with startup set to true was found.</mark>"
+                },
+                { 
+                    "name": "open(id: string): Promise&lt;void&gt;", 
+                    "description": "Opens the application with the specified id.",
+                    "parameters": [
+                        {
+                            "name": "id", "type": "string",
+                            "description": "The unique id of the application."
+                        }
+                    ],
+                    "remarks": "An error is thrown if no applications are found. <mark>No application with id '${arg1}' was found.</mark>"
+                },
+                { 
+                    "name": "open(application: Application): Promise&lt;void&gt;", 
+                    "description": "Opens the application that was added to the portal.",
+                    "parameters": [
+                        {
+                            "name": "application", "type": { "name": "Application", "href": "?q=intell.portal.Application" },
+                            "description": "The application to be opened to the portal."
+                        }
+                    ],
+                    "remarks": "An error is thrown if the application fails to load."
+                }
+            ]
+        }
+    ],
+
+
+    "examples": "<a href=\"/portal\">Click here</a> for more examples.",
+}

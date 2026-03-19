@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://jintellv3.xhighintell.com/article/structure-schema",
+    "title": "The JSON schema for the structure documents",
+    "allowTrailingCommas": true,
+
+    "definitions": {
+        "item": {
+            "properties": {
+                "icon": {
+                    "description": "The icon of document.",
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "enum": [ "group", "namespace", "method", "class", "interface", "field" ]
+                        },
+                        { "type": "string" }
+                    ]
+                },
+                "id": { "type": "string" },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the document."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the document shown below the title."
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The URL to the article in JSON or HTML format."
+                },
+                "hidden": {
+                    "type": "boolean",
+                    "description": "Determines if the article is initially hidden."
+                },
+                "tags": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                },
+                "children": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/item" }
+                }
+            },
+            "required": [ "name" ]
+        }
+    },
+
+    "type": "array",
+
+    "items": {
+        "$ref": "#/definitions/item"
+    }
+}

@@ -1,0 +1,149 @@
+{
+    "kind": "class",
+    "title": "Menu Class",
+    "description": "Represents a menu that displays menus and sub-menus.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new instance of the Menu class from element.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create Menu control."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
+        { "name": "readonly elementChildren: HTMLElement", "type": "HTMLElement", "description": "Gets the root elementChildren of the control." },
+        { "name": "readonly focused: boolean", "type": "boolean", "description": "Gets a value indicating whether the control have input focus." },
+        { "name": "readonly children: MenuItem", "type": {"name": "MenuItem", "href": "?q=intell.ctrl.MenuItem" }, "description": "Gets the child menu items." },
+        
+        { "name": "childrenLocations: number[]", "type": "number[]", 
+            "description": "Gets or sets the placement locations for all sub-item dropdowns.", 
+            "remarks": "The default value is <mark>[4, 12]</mark>." 
+        },
+        { "name": "childrenOption: ShowAtOption", "type": {"name": "ShowAtOption", "href": "?q=intell.math.ShowAtOption"}, 
+            "description": "Gets or sets the placement option for all sub-item dropdowns.",
+            "remarks": "The default value is <mark>{ distance: -1, distanceToContainer: 1 }</mark>."
+        },
+        { "name": "childrenDirection: string", "type": "\"row\" | \"column\"",
+            "description": "Gets or sets the input direction of children for all sub-item. This value does not determine the children layout; rather, it dictates how user input is handled.",
+            "remarks": "The default value is <mark>\"column\"</mark>."
+        },
+        { "name": "childrenIntersectEnabled: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether the intersection overlay is enabled for all sub-item dropdowns.",
+            "remarks": "The default value is <mark>false</mark>."
+        },
+
+        { "name": "rootChildrenLocations: number[]", "type": "number[]", 
+            "description": "Gets or sets the placement locations for all root-item dropdowns.",
+            "remarks": "The default value is <mark>[9, 1]</mark>." 
+        },
+        { "name": "rootChildrenOption: ShowAtOption", "type": {"name": "ShowAtOption", "href": "?q=intell.math.ShowAtOption"}, 
+            "description": "Gets or sets the placement option for all root-item dropdowns.",
+            "remarks": "The default value is <mark>{ distance: -1, distanceToContainer: 1 }</mark>."
+        },
+        { "name": "rootChildrenDirection: string", "type": "\"row\" | \"column\"",
+            "description": "Gets or sets the input direction of children for all root-item dropdown. This value does not determine the children layout; rather, it dictates how user input is handled.",
+            "remarks": "The default value is <mark>\"row\"</mark>."
+        },
+        { "name": "rootChildrenIntersectEnabled: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether the intersection overlay is enabled for all sub-item dropdowns.",
+            "remarks": "The default value is <mark>true</mark>."
+        },
+
+        
+        { 
+            "name": "contextMenu: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether the menu is a context menu.",
+            "remarks": [
+                "<p>The default value is <mark>false</mark>.</p>",
+                "<p>When sets to <mark>true</mark>, the menu element class will have <mark>\"CONTEXTMENU\"</mark></p>"
+            ]
+        }
+    ],
+
+    "methods": [
+        {
+            "name": "add", 
+            "description": "Adds a new menu item, a separator, or a tree of items to the menu.",
+        
+            "overloads": [
+                { 
+                    "name": "add(modifiers: MenuItemAddModifiers | string): MenuItem", 
+                    "description": "Adds a separator, or a tree of items to the menu.",
+                    "parameters": [
+                        {
+                            "name": "modifiers", "type": { "name": "MenuItemAddModifiers", "href": "?q=intell.ctrl.MenuItemAddModifiers" },
+                            "description": "The modifiers from which the menu item will be created."
+                        }
+                    ],
+                    "returns": { 
+                        "type": { "name": "MenuItem", "href": "?q=intell.ctrl.MenuItem" },
+                        "description": "Returns the newly created MenuItem that was added to the menu."
+                    },
+                    "remarks": "If the parameter is '--', a separator will be added to the menu."
+                },
+                { 
+                    "name": "add(item: MenuItem): void", 
+                    "description": "Adds MenuItem into the menu.",
+                    "parameters": [
+                        {
+                            "name": "item", "type": { "name": "MenuItem", "href": "?q=intell.ctrl.MenuItem" },
+                            "description": "The MenuItem to be added to the menu."
+                        }
+                    ],
+                    "remarks": "This method removes the menu from its current parent, if one exists, before adding it to the new parent."
+                }
+            ]
+        },
+        {
+            "name": "showAsContextMenuAt",
+            "description": "Shows the menu as a context menu. The menu receives focus immediately after being shown.",
+            "overloads": [
+                { 
+                    "name": "showAsContextMenuAt(at: PointLike, locations: number[], option?: ShowAtOption): ShowAtResult",
+                    "description": "Shows the menu at the coordinates relative to the document."
+                },
+                {
+                    "name": "showAsContextMenuAt(at: HTMLElement, locations: number[], option?: ShowAtOption): ShowAtResult",
+                    "description": "Shows the menu anchored to the other element."
+                }
+            ],
+            "returns": "",
+            "remarks": "The <mark>showAsContextMenuAt</mark> method uses <a href='?q=intell.ctrl.showAt'><mark>intell.ctrl.showAt</mark></a> for positioning."
+        },
+        {
+            "name": "getActiveItem(): MenuItem | undefined", 
+            "description": "Gets the active child item in the menu.",
+            "returns": "Returns <mark>undefined</mark> if no active menu exists."
+        },
+        {
+            "name": "getDeepestActive(): MenuItem | undefined", 
+            "description": "Gets the most deeply nested active menu in the menu tree.",
+            "returns": "Returns <mark>undefined</mark> if no active menu exists."
+        }
+    ],
+
+    "events": [
+        {
+            "name": "menuclick", "bubbles": true, "cancelable": false,
+            "description": "The menu's click event fires when a user clicks a menu item."
+        }
+    ],
+
+    "static_fields": [
+        {
+            "name": "CHILDREN_VISIBLE_DELAY: number", "type": "number",
+            "description": "Gets or sets the global visibility delay for child dropdowns.",
+            "remarks": "The default value is <mark>250</mark>."
+        }
+    ],
+
+    "examples": "<a href=\"?q=intell.ctrl.Menu-demo\">Click here</a> for more examples.",
+}

@@ -1,0 +1,49 @@
+{
+    "kind": "class",
+    "title": "OverlayProgress Class",
+    "description": "Represents an overlay progress box that displays ongoing tasks.",
+    
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
+        { "name": "fadeOutTime: number", "type": "number", "description": "Gets or sets the fade‑out duration of the animation." }
+    ],
+
+    "methods": [
+        {
+            "name": "add(name: string): OverlayProgressItem", 
+            "description": "Creates and adds a newly created overlay progress UI to the list.",
+        
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "The display name of the overlay progress UI."
+                }
+            ],
+             "returns": {
+                 "type": {
+                     "name": "OverlayProgressItem",
+                     "href": "?q=intell.ctrl.OverlayProgressItem"
+                 },
+                 "description": "Returns the newly created overlay progress item."
+             }
+        },
+        {
+            "name": "displayProgress&lt;T&gt;(name: string, task: () => Promise&lt;T&gt;): Promise&lt;T&gt;",
+            "description": "Creates an overlay progress UI and attaches a promise to it.",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "The display name of the overlay progress UI."
+                },
+                {
+                    "name": "task",
+                    "type": "Promise&lt;T&gt;",
+                    "description": "The promise task attach to it."
+                }
+            ]
+        }
+    ],
+    
+}

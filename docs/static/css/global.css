@@ -1,0 +1,49 @@
+﻿@import url('../font/fontello/style.css');
+
+a{color:#008dff}
+a:hover{color:#0058ff}
+
+body{margin:0;font-family:'Segoe UI';font-size:16px}
+
+.waiting-cycle{position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;transition:opacity 0.4s;font-size:25px;z-index:1010}
+.waiting-cycle::before{content:'';position:absolute;width:1em;height:1em;animation: x-waiting-spin 2s linear infinite;border:.1875em solid transparent;border-top:.1875em solid #00abff;border-radius:50%}
+.waiting-cycle::after{content:'';position:absolute;width:.7em;height:.7em;animation:x-waiting-spin 2.3s linear infinite reverse;border:.125em solid transparent;border-top:.125em solid #0066ff;border-radius:50%}
+@keyframes x-waiting-spin {
+    0%{transform:rotate(0deg)}
+    100%{transform:rotate(360deg)}
+}
+
+.application{}
+.application .app-title-bar{font-size:1.25em;line-height:2em;background-color:#1c1c1c;color:#55b3ff}
+.application .app-title-bar .app-title-bar-content{display:flex;gap:.5em}
+.application .app-title-bar .app-title-bar-content>.title{color:#55b3ff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none}
+.application .app-title-bar .app-title-bar-content>.themes{display:flex;gap:.25em;align-self:center}
+.application .app-title-bar .app-title-bar-content>.themes>.theme{width:1em;height:1em;outline:1px solid #ffffff7a;outline-offset:-1px;filter:brightness(.4);cursor:pointer}
+.application .app-title-bar .app-title-bar-content>.themes>.theme.selected{filter:brightness(1)}
+.application .app-title-bar .app-title-bar-content>.themes>.theme-light{background:repeating-linear-gradient(45deg, #ffffff 0px, #ffffff 9px, #92e2ff 5px, #a7e1ff 14.1px);animation:1s linear theme-spin-light infinite paused}
+.application .app-title-bar .app-title-bar-content>.themes>.theme-dark{background:repeating-linear-gradient(0deg, #000 0px, #000 5px, #4f4f4f 5px, #4f4f4f 10px);animation:1.4142s linear theme-spin-light infinite paused}
+.application .app-title-bar .app-title-bar-content>.themes>.theme:hover{border-color:red;animation-play-state:running;box-shadow:0 0 3px -1px #fff}
+@keyframes theme-spin-light {
+    0%{background-position-y:0}
+    100%{background-position-y:20px}
+}
+
+.application .app-title-bar .app-title-bar-content>.app-title-actions{display:flex;margin-left:auto}
+.application .app-title-bar .app-title-bar-content>.app-title-actions>.action{width:1.9em;text-align:center;aspect-ratio:1.4/1;text-decoration:none;color:#55b3ff}
+.application .app-title-bar .app-title-bar-content>.app-title-actions>.action:hover{background:rgba(255,255,255,.2)}
+.application>.app-body{}
+
+/*#region .Container & .Content */
+.Container{}
+.Container>.Content{max-width:1280px;margin:0 auto;padding:0 40px}
+@media (max-width:960px){
+    .Container>.Content{padding:0 15px 0 20px}
+}
+@media (max-width:800px){
+    .Container>.Content{padding:0 5px 0 10px}
+}
+@media (max-width:500px){
+    .Container>.Content{padding:0 5px 0 5px}
+}
+/*#endregion*/
+

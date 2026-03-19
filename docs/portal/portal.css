@@ -1,0 +1,72 @@
+﻿.Portal{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;overflow:hidden}
+.Portal>header{grid-area:1/2 span;background-color:#1c1c1c}
+.Portal>header>.Label>.Text{margin-left:10px;padding:.2em 10px;font-size:1.25em;color:#55b3ff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none}
+
+.Portal>main{flex:1 1 auto;display:flex;overflow:hidden}
+.Portal>main>.Taskbar{display:flex;width:220px;flex-direction:column;background:#000d1c;transition:width .3s}
+.Portal>main>.Taskbar *:focus{outline:#00bcf2 dashed 1px;outline-offset:-1px}
+.Portal>main>.Taskbar .Taskbar-Top{box-sizing:border-box;border-bottom:1px solid #444}
+.Portal>main>.Taskbar .Taskbar-Top .Action-Collapse{display:flex;height:23px;align-items:center;justify-content:flex-end;padding-right:8px;color:#969696;letter-spacing:-2px;font-family:fontello;cursor:pointer}
+.Portal>main>.Taskbar .Taskbar-Top .Action-Collapse:hover{background-color:rgba(255,255,255,.05)} 
+.Portal>main>.Taskbar .Taskbar-Top .Action-Collapse:focus{outline:#00bcf2 dashed 1px;outline-offset:-1px}
+.Portal>main>.Taskbar .Taskbar-Top .Action-Collapse::before{content:"\f104\f104"}
+.Portal>main>.Taskbar .Taskbar-Middle{flex:1 1 auto;overflow:auto;overflow-x:hidden}
+.Portal>main>.Taskbar .Taskbar-Middle::-webkit-scrollbar{width:2px}
+.Portal>main>.Taskbar .Taskbar-Middle::-webkit-scrollbar-thumb{background:#48adfb}
+.Portal>main>.Taskbar .Taskbar-Middle>.Group{}
+.Portal>main>.Taskbar .Taskbar-Middle>.Group>header{display:flex;align-items:center;height:1em;margin:10px 0 4px;padding:0 10px}
+.Portal>main>.Taskbar .Taskbar-Middle>.Group>header>.Text{position:relative;color:#a5a5a5;font-size:.7em;font-weight:500}
+.Portal>main>.Taskbar .Taskbar-Middle .Shortcut{display:flex;align-items:center;min-height:48px;padding-left:16px;border-left:4px solid transparent;cursor:pointer}
+.Portal>main>.Taskbar .Taskbar-Middle .Shortcut:hover{background-color:rgba(255,255,255,.05)}
+.Portal>main>.Taskbar .Taskbar-Middle .Shortcut:focus{outline:#00bcf2 dashed 1px;outline-offset:-1px}
+.Portal>main>.Taskbar .Taskbar-Middle .Shortcut>.Icon{display:flex;align-items:center;justify-content:center;height:24px;flex:0 0 24px;background:center no-repeat;font-family:fontello;color:#0b6fab}
+.Portal>main>.Taskbar .Taskbar-Middle .Shortcut>.Text{margin-left:10px;white-space:nowrap;color:#fff}
+.Portal>main>.Taskbar .Taskbar-Middle .Shortcut.SELECTED{border-left:4px solid #00aeff;background-color:#0f456f}
+.Portal>main>.Taskbar .Taskbar-Middle .Shortcut.SELECTED>.Icon{color:#fff}
+
+.Portal>main>.Taskbar.COLLAPSED{width:60px}
+.Portal>main>.Taskbar.COLLAPSED .Taskbar-Top .Action-Collapse::before{content:"\f105\f105"}
+.Portal>main>.Taskbar.COLLAPSED .Taskbar-Middle{}
+.Portal>main>.Taskbar.COLLAPSED .Taskbar-Middle>.Group>header{display:flex;align-items:center;box-sizing:border-box}
+.Portal>main>.Taskbar.COLLAPSED .Taskbar-Middle>.Group>header::before{content:"";flex:1 1;height:1px;background:#5b5b5b}
+.Portal>main>.Taskbar.COLLAPSED .Taskbar-Middle>.Group>header>.Text{display:none}
+.Portal>main>.Taskbar.COLLAPSED .Taskbar-Middle .Shortcut{box-sizing:border-box}
+.Portal>main>.Taskbar.COLLAPSED .Taskbar-Middle .Shortcut>.Text{display:none}
+
+.Portal>main>.Content{position:relative;flex:1 1 auto;overflow:hidden}
+
+/*#region Overlay*/
+.Portal>main>.Content>.Overlay{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;z-index:99;opacity:0}
+.Portal>main>.Content>.Overlay>.Content{display:flex;flex-direction:column;align-items:center;margin:0 auto;padding:1em}
+.Portal>main>.Content>.Overlay>.Content::before{content:"";flex-grow:1}
+.Portal>main>.Content>.Overlay>.Content::after{content:"";flex-grow:2}
+.Portal>main>.Content>.Overlay>.Content>.Waiting-Box{display:flex;width:48px;height:48px;align-items:center;justify-content:center;margin-bottom:1em}
+.Portal>main>.Content>.Overlay>.Content>.Waiting-Box .Cycle1{position:absolute;width:35px;height:35px;animation:pWz4 1s linear infinite;border:5px solid transparent;border-top:5px solid #00abff;border-radius:50%}
+.Portal>main>.Content>.Overlay>.Content>.Waiting-Box .Cycle2{position:absolute;width:24px;height:24px;animation:pWz4 1.3s linear infinite;border:3px solid transparent;border-top:3px solid #0066ff;border-radius:50%}
+.Portal>main>.Content>.Overlay>.Content>.Application-Details{display:flex;flex-direction:column;align-items:center}
+.Portal>main>.Content>.Overlay>.Content>.Application-Details>header{display:flex;align-items:center;gap:.4em}
+.Portal>main>.Content>.Overlay>.Content .Application-Icon{display:flex;align-items:center;justify-content:center;width:1.25em;height:1.25em;background:center no-repeat;font-family:fontello;color:#0b6fab;font-size:1.5em}
+.Portal>main>.Content>.Overlay>.Content .Application-Name{color:black;font-size:1.3em}
+.Portal>main>.Content>.Overlay>.Content .Application-Description{grid-column:1/-1;text-align:center;color:rgba(0,0,0,.5)}
+.Portal>main>.Content>.Overlay>.Content .Error{margin-top:1.5em}
+.Portal>main>.Content>.Overlay>.Content .Error .Message{display:flex;align-items:center;margin-bottom:20px;border-radius:1px;padding:10px;background:rgba(255,0,0,.05)}
+.Portal>main>.Content>.Overlay>.Content .Error .Message::before{content:"\2716";display:flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;margin-right:.5em;font-size:.9em;color:#fff;background:#e20000;border-radius:50%}
+.Portal>main>.Content>.Overlay>.Content .Error .Stack{white-space:pre-wrap;color:#ec0000}
+.Portal>main>.Content>.Overlay.ACTIVE{opacity:1;transition:opacity .5s .2s}
+
+@keyframes pWz4 {
+    0%{transform:rotate(0deg)} 
+    100%{transform:rotate(360deg)}
+}
+
+/*#endregion*/
+
+.Portal>main>.Content>.Applications{position:absolute;left:0;right:0;top:0;bottom:0;overflow:auto}
+.Portal>main>.Content>.Applications>.Application-Wrapper{display:contents}
+.Portal>main>.Content>.Applications>*:not(.Application-Wrapper){position:absolute;left:0;right:0;top:0;bottom:0;overflow:auto}
+.Portal>main>.Content>.Applications>*:not(.Application-Wrapper)::-webkit-scrollbar{width:5px;height:5px}
+.Portal>main>.Content>.Applications>*:not(.Application-Wrapper)::-webkit-scrollbar-thumb{background:#ffffff40}
+.Portal>main>.Content>.Applications>*:not(.Application-Wrapper)::-webkit-scrollbar-thumb:hover{background:#ffffff4d}
+.Portal>main>.Content>.Applications>*:not(.Application-Wrapper)::-webkit-scrollbar-thumb:active{background:#ffffff4d}
+.Portal>main>.Content>.Applications>*:not(.Application-Wrapper)::-webkit-scrollbar-corner{display:none}
+.Portal>main>.Content>.Applications>*:not(.Application-Wrapper)::-webkit-scrollbar-button{display:none}

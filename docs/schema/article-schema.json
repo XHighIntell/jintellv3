@@ -1,0 +1,127 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "https://jintellv3.xhighintell.com/article/schema",
+    "title": "The JSON schema for the article documents file",
+    
+    "definitions": {
+        "name": {
+            "type": [ "string", "array" ],
+            "items": { "type": "string" }
+        },
+        "type": {
+            "oneOf": [
+                { "type": "string" },
+                {
+                    "type": "object",
+                    "properties": {
+                        "name": { "type": "string" },
+                        "href": { "type": "string" }
+                    },
+                    "required": [ "name" ]
+                }
+            ]
+        },
+        "property": {
+            "type": "object",
+            "properties": {
+                "name": { "$ref": "#/definitions/name" },
+                "type": { "$ref": "#/definitions/type" },
+                "description": { "$ref": "#/definitions/name" },
+                "remarks": { "$ref": "#/definitions/name" }
+            }
+        },
+        "method": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "allOf": [ { "$ref": "#/definitions/name" } ],
+                    "description": "The title of the method.\n\nIt may use TypeScript syntax for clarity, e.g. 'add(menu: Menu): void'."
+                },
+                "description": {
+                    "allOf": [ { "$ref": "#/definitions/name" } ],
+                    "description": "The description of method."
+                },
+
+                "overloads": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/method" }
+                },
+                "parameters": { 
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/property" }
+                },
+                "returns": {
+                    "oneOf": [
+                        { "$ref": "#/definitions/name" },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "type": { "$ref": "#/definitions/type"},
+                                "description": { "$ref": "#/definitions/name" }
+                            }
+                        }
+                    ]
+                },
+                "remarks": { "$ref": "#/definitions/name" }
+            },
+            "required": [ "name", "description" ]
+        }
+    },
+
+    "type": "object",
+    "properties": {
+        "kind": {
+            "type": "string",
+            "description": "The kind of document.",
+            "enum": [ "method", "class", "interface", "field" ]
+        },
+        "title": {
+            "type": "string",
+            "description": "The title of the document."
+        },
+        "description": {
+            "type": "string",
+            "description": "The description of the document shown below the name."
+        },
+
+        "constructors": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/method" }
+        },
+        "properties": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/property" }
+        },
+        "fields": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/property" }
+        },
+        "events": {
+            "type": "array",
+            "items": {
+                "properties": {
+                    "name": { "type": "string" },
+                    "bubbles": { "type": "boolean" },
+                    "cancelable": { "type": "boolean" },
+                    "description": { "type": "string" }
+                }
+            }
+        },
+        "methods": { 
+            "type": "array",
+            "items": { "$ref": "#/definitions/method" }
+        },
+
+        "static_fields": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/property" }
+        },
+        "static_methods": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/method" }
+        },
+
+        "examples": { "$ref": "#/definitions/name" },
+        "after":  { "$ref": "#/definitions/name" }
+    }
+}

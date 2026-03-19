@@ -1,0 +1,155 @@
+﻿<style data-source="Checkbox">
+.Checkbox{display:flex;align-items:center;gap:.25em}
+.Checkbox>.Label{display:inline-flex;align-items:center;gap:.4em;cursor:pointer}
+.Checkbox>.Label:focus-visible{outline:none}
+.Checkbox>.Label>.Icon{display:flex;border:1px solid;border-radius:1px;transition:border-color .3s}
+.Checkbox>.Label>.Icon::before{content:"";display:flex;align-items:center;justify-content:center;width:.8em;height:.8em;margin:3px;font-family:fontello;visibility:hidden}
+.Checkbox.CHECKED>.Label>.Icon::before{visibility:visible}
+.Checkbox.READONLY>.Label{cursor:not-allowed}
+.Checkbox>.checkbox-tip{}
+</style>
+<div class="code-block" data-source-id="Checkbox" style="margin-top:0"+>
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">Checkbox</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="checkbox-light-blue">
+.checkbox-light-blue>.Label>.Icon{border-color:rgb(0 0 0 / 50%);color:#fff}
+.checkbox-light-blue>.Label:active>.Icon{background:rgb(0 0 0/10%)}
+.checkbox-light-blue>.Label:hover>.Icon{border-color:#00aeff}
+.checkbox-light-blue.CHECKED>.Label>.Icon{background:#0b6fab;border-color:#0b6fab}
+.checkbox-light-blue.CHECKED>.Label:active>.Icon{background:#055483}
+.checkbox-light-blue.CHECKED>.Label:hover>.Icon{border-color:#00aeff}
+.checkbox-light-blue.FOCUS>.Label>.Icon{outline:1px solid #000;outline-offset:1px}
+.checkbox-light-blue.READONLY>.Label>.Icon{color:#919191;background:#474d57;border-color:#000}
+.checkbox-light-blue.READONLY>.Label:active>.Icon{background:#474d57}
+.checkbox-light-blue.READONLY>.Label:hover>.Icon{border-color:#000}
+.checkbox-light-blue.READONLY.FOCUS>.Label>.Icon{border-color:#000}
+</style>
+<div class="code-block" data-source-id="checkbox-light-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">checkbox-light-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="checkbox-dark-blue">
+.checkbox-dark-blue>.Label>.Icon{border-color:rgba(255,255,255,.5)}
+.checkbox-dark-blue>.Label:active>.Icon{background:rgb(255 255 255/10%)}
+.checkbox-dark-blue>.Label:hover>.Icon{border-color:#00aeff}
+.checkbox-dark-blue.CHECKED>.Label>.Icon{background:#0b6fab;border-color:#0b6fab}
+.checkbox-dark-blue.CHECKED>.Label:active>.Icon{background:#055483}
+.checkbox-dark-blue.CHECKED>.Label:hover>.Icon{border-color:#00aeff}
+.checkbox-dark-blue.FOCUS>.Label>.Icon{border-color:#00aeff}
+.checkbox-dark-blue.READONLY>.Label>.Icon{color:#919191;background:#474d57;border-color:#474d57}
+.checkbox-dark-blue.READONLY>.Label:active>.Icon{background:#474d57}
+.checkbox-dark-blue.READONLY>.Label:hover>.Icon{border-color:#fff}
+.checkbox-dark-blue.READONLY.FOCUS>.Label>.Icon{border-color:rgb(255 255 255/60%)}
+</style>
+<div class="code-block" data-source-id="checkbox-dark-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">checkbox-dark-blue</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .Checkbox{margin:.2em 0}
+</style>
+
+
+<div class="theme-switch">
+    <div class="theme" data-theme="light-blue"><i class="icon icon-theme"></i> light-blue</div>
+    <div class="theme selected" data-theme="dark-blue"><i class="icon icon-theme"></i> dark-blue</div>
+</div>
+
+<script>
+    document.querySelector('.theme-switch').addEventListener('article-theme-change', function(e) {
+        $('.Checkbox').removeClass(['checkbox-light-blue', 'checkbox-dark-blue']).addClass('checkbox-' + e.detail.name);
+    });
+</script>
+
+<div class="example">
+    <div class="title">Text</div>
+    <div data-source="prefix+suffix">
+        <div id="checkbox1" class="Checkbox checkbox-dark-blue">Scales</div>
+        <div id="checkbox2" class="Checkbox checkbox-dark-blue"></div>
+
+        <script>
+            const checkbox1 = new intell.ctrl.Checkbox(document.getElementById('checkbox1'));
+            const checkbox2 = new intell.ctrl.Checkbox(document.getElementById('checkbox2'));
+            checkbox2.text = 'Tails';
+            
+            document.addEventListener('checkboxchange', function(e) {
+                console.log('checkboxchange', e);
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="prefix+suffix">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">Readonly</div>
+    <div data-source="readonly">
+        <div id="checkbox3" class="Checkbox checkbox-dark-blue">Scales</div>
+        <div id="checkbox4" class="Checkbox checkbox-dark-blue">Tails</div>
+
+        <script>
+            const checkbox3 = new intell.ctrl.Checkbox(document.getElementById('checkbox3'));
+            const checkbox4 = new intell.ctrl.Checkbox(document.getElementById('checkbox4'));
+            checkbox3.readonly = true;
+            checkbox4.readonly = true;
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="readonly">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">More Customization</div>
+    <div data-source="advanced-customization">
+        <div id="checkbox5" class="Checkbox checkbox-dark-blue">Attacks</div>
+        <div id="checkbox6" class="Checkbox checkbox-dark-blue">
+            <div class="Label">
+                <span class="Icon"></span><span class="Name">Spells</span>
+            </div>
+            <div class="checkbox-tip icon-help" title="AAA"></div>
+        </div>
+
+        <script>
+            const checkbox5 = new intell.ctrl.Checkbox(document.getElementById('checkbox5'));
+            const checkbox6 = new intell.ctrl.Checkbox(document.getElementById('checkbox6'));
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="advanced-customization">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>

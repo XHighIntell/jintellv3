@@ -1,0 +1,20 @@
+{
+    "typeAcquisition": {
+        "enable": true,
+        "include": [ "jquery" ]
+    },
+    "include": [
+        "**/*.ts",
+        "static/lib/jintellv3/intell.min.d.ts"
+    ],
+    "references": [],
+    "compilerOptions": {
+        "noImplicitAny": false,
+        "noEmitOnError": false,
+        "removeComments": false,
+        "sourceMap": false,
+        "target": "es2022",
+        "module": "esnext"
+    },
+    "compileOnSave": true
+}

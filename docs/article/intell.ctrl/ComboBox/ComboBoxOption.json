@@ -1,0 +1,75 @@
+{
+    "kind": "class",
+    "title": "ComboBoxOption Class",
+    "description": "Represents a new option within the ComboBox.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new ComboBoxOption.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create ComboBoxOption control."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the option." },
+        { "name": "readonly elementIcon: HTMLElement", "type": "HTMLElement", "description": "Gets the Icon element of the option." },
+        { "name": "readonly elementText: HTMLElement", "type": "HTMLElement", "description": "Gets the Text element of the option." },
+        { 
+            "name": "readonly parent?: ComboBox", 
+            "type": { "name": "ComboBox", "href": "?q=intell.ctrl.ComboBox" },
+            "description": "Gets the container element for search input." },
+        {
+            "name": "readonly group?: ComboBoxGroup",
+            "type": { "name": "ComboBoxGroup", "href": "?q=intell.ctrl.ComboBoxGroup" },
+            "description": "Gets the parent group of the option."
+        },
+        { 
+            "name": "disabled: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether interaction with the option is disabled.",
+            "remarks": [
+                "<p>The default value is <mark>false</mark>.</p>",
+                "<p>If disabled, the option will not respond to mouse clicks or keyboard selection. However, programmatic selection via code is still allowed.</p>"
+            ]
+        },
+        { "name": "selected: boolean", "type": "boolean", "description": "Gets or sets whether the option is selected or not." },
+        { 
+            "name": "outline: boolean", "type": "boolean", 
+            "description": "Gets or sets the outline visibility of the option. This value has no effect if the option does not have a parent." ,
+            "remarks": "Only one option may be outlined at any given time."
+        },
+        { 
+            "name": "hidden: boolean", "type": "boolean",
+            "description": "Gets or sets whether the option is hidden.",
+            "remarks": "If all options within a group are hidden, the group's visibility will be toggled to hidden as well."
+        },
+        { "name": "value: T", "type": "T", "description": "Gets the assigned value of the option." },
+        { "name": "text: string", "type": "string", "description": "Gets or sets the display text of the option." },
+        { "name": "description: string", "type": "string", "description": "Gets or sets the display description of the option." }
+
+    ],
+
+    "methods": [
+        {
+            "name": "remove(): void", 
+            "description": "Removes the option from its parent. If it has no parent, calling <mark>remove()</mark> does nothing."
+        },
+        {
+            "name": "matchKeywords(keywords: string[]): boolean",
+            "description": "Checks whether the option matches all specified keywords.",
+            "parameters": [
+                {
+                    "name": "keywords", "type": "string[]",
+                    "description": "The array of keywords to match against."    
+                }
+            ],
+            "returns": "Returns <mark>true</mark> if the option matches all specified keywords; otherwise, <mark>false</mark>."
+        }
+    ]
+}

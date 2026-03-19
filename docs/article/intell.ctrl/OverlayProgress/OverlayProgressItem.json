@@ -1,0 +1,26 @@
+{
+    "kind": "class",
+    "title": "OverlayProgressItem Class",
+    
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
+        { "name": "readonly elementName: HTMLElement", "type": "HTMLElement", "description": "Gets the name element." },
+        { "name": "readonly elementState: HTMLElement", "type": "HTMLElement", "description": "Gets the state element." },
+    ],
+
+    "methods": [
+        {
+            "name": "remove(): void", 
+            "description": "Removes this ongoing progress item and also removes it from its parent.",
+        },
+        {
+            "name": "complete(): void",
+            "description": "Sets state to COMPLETED and also removes it from its parent.",
+        },
+        {
+            "name": "fault(): void",
+            "description": "Sets state to FAILED and also removes it from its parent.",
+        }
+    ],
+    
+}

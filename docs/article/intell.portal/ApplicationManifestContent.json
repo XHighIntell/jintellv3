@@ -1,0 +1,10 @@
+{
+    "kind": "interface",
+    "title": "ApplicationManifestContent Interface",
+
+    "fields": [
+        { "name": "html: string", "type": "string", "description": "The HTML file to be injected into the page." },
+        { "name": "js?: string[]", "type": "string[]", "description": "The list of JavaScript files to be injected into the portal." },
+        { "name": "css?: string[]", "type": "string[]", "description": "The list of CSS files to be injected into the portal." }
+    ]
+}

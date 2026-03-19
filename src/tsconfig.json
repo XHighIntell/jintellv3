@@ -1,0 +1,26 @@
+{
+    "typeAcquisition": {
+        "enable": true,
+        "include": []
+    },
+    "include": [
+        "intell/**/intell*.ts",
+        "intell/**/globalThis*.ts",
+        "intell.ctrl/**/*.ts",
+        "intell.portal/**/*.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": false,
+        "noEmitOnError": false,
+        "removeComments": false,
+        "sourceMap": true,
+        "declaration": true,
+        "target": "es2022",
+        "module": "es6",
+        "noCheck": false,
+        //"composite": true,
+        "inlineSources": true,
+        "outFile": "../docs/static/lib/jintellv3/intell.min.js"
+    },
+    "compileOnSave": true
+}

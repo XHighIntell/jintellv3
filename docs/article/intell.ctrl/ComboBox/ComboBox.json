@@ -1,0 +1,147 @@
+{
+    "kind": "class",
+    "title": "ComboBox Class",
+    "description": "Represents a ComboBox that provides a menu of options.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new ComboBox.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create ComboBox control."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
+        { "name": "readonly elementSelectedContent: HTMLElement", "type": "HTMLElement", "description": "Gets the container element that contains the selected option." },
+        { "name": "readonly elementPicker: HTMLElement", "type": "HTMLElement", "description": "Gets the picker element." },
+        { "name": "readonly elementSearch: HTMLElement", "type": "HTMLElement", "description": "Gets the container element for search input." },
+        { "name": "readonly elementSearchInput: HTMLElement", "type": "HTMLInputElement", "description": "Gets the search input element." },
+        { "name": "readonly focused: boolean", "type": "boolean", "description": "Gets a value indicating whether the control have input focus." },
+        
+        { "name": "readonly groups: ComboBoxGroup[]", "type": "ComboBoxGroup[]", "description": "Gets an array containing all groups." },
+        { "name": "readonly options: ComboBoxOption[]", "type": "ComboBoxOption[]", "description": "Gets an array containing all option items." },
+        { "name": "readonly selectedOption: ComboBoxOption", "type": "ComboBoxOption", "description": "Gets the selected option." },
+        { "name": "readonly selectedOptions: ComboBoxOption[]", "type": "ComboBoxOption[]", "description": "Gets an array of all currently selected options." },
+        { "name": "readonly outlinedOption: ComboBoxOption", "type": "ComboBoxOption", "description": "Gets the active outlined option." },
+
+        { "name": "readonly pickerVisible: boolean", "type": "boolean", "description": "Gets a value indicating whether the dropdown picker is displayed." },
+        { "name": "pickerLocations: number[]", "type": "number[]", "description": "Gets or sets the preferred placement locations of the dropdown picker.", "remarks": "The default value is <mark>[9, 1]</mark>." },
+        { "name": "pickerOption: ShowAtOption", "type": {"name": "ShowAtOption", "href": "?q=intell.math.ShowAtOption"}, "description": " Gets or sets the placement option of the dropdown picker.",
+              "remarks": "The default value is <mark>{ distance: -1, distanceToContainer: 1 }</mark>."
+        },
+
+        { 
+            "name": "multiple: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether multiple items can be selected.",
+            "remarks": [
+                "<p>The default value is <mark>false</mark>.</p>",
+                "<p>When multiple changes from true to false while having more than one selected options, the lowest-index option will be preverst and all other options will be unselected.</p>"
+            ]
+        },
+        { 
+            "name": "filterEnabled: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether the filtering features are visible. The default is false.",
+            "remarks": [
+                "<p>The default value is <mark>false</mark>.</p>"
+            ]
+        }
+    ],
+
+    "methods": [
+        {
+            "name": "showPicker(force: boolean = false): void", 
+            "description": "Shows the dropdown picker.",
+        
+            "parameters": [
+                {
+                    "name": "force?", "type": "boolean",
+                    "description": "Forces the dropdown picker to reposition, even if it is already visible.This is useful for reflecting changes when pickerLocations, pickerOption are updated."
+                }
+            ]
+        },
+        {
+            "name": "hidePicker(): void", "description": "Hides the dropdown picker, resets filters and the outlined option." 
+        },
+        {
+            "name": "togglePicker(force: boolean = false): void", 
+            "description": "Toggle shows/hides dropdown picker.",
+        
+            "parameters": [
+                {
+                    "name": "force?", "type": "boolean",
+                    "description": "Forces the dropdown picker to reposition, even if it is already visible.This is useful for reflecting changes when pickerLocations, pickerOption are updated."
+                }
+            ]
+        },
+        {
+            "name": "add(modifiers: ComboBoxAddOption&lt;T&gt;): ComboBoxOption", 
+            "description": "Adds a new ComboBoxOption, specified by modifiers, to the end of the list.",
+        
+            "parameters": [
+                {
+                    "name": "modifiers", "type": "ComboBoxAddOption&lt;T&gt;",
+                    "description": "The initialization properties for the newly created option."
+                }
+            ],
+             "returns": {
+                 "type": {
+                     "name": "ComboBoxOption&lt;T&gt;",
+                     "href": "?q=intell.ctrl.ComboBoxOption"
+                 },
+                 "description": "Returns the newly created option."
+             }
+        },
+        {
+            "name": "addGroup(group: ComboBoxGroup): void", 
+            "description": "Adds a new ComboBoxGroup into the control.",
+        
+            "parameters": [
+                {
+                    "name": "group",
+                    "type": {"name": "ComboBoxGroup", "href": "?q=intell.ctrl.ComboBoxGroup"},
+                    "description": "The new group to add."
+                }
+            ]
+        },
+        {
+            "name": "setFilters(text: string): void", 
+            "description": "Sets the filter keyword for the list. The filter text is automatically reset when the picker is hidden.",
+        
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "The display name of the overlay progress UI."
+                }
+            ],
+             "returns": {
+                 "type": {
+                     "name": "OverlayProgressItem",
+                     "href": "?q=intell.ctrl.OverlayProgressItem"
+                 },
+                 "description": "Returns the newly created overlay progress item."
+             }
+        },
+        {
+            "name": "clearFilters(): void", 
+            "description": "Resets filters to default and display all options.",
+            "remarks": "The method is automatically invoked when the picker is hidden."
+        },
+    ],
+
+    "events": [
+        {
+            "name": "comboboxchange", "bubbles": true, "cancelable": false,
+            "description": "The change event is fired when the user modifies and commits the checked."
+        }
+    ],
+
+    "examples": "<a href=\"?q=intell.ctrl.Checkbox-demo\">Click here</a> for more examples.",
+}

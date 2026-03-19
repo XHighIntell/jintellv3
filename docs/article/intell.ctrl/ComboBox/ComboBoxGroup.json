@@ -1,0 +1,55 @@
+{
+    "kind": "class",
+    "title": "ComboBoxGroup Class",
+    "description": "Represents a ComboBoxGroup that contain a menu of options.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new ComboBoxGroup.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create ComboBoxGroup."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of this group." },
+        { "name": "readonly elementHeader: HTMLElement", "type": "HTMLElement", "description": "Gets the element Header of this group.." },
+        { "name": "readonly elementText: HTMLElement", "type": "HTMLElement", "description": "Gets the element Text of this group.." },
+        { "name": "readonly elementChildren: HTMLElement", "type": "HTMLElement", "description": "Gets the element Children of this group." },
+        { "name": "readonly focused: boolean", "type": "boolean", "description": "Gets a value indicating whether the control have input focus." },
+        { "name": "readonly parent?: ComboBox", "type": { "name": "ComboBox", "href": "?q=intell.ctrl.ComboBox" }, "description": "Gets the parent ComboBox of this group." },
+        { "name": "readonly options: ComboBoxOption[]", "type": "ComboBoxOption[]", "description": "Gets all options within this group." },
+
+        { "name": "id?: string", "type": "string", "description": "Gets or sets the id of the group." },
+        { "name": "text: string", "type": "string", "description": "Gets or sets the group's display text." },
+        { 
+            "name": "default: boolean", "type": "boolean", 
+            "description": "Gets or sets whether this is the default group. Default groups do not display a header." 
+        }
+    ],
+
+    "methods": [
+        {
+            "name": "add(item: ComboBoxOption): void", 
+            "description": "Adds a new option to the end of the list for this group.",
+        
+            "parameters": [
+                {
+                    "name": "item",
+                    "type": {"name": "ComboBoxOption", "href": "?q=intell.ctrl.ComboBoxOption" },
+                    "description": "The new option to add."
+                }
+            ],
+            "remarks": "This method removes the option from its current parent, if one exists, before adding it to the new group."
+        },
+        {
+            "name": "remove(): void", "description": "Removes the group from its parent. If it has no parent, calling <mark>remove()</mark> does nothing." 
+        }
+    ]
+}

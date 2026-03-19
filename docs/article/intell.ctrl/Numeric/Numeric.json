@@ -1,0 +1,106 @@
+{
+    "kind": "class",
+    "title": "Numeric Class",
+    "description": "Represents a spin box that displays numeric value.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new numeric box.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create Numeric control."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
+        { "name": "readonly elementPrefix: HTMLElement", "type": "HTMLElement", "description": "Gets the prefix element." },
+        { "name": "readonly elementSuffix: HTMLElement", "type": "HTMLElement", "description": "Gets the suffix element." },
+        { "name": "readonly elementInput: HTMLElement", "type": "HTMLElement", "description": "Gets the input element." },
+        { "name": "readonly elementUp: HTMLElement", "type": "HTMLElement", "description": "Gets the button‑up element." },
+        { "name": "readonly elementDown: HTMLElement", "type": "HTMLElement", "description": "Gets the button‑down element." },
+        { "name": "readonly focused: boolean", "type": "boolean", "description": "Gets a value indicating whether the control have input focus." },
+
+        { "name": "value?: number", "type": "number", "description": "Gets or sets the value of Numeric." },
+        { "name": "min?: number", "type": "number", "description": "Gets or sets the minimum allowed value; the default is null." },
+        { "name": "max?: number", "type": "number", "description": "Gets or sets the maxium allowed value; the default is null." },
+        { "name": "prefix: string", "type": "string", "description": "Gets or sets the prefix character. Default: <mark>\"\"</mark> (empty string)." },
+        { "name": "suffix: string", "type": "string", "description": "Gets or sets the suffix character. Default: <mark>\"\"</mark> (empty string)." },
+
+        { "name": "step: number", "type": "number", "description": "Gets or sets the value to increment or decrement the spin box (also known as an up-down control) when the up or down buttons are clicked; the default is <mark>1</mark>." },
+        { "name": "stepViaWheel: boolean", "type": "boolean", "description": "Gets or sets a value indicating whether the control can accept step changes via the mouse wheel; the default is <mark>false</mark>." },
+
+        { "name": "minimumFractionDigits: number", "type": "number", "description": "Gets or sets the minimum number of digits to appear after the decimal point; the default is <mark>0</mark>." },
+        { "name": "maximumFractionDigits: number", "type": "number", "description": "Gets or sets the maximum number of digits to appear after the decimal point; the default is <mark>2</mark>." },
+        { "name": "decimalSeparator: string", "type": "string", "description": "Gets or sets the decimal separator character; the default value is the locale’s decimal separator." },
+        { "name": "thousandSeparator: string", "type": "string", "description": "Gets or sets the thousand separator character; the default value is the locale’s thousand separator." },
+
+        { "name": "nullable: boolean", "type": "boolean", "description": "Gets or sets whether the value can be null; the default is <mark>true</mark>." },
+        { "name": "readonly: boolean", "type": "boolean", "description": "Gets or sets whether the control is not mutable, meaning the user can not edit the control; the default is <mark>false</mark>." },
+        { "name": "controls: boolean", "type": "boolean", "description": "Gets or sets whether the increment and decrement buttons are visible; the default is <mark>false</mark>." }
+    ],
+
+    "events": [
+        {
+            "name": "numericchange", "bubbles": true, "cancelable": false,
+            "description": "The change event is fired when the user modifies and commits the value."
+        }
+    ],
+
+    "static_methods": [
+        {
+            "name": "parseFloat(text: string, option: NumericFormatOption): number", 
+            "description": "Parses an argument, converting it to a string if necessary, and returns a floating-point number.",
+        
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "The value to parse. If it is not a string, it is converted to one using the ToString abstract operation."
+                },
+                {
+                    "name": "option",
+                    "type": {
+                        "name": "NumericFormatOption",
+                        "href": "?q=intell.ctrl.NumericFormatOption"
+                    },
+                    "description": "An object that supplies culture-specific formatting information."
+                }
+            ],
+             "returns": {
+                 "type": "number",
+                 "description": "Returns a floating-point number parsed from the given string using the specified language-sensitive representation."
+             }
+        },
+        {
+            "name": "formatNumber(number?: number, option: NumericFormatOption): string",
+            "description": "Format a number argument.",
+            "parameters": [
+                {
+                    "name": "number",
+                    "type": "string",
+                    "description": "The number to format."
+                },
+                {
+                    "name": "option",
+                    "type": {
+                        "name": "NumericFormatOption",
+                        "href": "?q=intell.ctrl.NumericFormatOption"
+                    },
+                    "description": "An object that supplies culture-specific formatting information."
+                }
+            ],
+            "returns": {
+                "type": "string",
+                "description": "Returns a language-sensitive string representation of the given floating-point number."
+            }
+        }
+    ],
+
+    "examples": ["<div><a href=\"?q=intell.ctrl.Numeric-demo\">Click here</a> for more examples.</div>"]
+}

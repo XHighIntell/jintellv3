@@ -1,0 +1,88 @@
+﻿.icon-namespace{background-image:url(/static/img/Namespace_16x.svg)!important}
+.icon-class{background-image:url(/static/img/Class_16x.svg)!important}
+.icon-class-friend{background-image:url(/static/img/ClassFriend_16x.svg)!important}
+.icon-method{background-image:url(/static/img/Method_16x.svg)!important}
+.icon-extension-method{background-image:url(/static/img/ExtensionMethod_16x.svg)!important}
+.icon-property{background-image:url(/static/img/Property_16x.svg)!important}
+.icon-event{background-image:url(/static/img/Event_16x.svg)!important}
+.icon-field{background-image:url(/static/img/Field_16x.svg)!important}
+.icon-interface{background-image:url(/static/img/Interface_16x.svg)!important}
+.icon-wwwroot{background-image:url(/static/img/WebSite_16x.svg)!important}
+.icon-folder{background-image:url(/static/img/FolderOpened_16x.svg)!important}
+.icon-js-file{background-image:url(/static/img/JSFile_16x.svg)!important}
+.icon-ts-file{background-image:url(/static/img/TSFile.svg)!important}
+.icon-ts-project{background-image:url(/static/img/TSProject.svg)!important}
+.icon-html-file{background-image:url(/static/img/HTMLFile_16x.svg)!important}
+.icon-education{background-image:url(/static/img/Education_16x.svg)!important}
+.icon-stylesheet{background-image:url(/static/img/StyleSheet_16x.svg)!important}
+.icon-interactive-window{background-image:url(/static/img/PowerShellInteractiveWindow_16x.svg)!important}
+.icon-theme{background-image:url(/static/img/CopyTheme_16x.svg)!important}
+.icon-error-squiggle{background-image:url(/static/img/ActiveErrorSquiggle_16x.svg)!important}
+
+
+/*#region highlight Light */
+.language-typescript .hljs-keyword{color:#0000ff}
+.language-typescript .hljs-attr{color:rgb(31,55,127)}
+.language-typescript .hljs-built_in{color:#0000ff}
+.language-typescript .hljs-string{color:rgb(163,21,21)}
+.language-typescript .hljs-class{color:#2b91af}
+.language-typescript .hljs-title.class_{color:#2b91af}
+.language-typescript .hljs-property{color:#2b91af}
+.language-typescript .hljs-class.built_in{color:#0000ff}
+.language-typescript .hljs-namespace{color:#2b91af}
+.language-typescript .hljs-function{color:rgb(31,55,127)}
+.language-typescript .hljs-comment{color:darkgreen}
+
+.language-xml{}
+.language-xml .hljs-tag{color:blue}
+.language-xml .hljs-name{color:maroon}
+.language-xml .hljs-attr{color:red}
+.language-xml .hljs-string{color:#0000ff}
+
+.language-javascript{}
+.language-javascript .hljs-keyword{color:#0000ff}
+.language-javascript .hljs-string{color:maroon}
+.language-javascript .hljs-comment{color:darkgreen}
+
+
+.language-css{}
+.language-css .hljs-selector-id{color:maroon}
+.language-css .hljs-selector-class{color:maroon}
+.language-css .hljs-selector-pseudo{color:maroon}
+.language-css .hljs-attribute{color:red}
+.language-css .hljs-number{color:#00f}
+/*#endregion*/
+
+/*#region highlight Dark */
+body.Dark .language-typescript .hljs-keyword{color:#569cd6}
+body.Dark .language-typescript .hljs-attr{color:#4ec9b0}
+body.Dark .language-typescript .hljs-built_in{color:#569cd6}
+body.Dark .language-typescript .hljs-string{color:#d69d85}
+body.Dark .language-typescript .hljs-class{color:#2b91af}
+body.Dark .language-typescript .hljs-title.class_{color:#2b91af}
+body.Dark .language-typescript .hljs-property{color:#9cdcfe}
+body.Dark .language-typescript .hljs-class.built_in{color:#569cd6}
+body.Dark .language-typescript .hljs-namespace{color:#2b91af}
+body.Dark .language-typescript .hljs-function{color:#4ec9b0}
+body.Dark .language-typescript .hljs-literal{color:#569cd6}
+body.Dark .language-typescript .hljs-comment{color:#57a64a}
+
+body.Dark .language-xml .hljs-tag{color:#808080}
+body.Dark .language-xml .hljs-name{color:#569cd6}
+body.Dark .language-xml .hljs-attr{color:#9cdcfe}
+body.Dark .language-xml .hljs-string{color:#d69d85}
+
+body.Dark .language-javascript{color:#dadada}
+body.Dark .language-javascript .hljs-keyword{color:#569cd6}
+body.Dark .language-javascript .hljs-string{color:#569cd6}
+body.Dark .language-javascript .hljs-comment{color:#57a64a}
+
+body.Dark .language-css{}
+body.Dark .language-css .hljs-selector-id{color:#569cd6}
+body.Dark .language-css .hljs-selector-class{color:#d7ba7d}
+body.Dark .language-css .hljs-selector-pseudo{color:#569cd6}
+body.Dark .language-css .hljs-attribute{color:#9cdcfe}
+body.Dark .language-css .hljs-number{color:#fff}
+body.Dark .language-css .hljs-comment{color:#57a64a}
+body.Dark .language-css .hljs-selector-tag{color:#d7ba7d}
+/*#endregion*/

@@ -1,0 +1,24 @@
+{
+    "kind": "method",
+    "title": "loadScript Function",
+    
+
+    "methods": [
+        {
+            "name": "function loadScript(url: string): Promise&lt;HTMLScriptElement&gt;",
+            "description": "Loads a JavaScript file by creating a script tag and appending it to the DOM.",
+            "parameters": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "The URL of the JavaScript file."
+                }
+            ],
+            "returns": {
+                "type": { "name": "Promise&lt;HTMLScriptElement&gt;" },
+                "description": "Returns a Promise that resolves to the script element upon success."
+            },
+            "remarks": "The <mark>loadScript</mark> function includes a built-in cache; subsequent calls return the same script element."
+        }
+    ]
+}

@@ -1,0 +1,154 @@
+{
+    "kind": "class",
+    "title": "TimeSpan Class",
+    "description": "Represents a control that displays a timespan or duration value.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new instance of the TimeSpan class from element.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create TimeSpan control."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
+        { "name": "readonly elementInput: HTMLElement", "type": "HTMLElement", "description": "Gets the input element of the control." },
+        { "name": "readonly focused: boolean", "type": "boolean", "description": "Gets a value indicating whether the control have input focus." },
+
+        
+        { "name": "value?: number", "type": "number", 
+            "description": "Gets or sets the value in milliseconds.", 
+            "remarks": "The default value is <mark>null</mark>." 
+        },
+        { "name": "min?: number", "type": "number", 
+            "description": "Gets or sets the minimum allowed value.",
+            "remarks": "The default value is <mark>null</mark>."
+        },
+        { "name": "max?: number", "type": "number",
+            "description": "Gets or sets the maxium allowed value.",
+            "remarks": "The default value is <mark>null</mark>."
+        },
+        { "name": "step: number", "type": "number", 
+            "description": "Gets or sets the amount to increment or decrement when the up or down arrow keys are pressed.",
+            "remarks": "The default value is <mark>60000</mark>."
+        },
+
+        { "name": "stepViaWheel: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether the control can accept step changes via the mouse wheel.",
+            "remarks": "The default value is <mark>false</mark>." 
+        },
+        { "name": "strictness: number", "type": "number", 
+            "description": "Gets or sets the strictness level for parsing the input text value.",
+            "remarks": [
+                "The default value is <mark>0</mark>.",
+                "<p>When strictness equal 0, the <mark>/^(-?((\\d*\\.)?\\d+)(d|h|m|s|(ms)) *)*$/</mark> will be used.</p>",
+                "<p>When strictness equal 1, the <mark>/^(-?(\\d*\\.)?\\d+d)? *(-?(\\d*\\.)?\\d+h)? *(-?(\\d*\\.)?\\d+m)? *(-?(\\d*\\.)?\\d+s)? *(-?(\\d*\\.)?\\d+ms)?$/</mark> will be used.</p>"
+            ]
+        },
+        { "name": "decimalSeparator: string", "type": "string",
+            "description": " Gets or sets the decimal separator character.",
+            "remarks": "The default value is the locale’s decimal separator."
+        },
+        { "name": "thousandSeparator: string", "type": "string", 
+            "description": "Gets or sets the thousand separator character",
+            "remarks": "The default value is the locale’s thousand separator."
+        },
+        { "name": "nullable: boolean", "type": "boolean", 
+            "description": "Gets or sets whether the value can be null.",
+            "remarks": "The default value is <mark>true</mark>."
+        },
+        { "name": "readonly: boolean", "type": "boolean", 
+            "description": "Gets or sets whether the control is not mutable, meaning the user can not edit the control.",
+            "remarks": "The default value is <mark>false</mark>."
+        }
+    ],
+
+    "methods": [],
+
+    "events": [
+        {
+            "name": "timespanchange", "bubbles": true, "cancelable": false,
+            "description": "The change event is fired when the user modifies and commits the value."
+        }
+    ],
+
+    "static_fields": [
+
+    ],
+    "static_methods": [
+        {
+            "name": "isValid", "description": "Checks whether the timespan text is valid.",
+            "parameters": [
+                {
+                    "name": "text",
+                    "type": "string",
+                    "description": "The input string to be checked." 
+                },
+                {
+                    "name": "option",
+                    "type": {"name": "TimeSpanFormatOption", "href": "?q=intell.ctrl.TimeSpanFormatOption"},
+                    "description": "The options for parsing the value."
+                }
+            ],
+            "returns": {
+                "type": "boolean",
+                "description": "<p>Returns <mark>false</mark> if the timespan text is invalid.</p>"
+            }
+        },
+        {
+            "name": "parse", "description": "Returns a floating-point number representing milliseconds, parsed from the given string specified language-sensitive representation.",
+            "parameters": [
+                {
+                    "name": "text",
+                    "type": "string",
+                    "description": "The input string to be parsed." 
+                },
+                {
+                    "name": "option",
+                    "type": {"name": "TimeSpanFormatOption", "href": "?q=intell.ctrl.TimeSpanFormatOption"},
+                    "description": "The options for parsing the value."
+                }
+            ],
+            "returns": {
+                "type": "number",
+                "description": [
+                    "<p>Returns the value in milliseconds.</p>",
+                    "<p>Returns <mark>NaN</mark> if the timespan text is invalid.</p>"
+                ]
+            },
+            "remarks": "This method calls <mark>isValid</mark> before parsing. If <mark>isValid</mark> returns <mark>false</mark>, the method returns <mark>NaN</mark>."
+        },
+        {
+            "name": "format", "description": "Formats a timespan value into an array of Nodes representing the timespan.",
+            "parameters": [
+                {
+                    "name": "value",
+                    "type": "number",
+                    "description": "The timespan value to be formated." 
+                },
+                {
+                    "name": "option",
+                    "type": {"name": "TimeSpanFormatOption", "href": "?q=intell.ctrl.TimeSpanFormatOption"},
+                    "description": "The options for formating the value."
+                }
+            ],
+            "returns": {
+                "type": "Node[]",
+                "description": [
+                    "<p>Returns the value in milliseconds.</p>",
+                    "<p>Returns <mark>NaN</mark> if the timespan text is invalid.</p>"
+                ]
+            },
+            "remarks": "If value is <mark>null</mark> or <mark>NaN</mark>, return empty array."
+        }
+    ],
+
+    "examples": "<a href=\"?q=intell.ctrl.TimeSpan-demo\">Click here</a> for more examples."
+}

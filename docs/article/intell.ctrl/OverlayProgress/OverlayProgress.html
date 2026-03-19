@@ -1,0 +1,126 @@
+﻿<div class="title">OverlayProgress Demo</div>
+
+<style data-source="Overlay-Progress">
+.Overlay-Progress{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1100;pointer-events:none}
+.Overlay-Progress{display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;padding:20px 20px}
+.Overlay-Progress>.Item{display:flex;align-items:center;gap:.5em;margin:1px 0;padding:4px 10px;pointer-events:all;font-size:1.2em;border-radius:2px;transition:opacity .5s 1s}
+.Overlay-Progress>.Item .State{position:relative;display:flex;align-items:center;justify-content:center;width:1em}
+.Overlay-Progress>.Item.DONE .State::before{content:'\E82E';font-size:.8em;font-family:fontello}
+.Overlay-Progress>.Item.FAILED .State::before{content:'\F128';font-family:fontello}
+.Overlay-Progress>.Item.FADING{opacity:0} 
+</style>
+
+<style data-source="overlay-progress-light-blue">
+.overlay-progress-light-blue{color:#000}
+.overlay-progress-light-blue>.Item{background:linear-gradient(90deg, transparent, #ccc);text-shadow:1px 0px 1px #fff, -1px 0px 1px #fff}
+.overlay-progress-light-blue>.Item.WAITING .State::before{content:'';position:absolute;width:1em;height:1em;animation:overlay-light-blue-waiting-spin 2s linear infinite;border:3px solid transparent;border-top:3px solid #00abff;border-radius:50%}
+.overlay-progress-light-blue>.Item.WAITING .State::after{content:'';position:absolute;width:.7em;height:.7em;animation:overlay-light-blue-waiting-spin 2.3s linear infinite reverse;border:2px solid transparent;border-top:2px solid #0066ff;border-radius:50%}
+.overlay-progress-light-blue>.Item.DONE .State::before{color:#00abff}
+.overlay-progress-light-blue>.Item.FAILED .State::before{color:red}
+
+@keyframes overlay-light-blue-waiting-spin {
+    0%{transform:rotate(0deg)}
+    100%{transform:rotate(360deg)}
+}
+</style>
+
+<style data-source="overlay-progress-dark-blue">
+.overlay-progress-dark-blue{color:#fff}
+.overlay-progress-dark-blue>.Item{background:linear-gradient(90deg, transparent, black);text-shadow:1px 0px 1px #000, -1px 0px 1px #000}
+.overlay-progress-dark-blue>.Item.WAITING .State::before{content:'';position:absolute;width:1em;height:1em;animation:overlay-dark-blue-waiting-spin 2s linear infinite;border:3px solid transparent;border-top:3px solid #00abff;border-radius:50%}
+.overlay-progress-dark-blue>.Item.WAITING .State::after{content:'';position:absolute;width:.7em;height:.7em;animation:overlay-dark-blue-waiting-spin 2.3s linear infinite reverse;border:2px solid transparent;border-top:2px solid #0066ff;border-radius:50%}
+.overlay-progress-dark-blue>.Item.DONE .State::before{color:#00abff}
+.overlay-progress-dark-blue>.Item.FAILED .State::before{color:red}
+
+@keyframes overlay-dark-blue-waiting-spin {
+    0%{transform:rotate(0deg)}
+    100%{transform:rotate(360deg)}
+}
+</style>
+
+<div class="code-block" data-source-id="Overlay-Progress">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">Overlay-Progress</div>
+        </div>
+    </div>
+</div>
+<div class="code-block" data-source-id="overlay-progress-light-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">overlay-progress-light-blue</div>
+        </div>
+    </div>
+</div>
+<div class="code-block" data-source-id="overlay-progress-dark-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">overlay-progress-dark-blue</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="theme-switch">
+    <div class="theme" data-theme="light-blue"><i class="icon icon-theme"></i> light-blue</div>
+    <div class="theme selected" data-theme="dark-blue"><i class="icon icon-theme"></i> dark-blue</div>
+</div>
+
+<script>
+    document.querySelector('.theme-switch').addEventListener('article-theme-change', function(e) {
+        $('.Overlay-Progress').removeClass(['overlay-progress-light-blue', 'overlay-progress-dark-blue']).addClass('overlay-progress-' + e.detail.name);
+    });
+</script>
+
+
+<div class="example">
+    <div data-source="Example1">
+        <div id="overlay-progress1" class="Overlay-Progress overlay-progress-dark-blue"></div>
+        <button id="button1">Do Task 1 (2s)</button>
+        <button id="button2">Do Task 2 (2-7s)</button>
+        <button id="button3">Do Task 3 (40s)</button>
+        <button id="button4">Fail Task 1 (2s)</button>
+
+        <script>
+            const overlayProgress1 = new intell.ctrl.OverlayProgress(document.getElementById('overlay-progress1'));
+
+            document.getElementById('button1').addEventListener('click', function() {
+                overlayProgress1.displayProgress('Fetching Machine Configs', async function() {
+                    await intell.wait(2000);
+                });
+            });
+            document.getElementById('button2').addEventListener('click', function() {
+                overlayProgress1.displayProgress('Fetching Account', async function() {
+                    await intell.wait(2000 + Math.random() * 5000);
+                });
+            });
+            document.getElementById('button3').addEventListener('click', function() {
+                overlayProgress1.displayProgress('Uploading Files', async function() {
+                    await intell.wait(40000);
+                });
+            });
+            document.getElementById('button4').addEventListener('click', function() {
+                overlayProgress1.displayProgress('Deleting Files', async function() {
+                    await intell.wait(2000);
+                    throw new Error('testing task');
+                });
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="Example1">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code - displayProgress</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

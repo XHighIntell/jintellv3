@@ -1,0 +1,165 @@
+﻿<style data-source="TimeSpan">
+.TimeSpan{border:1px solid;transition:border-color .3s}
+.TimeSpan>.Input{min-width:120px;max-width:200px;padding:2px 4px;text-align:center;outline:none;text-wrap-mode:nowrap;overflow:auto}
+.TimeSpan>.Input::-webkit-scrollbar{width:0px;height:0px}
+</style>
+<div class="code-block" data-source-id="TimeSpan" style="margin-top:0">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">TimeSpan</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="timespan-light-blue">
+.TimeSpan.timespan-light-blue{border-color:#b6b6b6;background:rgba(255,255,255,.4)}
+.TimeSpan.timespan-light-blue:hover{border-color:rgba(0,0,0,.6)}
+.TimeSpan.timespan-light-blue.FOCUS{border-color:#0098ff}
+.TimeSpan.timespan-light-blue.ERROR{border-color:#f00}
+.TimeSpan.timespan-light-blue>.Input>span{color:#0085e0}
+.TimeSpan.timespan-light-blue{}
+</style>
+<div class="code-block" data-source-id="timespan-light-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">timespan-light-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="timespan-dark-blue">
+.TimeSpan.timespan-dark-blue{border-color:rgba(255,255,255,.3);background:rgba(0,0,0,.5)}
+.TimeSpan.timespan-dark-blue:hover{border-color:rgba(255,255,255,.6)}
+.TimeSpan.timespan-dark-blue.FOCUS{border-color:#0098ff}
+.TimeSpan.timespan-dark-blue.ERROR{border-color:#f00}
+.TimeSpan.timespan-dark-blue>.Input>span{color:#5c5c5c}
+</style>
+<div class="code-block" data-source-id="timespan-dark-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">timespan-dark-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="timespan-icon">
+.TimeSpan.timespan-icon{display:flex;align-items:center}
+.TimeSpan.timespan-icon::before{content:"";width:1em;height:1em;padding:0 0.1em;background:center no-repeat url(../static/img/Method_16x.svg);align-self:center}
+</style>
+<div class="code-block" data-source-id="timespan-icon">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">timespan-icon</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="theme-switch">
+    <div class="theme" data-theme="light-blue"><i class="icon icon-theme"></i> light-blue</div>
+    <div class="theme selected" data-theme="dark-blue"><i class="icon icon-theme"></i> dark-blue</div>
+</div>
+<fieldset id="options">
+    <legend>More styles</legend>
+    
+    <div class="Checkbox" data-class="timespan-icon">Icon</div>
+</fieldset>
+
+
+<script>
+    document.querySelector('.theme-switch').addEventListener('article-theme-change', function(e) {
+        $('.TimeSpan').removeClass(['timespan-light-blue', 'timespan-dark-blue']).addClass('timespan-' + e.detail.name);
+    });
+    document.querySelectorAll('#options .Checkbox').forEach(element => new intell.ctrl.Checkbox(element));
+    document.getElementById('options').addEventListener('checkboxchange', function(e) {
+        const checkbox = e.checkbox;
+        const className = checkbox.element.getAttribute('data-class');
+        
+        $('.TimeSpan').toggleClass(className, checkbox.checked);
+    });
+
+</script>
+
+<div class="example">
+    <div class="title">Default</div>
+    <div data-source="Default" style="display:flex;flex-direction:column;align-items:flex-start">
+        <div id="timespan1" class="TimeSpan timespan-dark-blue"></div>
+
+        <script>
+            const timespan1 = new intell.ctrl.TimeSpan(document.getElementById('timespan1'));
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="Default">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">Min = 0</div>
+    <div data-source="Min" style="display:flex;flex-direction:column;align-items:flex-start">
+        <div id="timespan2" class="TimeSpan timespan-dark-blue"></div>
+
+        <script>
+            const timespan2 = new intell.ctrl.TimeSpan(document.getElementById('timespan2'));
+            timespan2.min = 0;
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="Min">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">strictness = 1</div>
+    <div data-source="strictness" style="display:flex;flex-direction:column;align-items:flex-start">
+        <div id="timespan3" class="TimeSpan timespan-dark-blue"></div>
+
+        <script>
+            const timespan3 = new intell.ctrl.TimeSpan(document.getElementById('timespan3'));
+            timespan3.strictness = 1;
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="strictness">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">nullable = false</div>
+    <div data-source="nullable" style="display:flex;flex-direction:column;align-items:flex-start">
+        <div id="timespan4" class="TimeSpan timespan-dark-blue"></div>
+
+        <script>
+            const timespan4 = new intell.ctrl.TimeSpan(document.getElementById('timespan4'));
+            timespan4.nullable = false;
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="nullable">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>

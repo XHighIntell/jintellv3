@@ -1,0 +1,50 @@
+﻿<div class="title">Naming Guidelines</div>
+<div class="description">
+    These guidelines help you understand the library and make customization more easily.
+</div>
+
+
+<div class="group-members">
+    <div class="title">Control Names</div>
+    <p>Pascal Case prefix with <mark>X-</mark>.</p>
+
+    <fieldset class="code-box language-css">
+        .X-Menu
+        .X-Numeric
+        .X-Portal
+    </fieldset>    
+</div>
+
+<div class="group-members">
+    <div class="title">State Names</div>
+    <p>Uppercase for any state name accessed by <span class="icon-JSFile"></span> JavaScript.</p>
+
+    <fieldset class="code-box language-css">
+        .SELECTED
+        .ACTIVE
+        .DISABLED
+        .HAS-CHILDREN
+        .CHILDREN-VISIBLE
+        .CHILDREN-OUT
+    </fieldset>    
+</div>
+
+<div class="group-members">
+    <div class="title">Generic Names</div>
+    
+    <fieldset>
+        <legend>✓ DO use the child combinator (>) for generic names.</legend>
+        <div class="code-box language-css">
+            .article>.icon{}
+            .article>.title{}
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend>✗ DO NOT use a generic name by itself in a selector.</legend>
+        <div class="code-box language-css">
+            .icon{}
+            .title{}
+        </div>
+    </fieldset>
+</div>

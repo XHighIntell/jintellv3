@@ -1,0 +1,55 @@
+{
+    "kind": "class",
+    "title": "Application Class",
+    "description": "Represents an portal application.",
+    
+    "constructors": [
+        {
+            "name": "constructor(manifest: ApplicationManifest)", 
+            "description": "Initializes a new instance of the Application class from manifest.", 
+            "parameters": [
+                {
+                    "name": "manifest", 
+                    "type": { "name": "ApplicationManifest", "href": "?q=intell.portal.ApplicationManifest" },
+                    "description": "The manifest used to create the application."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly manifest: ApplicationManifest", "type": { "name": "ApplicationManifest", "href": "?q=intell.portal.ApplicationManifest" }, "description": "Gets the status of the application." },
+        { "name": "readonly status: string", "type": "string", "description": "Gets the status of the application.", "remarks": "The application status can be <mark>NONE</mark>, <mark>LOADING</mark>, <mark>LOADED</mark>, or <mark>FAILED</mark>." },
+        { "name": "readonly shortcut: TaskbarShortcut", "type": "TaskbarShortcut", "description": "Gets the Taskbar shortcut of the application." },
+        { 
+            "name": "readonly portal?: Portal", 
+            "type": { "name": "Portal", "href": "?q=intell.portal.Portal" },
+            "description": "Gets the portal of the application.",
+            "remarks": "The value is <mark>null</mark> if the application hasn't been added to the portal."
+        },
+        { 
+            "name": "readonly elementRoot?: HTMLElement", "type": "HTMLElement",
+            "description": "Gets the the root content element of the application.",
+            "remarks": "The value is <mark>null</mark> if the application hasn't finished loading its HTML content."
+        },
+        { "name": "readonly error?: Error", "type": "Error", "description": "Gets the error that occurred while loading the application." }
+    ],
+
+    "methods": [
+        {
+            "name": "load(): Promise&lt;void&gt;",
+            "description": "Loads the application. Subsequent calls return the previous Promise."
+        },
+        {
+            "name": "addPostInitTask(init: (this: Application) => Promise&lt;any&gt; | any)", 
+            "description": "Adds a post-initialization task to the application that executes after it loads.",
+            "parameters": [
+                {
+                    "name": "init",  "type": "Function",
+                    "description": "The post-initialization task function."
+                }
+            ],
+            "remarks": "The post-initialization task can return a Promise for long-running jobs. The portal overlay will display a loading page until the task finishes."
+        }
+    ]
+}

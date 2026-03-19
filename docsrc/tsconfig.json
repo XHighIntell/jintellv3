@@ -1,0 +1,27 @@
+{
+    "typeAcquisition": {
+        "enable": true,
+        "include": [ "jquery" , "highlightjs"]
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "references": [
+        { "path": "../src" }
+    ],
+    "compilerOptions": {
+        //"strictNullChecks": true,
+        "noImplicitAny": false,
+        "noEmitOnError": false,
+        "removeComments": false,
+        "sourceMap": true,
+        "declaration": false,
+        "target": "es2022",
+        "module": "es6",
+        "noCheck": false,
+        //"composite": true,
+        "inlineSources": true,
+        "outFile": "../docs/static/js/docs.js"
+    },
+    "compileOnSave": true
+}

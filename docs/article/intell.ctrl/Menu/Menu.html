@@ -1,0 +1,408 @@
+﻿<style data-source="Menu">
+.Menu:not(.CONTEXTMENU){position:relative;outline:none}
+.Menu:not(.CONTEXTMENU)>.Children{display:flex}
+.Menu:not(.CONTEXTMENU)>.Children>.Item>.Label{user-select:none}
+.Menu:not(.CONTEXTMENU) .Children{padding:2px;border:1px solid transparent}
+.Menu:not(.CONTEXTMENU) .Children>.Intersect{display:none;position:absolute}
+.Menu:not(.CONTEXTMENU) .Item{}
+.Menu:not(.CONTEXTMENU) .Item>.Label{display:flex;gap:.5em;align-items:center;padding:.1em .5em .1em .4em;border:1px solid transparent;cursor:pointer}
+.Menu:not(.CONTEXTMENU) .Item>.Label>.Icon{display:flex;align-items:center;text-align:center;justify-content:center;width:1.25em;height:1.25em;background-position:center;background-repeat:no-repeat}
+.Menu:not(.CONTEXTMENU) .Item>.Label>.Text{padding-right:2.5em;white-space:nowrap}
+.Menu:not(.CONTEXTMENU) .Item.HAS-CHILDREN>.Label::after{content:"";margin-left:auto;font-family:fontello}
+.Menu:not(.CONTEXTMENU) .Item>.Children{position:absolute;display:none;z-index:99}
+.Menu:not(.CONTEXTMENU) .Separator{height:1px;margin:2px 0 2px calc(12px + 1.25em)}
+.Menu:not(.CONTEXTMENU) .Item.ROOT>.Label>.Text{padding-right:0}
+.Menu:not(.CONTEXTMENU) .Item.ROOT.HAS-CHILDREN>.Label::after{content:none}
+
+.Menu.CONTEXTMENU{position:absolute;z-index:99;outline:none}
+.Menu.CONTEXTMENU>.Children{}
+.Menu.CONTEXTMENU>.Children>.Item>.Label{user-select:none}
+.Menu.CONTEXTMENU .Children{padding:2px;border:1px solid transparent}
+.Menu.CONTEXTMENU .Children>.Intersect{display:none;position:absolute}
+.Menu.CONTEXTMENU .Item{}
+.Menu.CONTEXTMENU .Item>.Label{display:flex;gap:.5em;align-items:center;padding:.1em .5em .1em .4em;border:1px solid transparent;cursor:pointer}
+.Menu.CONTEXTMENU .Item>.Label>.Icon{display:flex;align-items:center;text-align:center;justify-content:center;width:1.25em;height:1.25em;background-position:center;background-repeat:no-repeat}
+.Menu.CONTEXTMENU .Item>.Label>.Text{padding-right:2.5em;white-space:nowrap}
+.Menu.CONTEXTMENU .Item.HAS-CHILDREN>.Label::after{content:"";margin-left:auto;font-family:fontello}
+.Menu.CONTEXTMENU .Item>.Children{position:absolute;display:none;z-index:99}
+.Menu.CONTEXTMENU .Separator{height:1px;margin:2px 0 2px calc(12px + 1.25em)}
+</style>
+<div class="code-block" data-source-id="Menu" style="margin-top:0">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">Menu</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="menu-light-blue">
+.Menu:not(.CONTEXTMENU).menu-light-blue{background-color:#ccd5f0}
+.Menu:not(.CONTEXTMENU).menu-light-blue .Item.ACTIVE>.Label{background-color:#b1c5ff}
+.Menu:not(.CONTEXTMENU).menu-light-blue .Item.ROOT.ACTIVE>.Label{border-color:#94a6ca;background-color:#e9eeff}
+.Menu:not(.CONTEXTMENU).menu-light-blue .Item.ROOT:hover>.Label{border-color:#94a6ca;background-color:#e9eeff}
+.Menu:not(.CONTEXTMENU).menu-light-blue .Item>.Children{border-color:#94a6ca;background-color:#e9eeff}
+.Menu:not(.CONTEXTMENU).menu-light-blue .Intersect{background-color:#eaeefe}
+.Menu:not(.CONTEXTMENU).menu-light-blue .Separator{background-color:#bec3cb}
+
+.Menu.CONTEXTMENU.menu-light-blue{}
+.Menu.CONTEXTMENU.menu-light-blue .Item.ACTIVE>.Label{background-color:#b1c5ff}
+.Menu.CONTEXTMENU.menu-light-blue .Children{border-color:#94a6ca;background-color:#e9eeff}
+.Menu.CONTEXTMENU.menu-light-blue .Intersect{background-color:transparent}
+.Menu.CONTEXTMENU.menu-light-blue .Separator{background-color:#bec3cb}
+</style>
+<div class="code-block" data-source-id="menu-light-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">menu-light-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="menu-dark-blue">
+.Menu:not(.CONTEXTMENU).menu-dark-blue{background:#000}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ACTIVE>.Label{background-color:#029de5c4;box-shadow: inset #0278af 0 0 1px 1px;border-color:#0085ab;}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ROOT:hover>.Label{background-color:#ffffff33}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ROOT.ACTIVE>.Label{border-color:#0085ab;background-color:#029de5c4}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Item>.Children{border-color:#4c4c4c;background:repeating-linear-gradient(45deg, black, #101010, black 125px)}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Item>.Children::before{content:'';position:absolute;left:0;right:0;top:0;bottom:0;background:url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/facets/ripple_texture.png) no-repeat;background-size:cover;filter:invert(57%) sepia(100%) saturate(100%) hue-rotate(32deg) brightness(93%) contrast(100%);opacity:.5;pointer-events:none}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Separator{background:#ffffff36}
+
+.Menu.CONTEXTMENU.menu-dark-blue{background:#000}
+.Menu.CONTEXTMENU.menu-dark-blue .Item.ACTIVE>.Label{background-color:#029de5c4;box-shadow: inset #0278af 0 0 1px 1px;border-color:#0085ab;}
+.Menu.CONTEXTMENU.menu-dark-blue .Item.ROOT.ACTIVE>.Label{border-color:#0085ab;background-color:#029de5c4}
+.Menu.CONTEXTMENU.menu-dark-blue .Separator{background:#ffffff36}
+.Menu.CONTEXTMENU.menu-dark-blue .Children{border-color:#4c4c4c;background:repeating-linear-gradient(45deg, black, #101010, black 125px)}
+.Menu.CONTEXTMENU.menu-dark-blue .Children::before{content:'';position:absolute;left:0;right:0;top:0;bottom:0;background:url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/facets/ripple_texture.png) no-repeat;background-size:cover;filter:invert(57%) sepia(100%) saturate(100%) hue-rotate(32deg) brightness(93%) contrast(100%);opacity:.5;pointer-events:none}
+</style>
+<div class="code-block" data-source-id="menu-dark-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">menu-dark-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="menu-vertical">
+.Menu.menu-vertical{}
+.Menu.menu-vertical>.Children{flex-direction:column}
+</style>
+<div class="code-block" data-source-id="menu-vertical">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">menu-vertical</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="root-iconless">
+.Menu.root-iconless .Item.ROOT>.Label>.Icon{display:none}
+</style>
+<div class="code-block" data-source-id="root-iconless">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">root-iconless</div>
+        </div>
+    </div>
+</div>
+
+<div class="theme-switch">
+    <div class="theme" data-theme="light-blue"><i class="icon icon-theme"></i> light-blue</div>
+    <div class="theme selected" data-theme="dark-blue"><i class="icon icon-theme"></i> dark-blue</div>
+</div>
+<fieldset id="options">
+    <legend>More styles</legend>
+    
+    <div class="Checkbox" data-class="vertical">Vertical</div>
+    <div class="Checkbox" data-class="root-iconless">Root No Icon</div>
+</fieldset>
+
+<div >
+    
+</div>
+
+<script>
+    document.querySelector('.theme-switch').addEventListener('article-theme-change', function(e) {
+        $('.Menu').removeClass(['menu-light-blue', 'menu-dark-blue']).addClass('menu-' + e.detail.name);
+    });
+    document.querySelectorAll('#options .Checkbox').forEach(element => new intell.ctrl.Checkbox(element));
+    document.getElementById('options').addEventListener('checkboxchange', function(e) {
+        const checkbox = e.checkbox;
+        const className = checkbox.element.getAttribute('data-class');
+        
+        $('.Menu').toggleClass(className, checkbox.checked);
+    });
+    
+
+
+</script>
+
+<div class="example">
+    <div class="title">Horizontal</div>
+    <div data-source="horizontal" style="display:flex;flex-direction:column;align-items:flex-start">
+        <div id="menu1" class="Menu menu-dark-blue"></div>
+
+        <script>
+            const menu1 = new intell.ctrl.Menu(document.getElementById('menu1'));
+            menu1.add({
+                iconClass: 'icon-doc', text: 'File', children: [
+                    {
+                        text: 'New', children: [
+                            { iconClass: 'icon-stylesheet', text: 'AA', title: 'Creates new AA format file' },
+                            { iconClass: 'icon-html-file', text: 'BB', title: 'Creates new BB format file' }
+                        ]
+                    },
+                    {
+                        iconClass: 'icon-folder-open-empty', text: 'Open', children: [
+                            { text: 'Folder' },
+                            { text: 'File' }
+                        ]
+                    },
+                    '--',
+                    { text: 'Exit' }
+                ]
+            });
+            menu1.add({
+                iconClass:'icon-pencil', text: 'Edit', children: [
+                    {
+                        text: 'Go To', children: [
+                            { text: 'Go To Text...' },
+                            { text: 'Go To All...' }
+                        ]
+                    }
+                ]
+            });
+
+            document.addEventListener('menuclick', function(e) {
+                console.log('menuclick', e);
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="horizontal">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">Vertical</div>
+    <div data-source="vertical" style="display:flex;flex-direction:column;align-items:flex-start">
+        <div id="menu2" class="Menu menu-dark-blue menu-vertical"></div>
+
+        <script>
+            const menu2 = new intell.ctrl.Menu(document.getElementById('menu2'));
+            menu2.rootChildrenLocations = [4, 12];
+            menu2.rootChildrenDirection = 'column';
+
+            const menu2File = menu2.add({ text: 'File' }); menu2File.elementIcon.classList.add('icon-doc');
+            const menu2FileNew = menu2File.add({ text: 'New' });
+            const menu2FileNewAA = menu2FileNew.add({ text: 'AA', title: 'Creates new AA format file' }); menu2FileNewAA.elementIcon.classList.add('icon-stylesheet');
+            const menu2FileNewBB = menu2FileNew.add({ text: 'BB', title: 'Creates new BB format file' }); menu2FileNewBB.elementIcon.classList.add('icon-html-file');
+
+            const menu2FileOpen = menu2File.add({ text: 'Open' });
+            const menu2FileOpenFolder = menu2FileOpen.add({ text: 'Folder' });
+            const menu2FileOpenFile = menu2FileOpen.add({ text: 'File' });
+
+             menu2File.add({ text: 'Exit' });
+
+            const menu2Edit = menu2.add({ text: 'Edit' }); menu2Edit.elementIcon.classList.add('icon-pencil');
+            const menu2EditGoto = menu2Edit.add({ text: 'Go To' });
+            const menu2EditGotoText = menu2EditGoto.add({ text: 'Go To Text...' });
+            const menu2EditGotoAll = menu2EditGoto.add({ text: 'Go To All...' });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="vertical">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="example">
+    <div class="title">Context Menu</div>
+    <div id="menu3-container" data-source="context-menu" style="display:flex;flex-direction:column;align-items:flex-start;min-height:150px">
+        <div id="menu3" class="Menu menu-dark-blue" style="display:none"></div>
+
+
+        <script>
+            const menu3 = new intell.ctrl.Menu(document.getElementById('menu3'));
+            menu3.rootChildrenLocations = [4, 12];
+            menu3.rootChildrenDirection = 'column';
+            menu3.contextMenu = true;
+
+            menu3.add({
+                iconClass: 'icon-doc', text: 'File', children: [
+                    {
+                        text: 'New', children: [
+                            { iconClass: 'icon-stylesheet', text: 'AA', title: 'Creates new AA format file' },
+                            { iconClass: 'icon-html-file', text: 'BB', title: 'Creates new BB format file' }
+                        ]
+                    },
+                    {
+                        iconClass: 'icon-folder-open-empty', text: 'Open', children: [
+                            { text: 'Folder' },
+                            { text: 'File' }
+                        ]
+                    },
+                    '--',
+                    { text: 'Exit' }
+                ]
+            });
+            menu3.add({
+                iconClass: 'icon-pencil', text: 'Edit', children: [
+                    {
+                        text: 'Go To', children: [
+                            { text: 'Go To Text...' },
+                            { text: 'Go To All...' }
+                        ]
+                    }
+                ]
+            });
+            menu3.add({
+                iconClass: 'icon-arrows-ccw', text: 'Refresh'
+            });
+
+            const x = document.getElementById('menu3-container');
+            x.addEventListener('contextmenu', function(e) { e.preventDefault() });
+            x.addEventListener('mouseup', function(e) {
+                if (e.button == 2 && e.target == x) {
+                    menu3.showAsContextMenuAt({ x: e.pageX, y: e.pageY }, [9, 1]);
+                }
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="context-menu">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">Predefined</div>
+    <div id="menu4-container" data-source="predefined" style="display:flex;flex-direction:column;align-items:flex-start;min-height:150px">
+        <div id="menu4" class="Menu menu-dark-blue" style="display:none">
+            <div class="Children">
+                <div class="Item HAS-CHILDREN ROOT">
+                    <div class="Label">
+                        <div class="Icon icon-doc"></div>
+                        <div class="Text">File</div>
+                    </div>
+                    <div class="Children">
+                        <div class="Item HAS-CHILDREN">
+                            <div class="Label"><div class="Icon"></div><div class="Text">New</div></div>
+
+                            <div class="Children">
+                                <div class="Item">
+                                    <div class="Label" title="Creates new AA format file">
+                                        <div class="Icon icon-stylesheet"></div>
+                                        <div class="Text">AA</div>
+                                    </div>
+                                </div>
+                                <div class="Item">
+                                    <div class="Label" title="Creates new BB format file">
+                                        <div class="Icon icon-html-file"></div>
+                                        <div class="Text">BB</div>
+                                    </div>
+                                    <div class="Children"><div class="Intersect"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Item HAS-CHILDREN">
+                            <div class="Label">
+                                <div class="Icon icon-folder-open-empty"></div>
+                                <div class="Text">Open</div>
+                            </div>
+                            <div class="Children">
+                                <div class="Item">
+                                    <div class="Label">
+                                        <div class="Icon"></div>
+                                        <div class="Text">Folder</div>
+                                    </div>
+                                    <div class="Children"></div>
+                                </div>
+                                <div class="Item">
+                                    <div class="Label"><div class="Icon"></div><div class="Text">File</div></div>
+                                    <div class="Children"></div>
+                                </div>
+                            </div>
+                        </div><div class="Separator"></div>
+                        <div class="Item">
+                            <div class="Label"><div class="Icon"></div><div class="Text">Exit</div></div>
+                            <div class="Children"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Item HAS-CHILDREN ROOT">
+                    <div class="Label">
+                        <div class="Icon icon-pencil"></div><div class="Text">Edit</div>
+                    </div>
+                    <div class="Children">
+                        <div class="Item HAS-CHILDREN">
+                            <div class="Label">
+                                <div class="Icon"></div>
+                                <div class="Text">Go To</div>
+                            </div>
+                            <div class="Children">
+                                <div class="Item">
+                                    <div class="Label">
+                                        <div class="Icon"></div><div class="Text">Go To Text...</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="Item">
+                                    <div class="Label">
+                                        <div class="Icon"></div><div class="Text">Go To All...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Item">
+                    <div class="Label"><div class="Icon icon-arrows-ccw"></div><div class="Text">Refresh</div></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script>
+            const menu4 = new intell.ctrl.Menu(document.getElementById('menu4'));
+            menu4.rootChildrenLocations = [4, 12];
+            menu4.rootChildrenDirection = 'column';
+            menu4.contextMenu = true;
+
+            const menu4container= document.getElementById('menu4-container');
+            menu4container.addEventListener('contextmenu', function(e) { e.preventDefault() });
+            menu4container.addEventListener('mouseup', function(e) {
+                if (e.button == 2 && e.target == menu4container) {
+                    menu4.showAsContextMenuAt({ x: e.pageX, y: e.pageY }, [9, 1]);
+                }
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="predefined">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>

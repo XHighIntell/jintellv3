@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Internal Testing Page</title>
+    <script src="/static/lib/jquery/jquery-4.0.0.min.js" defer></script>
+    <script src="/static/lib/jintellv3/intell.min.js"></script>
+    <script src="/static/js/docs.js" defer></script>
+    <script>currentPage = 'intell.math.getRectWhenShowAtRect'</script>
+    <style>
+        body{margin-top:0;font-family:'Segoe UI'}
+        .testcase{}
+        .testcase>.header{display:flex;gap:1em}
+        .testcase>.header>.panel1{padding:5px 5px 0 5px;background:#ededed}
+        .testcase>.header>.panel1>.expects{margin:0;padding:0 0 0 20px;list-style-position:inside}
+
+        .testcase>.body{border:1px solid}
+
+        .box{position:absolute;width:100px;height:100px;background:repeating-linear-gradient(45deg, #000 0px, #000 5px, #ffd400 5px, #ffd400 15px)}
+        .box-overlay{position:absolute;background:#000000c9;box-sizing:border-box}
+    </style>
+</head>
+<body>
+    <div class="testcase">
+        <div class="header">
+            <div class="panel1">
+                <div class="title">
+                    <mark>intell.math.getRectWhenShowAtRect</mark>:
+                </div>
+                <ul class="expects">
+                    <li>Location: 1 to 12</li>
+                    <li>distance, distanceToContainer</li>
+                    <li>Overlap</li>
+                </ul>
+            </div>
+            <div class="panel2">
+                <div class="options">
+                    <div>
+                        <label for="margin">distanceToContainer</label>
+                        <input type="number" id="margin" value="0"/>
+                    </div>
+                    <div>
+                        <label for="space">distance</label>
+                        <input type="number" id="space" value="0"/>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="checkboxIsInContainer" name="container" value="container">
+                        <label for="checkboxIsInContainer">Must in the container</label>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button data-location="1">1</button>
+                    <button data-location="2">2</button>
+                    <button data-location="3">3</button>
+                    <button data-location="4">4</button>
+                    <button data-location="5">5</button>
+                    <button data-location="6">6</button>
+                    <button data-location="7">7</button>
+                    <button data-location="8">8</button>
+                    <button data-location="9">9</button>
+                    <button data-location="10">10</button>
+                    <button data-location="11">11</button>
+                    <button data-location="12">12</button>
+                </div>
+                <div>
+                    <div class="">Overlap:</div>
+                    <span class="overlap"></span>
+                </div>
+            </div>
+        </div>
+       
+        <div class="body testcase-body" style="position:relative;height:400px;overflow:auto">
+            <div class="box"></div>
+        </div>
+    </div>
+</body>
+</html>

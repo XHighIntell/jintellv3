@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ProjectExtensions><VisualStudio><UserProperties article_4all_1json__JsonSchema="..\schema\structure-schema.json" article_4intell_1ctrl_4menu_4menu_1json__JsonSchema="..\..\..\schema\article-schema.json" article_4intell_1math_4showatoption_1json__JsonSchema="..\..\schema\article-schema.json" article_4intell_1portal_4application_1json__JsonSchema="..\..\schema\article-schema.json" article_4intell_1portal_4applicationmanifest_1json__JsonSchema="..\..\schema\article-schema.json" article_4intell_1portal_4applicationmanifestcontent_1json__JsonSchema="..\..\schema\article-schema.json" article_4intell_1portal_4portal_1json__JsonSchema="..\..\schema\article-schema.json" article_4intell_4loadscript_1json__JsonSchema="..\..\schema\article-schema.json" article_4intell_4qs_1json__JsonSchema="..\..\schema\article-schema.json" article_4intell_4version_1json__JsonSchema="..\..\schema\article-schema.json" article_4intell_4wait_1json__JsonSchema="..\..\schema\article-schema.json" /></VisualStudio></ProjectExtensions>
+</Project>

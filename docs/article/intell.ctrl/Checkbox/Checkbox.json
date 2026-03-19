@@ -1,0 +1,42 @@
+{
+    "kind": "class",
+    "title": "Checkbox Class",
+    "description": "Represents a checkbox that displays a boolean value. The simplest control in this library.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new checkbox.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create checkbox control."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
+        { "name": "readonly elementLabel: HTMLElement", "type": "HTMLElement", "description": "Gets the label element." },
+        { "name": "readonly elementIcon: HTMLElement", "type": "HTMLElement", "description": "Gets the icon element." },
+        { "name": "readonly elementName: HTMLElement", "type": "HTMLElement", "description": "Gets the name element." },
+        { "name": "readonly focused: boolean", "type": "boolean", "description": "Gets a value indicating whether the control have input focus." },
+
+        { "name": "checked?: boolean", "type": "boolean", "description": "Gets or sets value indicating whether this checkbox is checked." },
+        { "name": "text: string", "type": "string", "description": "Gets or sets the text of the name element of the control; the default value is <mark>''</mark> (empty string)." },
+
+        { "name": "nullable: boolean", "type": "boolean", "description": "Gets or sets whether the value can be null; the default is <mark>true</mark>." },
+        { "name": "readonly: boolean", "type": "boolean", "description": "Gets or sets whether the control is not mutable, meaning the user can not edit the control; the default is <mark>false</mark>." },
+    ],
+
+    "events": [
+        {
+            "name": "checkboxchange", "bubbles": true, "cancelable": false,
+            "description": "The change event is fired when the user modifies and commits the checked."
+        }
+    ],
+
+    "after": ["<div><a href=\"?q=intell.ctrl.Checkbox-demo\">Click here</a> for more examples.</div>"]
+}

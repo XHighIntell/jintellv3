@@ -1,0 +1,220 @@
+﻿<style data-source="ComboBox">
+.ComboBox{display:flex;align-items:center;gap:.4em;padding:.25em .325em .25em .625em;min-width:100px;border:1px solid;transition:border .3s;outline:none;user-select:none}
+.ComboBox::after{content:'\e818';margin-left:auto;font-family:'fontello'}
+.ComboBox .Selected-Content{user-select:none}
+.ComboBox .Selected-Content:empty::before{content:" ";white-space:pre}
+
+.ComboBox .Item{display:grid;grid-template-columns:min-content auto;gap:0 .5em;cursor:pointer}
+.ComboBox .Item>.Icon{grid-row:2 span;width:1.2em;min-height:1.2em;align-self:center;text-align:center}
+.ComboBox .Item>.Text{}
+.ComboBox .Item>.Description{font-size:.6em;font-style:italic;}
+
+.ComboBox>.Picker{position:absolute;display:none;max-height:calc(100vh);background:#fff;border:1px solid;box-sizing:border-box;z-index:100;overflow:auto;user-select:text}
+.ComboBox>.Picker>.Search{padding:5px;}
+.ComboBox>.Picker>.Search input{min-width:100%;padding:4px 6px;border:1px solid;border-radius:1px;transition:border .3s;box-sizing:border-box}
+.ComboBox>.Picker>.Search input:hover{}
+.ComboBox>.Picker>.Search input:focus{}
+.ComboBox>.Picker>.Children>.Group>header{padding:4px 10px 0}
+.ComboBox>.Picker>.Children>.Group>header>.Text{font-size:.7em;font-weight:500}
+.ComboBox>.Picker>.Children>.Group>.Children>.Item{padding:.2em .8em .2em 1.8em}
+.ComboBox>.Picker>.Children>.Group>.Children>.Item:hover{}
+.ComboBox>.Picker>.Children>.Group>.Children>.Item.SELECTED{}
+.ComboBox>.Picker>.Children>.Group>.Children>.Item.OUTLINE{outline:1px dashed;outline-offset:-1px}
+.ComboBox>.Picker>.Children>.Group.DEFAULT>.Children>.Item{padding-left:.8em}
+
+</style>
+<div class="code-block" data-source-id="ComboBox" style="margin-top:0"+>
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">ComboBox</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="combobox-light-blue">
+.combobox-light-blue{border-color:rgba(0,0,0,.3)}
+.combobox-light-blue:hover{border-color:rgba(0,0,0,.6)}
+.combobox-light-blue.FOCUS{border-color:#0098ff}
+.combobox-light-blue .Item>.Description{color:#ff9200fa}
+
+.combobox-light-blue>.Picker{background-color:#fff;border-color:#b6b6b6}
+.combobox-light-blue>.Picker>.Search input{background-color:#fff;border-color:#b6b6b6}
+.combobox-light-blue>.Picker>.Search input:hover{border-color:rgba(0,0,0,.6)}
+.combobox-light-blue>.Picker>.Search input:focus{border-color:#0098ff;outline:none}
+.combobox-light-blue>.Picker>.Children>.Group>.Children>.Item:hover{background-color:rgb(0 0 0/15%)}
+.combobox-light-blue>.Picker>.Children>.Group>.Children>.Item.SELECTED{background-color:rgba(0,173,255,.5)}
+.combobox-light-blue>.Picker>.Children>.Group>.Children>.Item.OUTLINE{outline:1px dashed #0098ff;outline-offset:-1px}
+</style>
+<div class="code-block" data-source-id="combobox-light-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">combobox-light-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="combobox-dark-blue">
+.combobox-dark-blue{border-color:rgba(255,255,255,.3);background-color:rgba(0,0,0,.5)}
+.combobox-dark-blue:hover{border-color:rgba(255,255,255,.6)}
+.combobox-dark-blue.FOCUS{border-color:#0098ff}
+.combobox-dark-blue .Item>.Description{color:#ff9200fa}
+
+.combobox-dark-blue>.Picker{background-color:#000;border-color: #4c4c4c}
+.combobox-dark-blue>.Picker>.Search input{background-color:rgba(0,0,0,.5);border-color:rgba(255,255,255,.3);color:#fff}
+.combobox-dark-blue>.Picker>.Search input:hover{border-color:rgba(255,255,255,.6)}
+.combobox-dark-blue>.Picker>.Search input:focus{border-color:#0098ff;outline:none}
+.combobox-dark-blue>.Picker>.Children>.Group>.Children>.Item:hover{background-color:rgb(255 255 255/15%)}
+.combobox-dark-blue>.Picker>.Children>.Group>.Children>.Item.DISABLED{background-color:unset;color:grey;cursor:not-allowed;opacity:.5}
+.combobox-dark-blue>.Picker>.Children>.Group>.Children>.Item.SELECTED{background-color:rgba(0,173,255,.5)}
+.combobox-dark-blue>.Picker>.Children>.Group>.Children>.Item.OUTLINE{outline:1px dashed #0098ff;outline-offset:-1px}
+</style>
+<div class="code-block" data-source-id="combobox-dark-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">combobox-dark-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="long-description">
+.ComboBox.long-description{}
+.ComboBox.long-description .Item>.Icon{grid-row:1 span}
+.ComboBox.long-description .Item>.Description{grid-column:1/-1;max-width:250px}
+.ComboBox.long-description .Selected-Content>.Item>.Description{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}
+</style>
+<div class="code-block" data-source-id="long-description">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">long-description</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="iconless">
+.ComboBox.iconless{}
+.ComboBox.iconless .Item{grid-template-columns:unset}
+.ComboBox.iconless .Item>.Icon{display:none}
+.ComboBox.iconless .Item>.Description{align-self:center}
+
+</style>
+<div class="code-block" data-source-id="iconless">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">iconless</div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .ComboBox{margin:.2em 0}
+</style>
+
+
+<div class="theme-switch">
+    <div class="theme" data-theme="light-blue"><i class="icon icon-theme"></i> light-blue</div>
+    <div class="theme selected" data-theme="dark-blue"><i class="icon icon-theme"></i> dark-blue</div>
+</div>
+<fieldset id="options">
+    <legend>More styles</legend>
+    
+    <div class="Checkbox" data-class="long-description">Long Description</div>
+    <div class="Checkbox" data-class="iconless">No Icon</div>
+</fieldset>
+
+<div >
+    
+</div>
+
+<script>
+    document.querySelector('.theme-switch').addEventListener('article-theme-change', function(e) {
+        $('.ComboBox').removeClass(['combobox-light-blue', 'combobox-dark-blue']).addClass('combobox-' + e.detail.name);
+    });
+    document.querySelectorAll('#options .Checkbox').forEach(element => new intell.ctrl.Checkbox(element));
+    document.getElementById('options').addEventListener('checkboxchange', function(e) {
+        const checkbox = e.checkbox;
+        const className = checkbox.element.getAttribute('data-class');
+        
+        $('.ComboBox').toggleClass(className, checkbox.checked);
+    });
+    
+
+
+</script>
+
+<div class="example">
+    <div class="title">Filters vs Without Filters</div>
+    <div data-source="prefix+suffix" style="display:flex;flex-direction:column;align-items:flex-start">
+        <div id="combobox1" class="ComboBox combobox-dark-blue"></div>
+        <div id="combobox2" class="ComboBox combobox-dark-blue"></div>
+
+        <script>
+            const combobox1 = new intell.ctrl.ComboBox(document.getElementById('combobox1'));
+            combobox1.filterEnabled = true;
+            combobox1.add({ iconClass: 'icon-home-1', text: 'Dog', value: 123, description: 'High Loyalty' });
+            combobox1.add({ iconClass: 'icon-home-1', text: 'Cat', value: 1234, description: 'Lucky Aura' });
+            combobox1.add({ iconClass: 'icon-bug', group: 'Monster', text: 'Mythara', value: 1, description: 'Magical Monster' });
+            combobox1.add({ iconClass: 'icon-bug', group: 'Monster', text: 'Gorgath', value: 2, description: 'Friendly Fire' });
+            combobox1.add({ iconClass: 'icon-bug', group: 'Monster', text: 'Velzura', value: 3 });
+
+            combobox1.add({ iconClass: 'icon-adult', group: 'Human', text: 'Gandalf', value: 4, description: 'Magical, Mana Regen'  });
+            combobox1.add({ iconClass: 'icon-adult', group: 'Human', text: 'Legolas', value: 5, description: 'Bounus Projectile'  });
+
+
+            const combobox2 = new intell.ctrl.ComboBox(document.getElementById('combobox2'));
+            combobox2.add({ iconClass: 'icon-namespace', text: 'Namespace', value: 123, description: 'Organize and manage the scope of classes, interfaces, structures, and other types in larger projects.' });
+            combobox2.add({ iconClass: 'icon-interface', text: 'Interface', value: 1234, description: 'Interfaces are a fundamental programming construct used to define a contract that classes or structs must adhere to.' });
+            combobox2.add({ iconClass: 'icon-method', group: '1-10', text: 'Method', value: 1, description: 'A block of code that performs a specific task. Methods are used to perform certain actions, and they are also known as functions.' });
+            combobox2.add({ iconClass: 'icon-field', group: '1-10', text: 'Field', value: 2 });
+            combobox2.add({ iconClass: 'icon-class', group: '1-10', text: 'Class', value: 2, description: 'Classes are fundamental to object-oriented programming.' });
+
+            document.addEventListener('comboboxchange', function(e) {
+                console.log('comboboxchange', e.combobox, e.combobox.selectedOption?.text);
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="prefix+suffix">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">Multiple + Filters</div>
+    <div data-source="multiple" style="display:flex;flex-direction:column;align-items:flex-start">
+        <div id="combobox3" class="ComboBox combobox-dark-blue"></div>
+
+        <script>
+            const combobox3 = new intell.ctrl.ComboBox(document.getElementById('combobox3'));
+            combobox3.filterEnabled = true;
+            combobox3.multiple = true;
+            combobox3.add({ iconClass: 'icon-keyboard', group: 'Lightning', text: 'Spark', value: 1, disabled: true });
+            combobox3.add({ iconClass: 'icon-keyboard', group: 'Lightning', text: 'Arc', value: 2 });
+            combobox3.add({ iconClass: 'icon-keyboard', group: 'Lightning', text: 'Ball Lightning', value: 3 });
+
+            combobox3.add({ iconClass: 'icon-keyboard', group: 'Fire', text: 'Firebolt', value: 4 });
+            combobox3.add({ iconClass: 'icon-keyboard', group: 'Fire', text: 'Flame Wall', value: 5, disabled: true});
+            combobox3.add({ iconClass: 'icon-keyboard', group: 'Fire', text: 'Detonate Dead', value: 6 });
+
+            combobox3.add({ iconClass: 'icon-keyboard', group: 'Cold', text: 'Ice Nova', value: 7 });
+            combobox3.add({ iconClass: 'icon-keyboard', group: 'Cold', text: 'Frost Bomb', value: 8 });
+            combobox3.add({ iconClass: 'icon-keyboard', group: 'Cold', text: 'Frost Wall', value: 9, disabled: true });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="multiple">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>

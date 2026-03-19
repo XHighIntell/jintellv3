@@ -1,0 +1,174 @@
+{
+    "kind": "class",
+    "title": "MenuItem Class",
+    "description": "Represents a MenuItem.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new MenuItem.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create MenuItem control."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the item." },
+        { "name": "readonly elementLabel: HTMLElement", "type": "HTMLElement", "description": "Gets the Label element of the item." },
+        { "name": "readonly elementIcon: HTMLElement", "type": "HTMLElement", "description": "Gets the Icon element of the item." },
+        { "name": "readonly elementText: HTMLElement", "type": "HTMLElement", "description": "Gets the Text element of the item." },
+        { "name": "readonly elementChildren: HTMLElement", "type": "HTMLElement", "description": "Gets the Children element of the item." },
+        { 
+            "name": "readonly parent?: Menu | MenuItem", 
+            "type": { "name": "Menu | MenuItem" },
+            "description": "Gets the parent Menu or MenuItem that the item belongs to." 
+        },
+        {
+            "name": "readonly children: MenuItem[]",
+            "type": { "name": "MenuItem[]", "href": "?q=intell.ctrl.MenuItem" },
+            "description": "Gets the child menu items."
+        },
+        { 
+            "name": "readonly childrenVisible: boolean", "type": "boolean", 
+            "description": "Gets a value indicating whether the dropdown children are displayed."
+        },
+
+        { 
+            "name": "active: boolean", "type": "boolean", 
+            "description": "Gets or sets whether the menu is actived or not. ",
+            "remarks": [
+                "<p>The default value is <mark>false</mark>.</p>",
+                "<p>When the MenuItem is deactivated, its children are automatically hidden.</p>",
+                "<p>When the MenuItem is activated, the visibility of its children remains unchanged.</p>"
+            ]
+        },
+        { 
+            "name": "disabled: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether interaction with the option is disabled. If disabled, the option will not respond to mouse clicks or keyboard selection.",
+            "remarks": "<p>The default value is <mark>false</mark>.</p>"
+        },
+
+        { 
+            "name": "childrenLocations?: number[]", "type": "number[]",
+            "description": "Gets or sets the placement locations for the dropdowns",
+            "remarks": "<p>The default value is <mark>undefined</mark>.</p>"
+        },
+        { 
+            "name": "childrenOption?: ShowAtOption", "type": { "name": "ShowAtOption", "href": "?q=intell.ctrl.ShowAtOption" }, 
+            "description": "Gets or sets the placement option of the dropdowns.",
+            "remarks": "<p>The default value is <mark>undefined</mark>.</p>"
+        },
+        { 
+            "name": "childrenDirection?: string", "type": "\"row\" | \"column\"", 
+            "description": "Gets or sets the input direction of children. This value does not determine the children layout; rather, it dictates how user input is handled.",
+            "remarks": "<p>The default value is <mark>undefined</mark>.</p>"
+        },
+        { 
+            "name": "childrenIntersectEnabled?: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether the intersection overlay is enabled.",
+            "remarks": "<p>The default value is <mark>undefined</mark>.</p>"
+        },
+        { "name": "text: string", "type": "string", "description": "Gets or sets the displaying text of the Text element." },
+        { "name": "title: string", "type": "string", "description": "Gets or sets the title of the Label element ." }
+
+    ],
+
+    "methods": [
+        {
+            "name": "showChildren(delay?: number, force?: boolean)", 
+            "description": "Shows the dropdown children.",
+            "parameters": [
+                {
+                    "name": "delay", "type": "number", 
+                    "description": "The visibility delay for child dropdowns. The default value is <mark>Menu.CHILDREN_VISIBLE_DELAY</mark>."
+                },
+                {
+                    "name": "force", "type": "boolean",
+                    "description": [
+                        "<p>Forces the dropdown picker to reposition, even if it is already visible.This is useful for reflecting changes when childrenLocations, childrenOption are updated.</p>",
+                        "The default value is <mark>false</mark>."
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "hideChildren(delay?: number)", 
+            "description": "Hides the dropdown children.",
+            "parameters": [
+                {
+                    "name": "delay", "type": "number", 
+                    "description": "The visibility delay for child dropdowns. The default value is <mark>Menu.CHILDREN_VISIBLE_DELAY</mark>."
+                }
+            ]
+        },
+        {
+            "name": "toggleChildren(delay?: number, force?: boolean)", 
+            "description": "Toggle shows/hides dropdown children.",
+            "parameters": [
+                {
+                    "name": "delay", "type": "number", 
+                    "description": "The visibility delay for child dropdowns. The default value is <mark>Menu.CHILDREN_VISIBLE_DELAY</mark>."
+                },
+                {
+                    "name": "force", "type": "boolean",
+                    "description": [
+                        "<p>Forces the dropdown picker to reposition, even if it is already visible.This is useful for reflecting changes when childrenLocations, childrenOption are updated.</p>",
+                        "The default value is <mark>false</mark>."
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "add", 
+            "description": "Adds a new menu item, a separator, or a tree of items to the menu item.",
+            "overloads": [
+                { 
+                    "name": "add(modifiers: MenuItemAddModifiers | string): MenuItem", 
+                    "description": "Adds a separator, or a tree of items to the menu.",
+                    "parameters": [
+                        {
+                            "name": "modifiers", "type": { "name": "MenuItemAddModifiers", "href": "?q=intell.ctrl.MenuItemAddModifiers" },
+                            "description": "The modifiers from which the menu item will be created."
+                        }
+                    ],
+                    "returns": { 
+                        "type": { "name": "MenuItem", "href": "?q=intell.ctrl.MenuItem" },
+                        "description": "Returns the newly created MenuItem that was added to the menu."
+                    },
+                    "remarks": "If the parameter is '--', a separator will be added to the menu."
+                },
+                { 
+                    "name": "add(item: MenuItem): void", 
+                    "description": "Adds MenuItem into the menu.",
+                    "parameters": [
+                        {
+                            "name": "item", "type": { "name": "MenuItem", "href": "?q=intell.ctrl.MenuItem" },
+                            "description": "The MenuItem to be added to the menu."
+                        }
+                    ],
+                    "remarks": "This method removes the menu from its current parent, if one exists, before adding it to the new parent."
+                }
+            ]
+
+        },
+        {
+            "name": "remove(): void", 
+            "description": "Removes the option from its parent. If it has no parent, calling <mark>remove()</mark> does nothing."
+        },
+        {
+            "name": "getActiveItem(): MenuItem | undefined", 
+            "description": "Gets the active child item in the menu.",
+            "returns": "Returns <mark>undefined</mark> if no active menu exists."
+        },
+        {
+            "name": "getDeepestActive(): MenuItem | undefined", 
+            "description": "Gets the most deeply nested active menu in the menu tree.",
+            "returns": "Returns <mark>undefined</mark> if no active menu exists."
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "kind": "interface",
+    "title": "ApplicationManifest Interface",
+    "description": "The manifest of application.",
+    
+
+    "fields": [
+        { "name": "id: string", "type": "string", "description": "A unique identifier for the application." },
+        { "name": "name: string", "type": "string", "description": "The application's name." },
+        { "name": "description: string", "type": "string", "description": "A plain text string (no HTML or other formatting) that describes the application while loading." },
+        { "name": "title?: string", "type": "string", "description": "A short tooltip title of the application." },
+        { "name": "icon?: string", "type": "string", "description": "The application icon. This can be a URL or an icon class (using the <mark>class:\/\/</mark> prefix)." },
+        { "name": "shortcut?: boolean", "type": "string", "description": "Pins this application to menu. The default is true." },
+        { "name": "group?: string", "type": "string", "description": "The shortcut group name." },
+        { "name": "startup?: boolean", "type": "string", "description": "Sets whether the application should run on startup. The default is false." },
+        {
+            "name": "content: ApplicationManifestContent",
+            "type": {
+                "name": "ApplicationManifestContent",
+                "href": "?q=intell.portal.ApplicationManifestContent"
+            },
+            "description": "The content of the application."
+        }
+    ]
+}

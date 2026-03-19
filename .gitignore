@@ -1,1 +1,12 @@
 .vs
+obj
+bin
+output
+
+# Ignores Typescript output
+docs/static/js
+docs/static/lib/jintellv3
+
+# Ignores Typescript output
+docs/portal/**/*.js
+docs/portal/**/*.js.map

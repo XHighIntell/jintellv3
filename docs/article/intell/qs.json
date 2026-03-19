@@ -1,0 +1,22 @@
+{
+    "kind": "method",
+    "title": "qs Function",
+    "description": "Create a query object from a string.",
+
+    "methods": [
+        {
+            "name": "function qs(search?: string): { [T: string]: string }",
+            "description": "Create a query object from a string.",
+            "parameters": [
+                {
+                    "name": "search",
+                    "type": "string[]",
+                    "description": "The string containing key value pair that separate by <mark>=</mark>. <br>If <mark>search</mark> is not specified, <mark>location.search.substr(1)</mark> will be used instead."
+                }
+            ],
+            "returns": "Return the key value pair object.", 
+            "remarks": "this is remarks."
+        }
+    ],
+    "examples": ""
+}

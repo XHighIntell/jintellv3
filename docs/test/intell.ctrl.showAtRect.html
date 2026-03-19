@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Internal Testing Page</title>
+    <script src="/static/lib/jquery/jquery-4.0.0.min.js" defer></script>
+    <script src="/static/lib/jintellv3/intell.min.js"></script>
+    <script src="/static/js/docs.js" defer></script>
+    <script>currentPage = 'intell.ctrl.showAtRect'</script>
+    <style>
+        body{margin-top:0;font-family:'Segoe UI'}
+        .testcase{}
+        .testcase>.header{display:flex;gap:1em}
+        .testcase>.header>.panel1{padding:5px 5px 0 5px;background:#ededed}
+        .testcase>.header>.panel1>.expects{margin:0;padding:0 0 0 20px;list-style-position:inside}
+        .testcase>.header>.panel2{}
+        .testcase>.header>.panel2>.actions{}
+        .testcase>.body{border:1px solid}
+
+        .target{position:absolute;width:100px;height:100px;background:repeating-linear-gradient(45deg, #000 0px, #000 5px, #ffd400 5px, #ffd400 15px)}
+        .target>*{position:absolute;color:#fff;text-shadow:0px -1px #000,1px 0 #000,0 1px #000,-1px 0 #000;pointer-events:none}
+        .target .l1{left:0;top:-1.2em}
+        .target .l2{left:calc(50% - .2em);top:-1.2em}
+        .target .l3{right:0;top:-1.2em}
+        .target .l4{right:-1.2em;top:0}
+        .target .l5{right:-1.2em;top:calc(50% - .6em)}
+        .target .l6{right:-1.2em;bottom:0}
+        .target .l7{right:0;bottom:-1.2em}
+        .target .l8{left:calc(50% - .2em);bottom:-1.2em}
+        .target .l9{left:0;bottom:-1.2em}
+        .target .l10{left:-1.2em;bottom:0}
+        .target .l11{left:-1.2em;top:calc(50% - .6em)}
+        .target .l12{left:-1.2em;top:0}
+
+        .box-overlay{position:absolute;width:150px;height:50px;background:#000000c9;box-sizing:border-box}
+    </style>
+</head>
+<body>
+    <div class="testcase">
+        <div class="header">
+            <div class="panel1">
+                <div class="title">
+                    <mark>intell.ctrl.showAtRect</mark>:
+                </div>
+                <ul class="expects">
+                    <li>Location: 1 to 12</li>
+                    <li>distance, distanceToContainer</li>
+                    <li>Overlap</li>
+                </ul>
+            </div>
+            <div class="panel2">
+                <div class="options">
+                    <div>
+                        <label for="margin">distanceToContainer</label>
+                        <input type="number" id="margin" value="0"/>
+                    </div>
+                    <div>
+                        <label for="distance">distance</label>
+                        <input type="number" id="distance" value="0"/>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button data-location="1">1</button>
+                    <button data-location="2">2</button>
+                    <button data-location="3">3</button>
+                    <button data-location="4">4</button>
+                    <button data-location="5">5</button>
+                    <button data-location="6">6</button>
+                    <button data-location="7">7</button>
+                    <button data-location="8">8</button>
+                    <button data-location="9">9</button>
+                    <button data-location="10">10</button>
+                    <button data-location="11">11</button>
+                    <button data-location="12">12</button>
+                </div>
+                <div>
+                    <label for="locations">locations</label>
+                    <input type="text" id="locations" value="[9,1]">
+                </div>
+            </div>
+        </div>
+       
+        <div class="body testcase-body" style="position:relative;height:400px;overflow:auto">
+            <div class="target">
+                <div class="l1">1</div>
+                <div class="l2">2</div>
+                <div class="l3">3</div>
+                <div class="l4">4</div>
+                <div class="l5">5</div>
+                <div class="l6">6</div>
+                <div class="l7">7</div>
+                <div class="l8">8</div>
+                <div class="l9">9</div>
+                <div class="l10">10</div>
+                <div class="l11">11</div>
+                <div class="l12">12</div>
+            </div>
+            <div class="box-overlay" style="display:none"></div>
+        </div>
+    </div>
+</body>
+</html>

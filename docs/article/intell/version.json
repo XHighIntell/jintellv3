@@ -1,0 +1,13 @@
+{
+    "kind": "field",
+    "title": "version Field",
+    
+
+    "fields": [
+        {
+            "name": "const version: string", "type": "string",
+            "description": " Gets the version of the library.",
+            "remarks": "<mark>\"3.0.0\"</mark>"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "kind": "method",
+    "title": "wait Function",
+    "description": "Creates a promise that will resolve after a time delay.",
+
+    "methods": [
+        {
+            "name": "function wait(delay: number): Promise&lt;void&gt;",
+            "description": "",
+            "parameters": [
+                {
+                    "name": "delay",
+                    "type": "number",
+                    "description": "The delay in milliseconds."
+                }
+            ],
+            "returns": {
+                "type": { "name": "Promise&lt;void&gt;" },
+                "description": "Returns a promise that will resolve after a time delay."
+            }
+        }
+    ]
+}

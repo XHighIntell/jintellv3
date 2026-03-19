@@ -1,0 +1,139 @@
+﻿<style data-source="numeric">
+.Numeric{--prefix-margin-left:.25em;--prefix-margin-right:.1em;--suffix-margin-left:.1em;--suffix-margin-right:.25em}
+.Numeric{display:flex;border:1px solid;transition:border .3s}
+.Numeric:hover{border:1px solid}
+.Numeric:FOCUS{border-color:#0098ff}
+.Numeric>.Modifiers{position:relative;flex:1 1 auto;display:flex}
+.Numeric>.Modifiers input{flex:1 1 auto;width:100%;padding:2px max(.4em,var(--suffix-margin-left) + var(--suffix-width) + var(--suffix-margin-right)) 2px max(.4em,var(--prefix-margin-left) + var(--prefix-width) + var(--prefix-margin-right));line-height:1.5em;border:none;color:inherit;outline:none;background:none;text-align:right;font-size:inherit}
+.Numeric>.Modifiers>.Prefix{position:absolute;left:var(--prefix-margin-left);align-self:center;text-align:right;font-size:.75em;pointer-events:none}
+.Numeric>.Modifiers>.Suffix{position:absolute;right:var(--suffix-margin-right);margin-top:.1em;align-self:center;font-size:.75em;pointer-events:none}
+.Numeric>.Actions{display:flex;width:1.25em;flex-direction:column}
+.Numeric>.Actions>.Action{flex:1 1 auto;display:flex;height:50%;align-items:center;justify-content:center;cursor:pointer;font-size:.75em}
+.Numeric>.Actions>.Action:hover{background:rgba(255,255,255,.1)}
+.Numeric>.Actions>.Action:active{background:rgba(255,255,255,.2)}
+</style>
+
+<style data-source="light-blue">
+.numeric-light-blue{border-color:#b6b6b6;background:rgba(255,255,255,.4)}
+.numeric-light-blue:hover{border-color:rgba(0,0,0,.6)}
+.numeric-light-blue:focus-within{border-color:#0098ff}
+.numeric-light-blue>.Modifiers>.Prefix{color:rgb(0 0 0/40%)}
+.numeric-light-blue>.Modifiers>.Suffix{color:rgb(0 0 0/40%)}
+</style>
+
+<style data-source="dark-blue">
+.numeric-dark-blue{border-color:rgba(255,255,255,.3);background:rgba(0,0,0,.5)}
+.numeric-dark-blue:hover{border-color:rgba(255,255,255,.6)}
+.numeric-dark-blue:focus-within{border-color:#0098ff}
+.numeric-dark-blue>.Modifiers>.Prefix{color:rgb(255 255 255/40%)}
+.numeric-dark-blue>.Modifiers>.Suffix{color:rgb(255 255 255/40%)}
+</style>
+
+<style>
+    .Numeric{margin:.2em 0}
+</style>
+
+<div class="code-block" data-source-id="numeric" style="margin-top:0">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">Numeric</div>
+        </div>
+    </div>
+</div>
+<div class="code-block" data-source-id="light-blue" style="margin-top:0">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">numeric-light-blue</div>
+        </div>
+    </div>
+</div>
+<div class="code-block" data-source-id="dark-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">numeric-dark-blue</div>
+        </div>
+    </div>
+</div>
+
+<div class="theme-switch">
+    <div class="theme" data-theme="light-blue"><i class="icon icon-theme"></i> light-blue</div>
+    <div class="theme selected" data-theme="dark-blue"><i class="icon icon-theme"></i> dark-blue</div>
+</div>
+
+<script>
+    document.querySelector('.theme-switch').addEventListener('article-theme-change', function(e) {
+        $('.Numeric').removeClass(['numeric-light-blue', 'numeric-dark-blue']).addClass('numeric-' + e.detail.name);
+    });
+</script>
+
+<div class="example">
+    <div class="title">prefix + suffix</div>
+    <div data-source="prefix+suffix">
+        <div id="numeric1" class="Numeric numeric-dark-blue" title="Price"></div>
+        <div id="numeric2" class="Numeric numeric-dark-blue"></div>
+        <script>
+            const numeric1 = new intell.ctrl.Numeric(document.getElementById('numeric1'));
+            const numeric2 = new intell.ctrl.Numeric(document.getElementById('numeric2'));
+            numeric1.prefix = '$';
+            numeric2.suffix = '%';
+
+            document.addEventListener('numericchange', function(e) {
+                console.log('numericchange', e);
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="prefix+suffix">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">controls & stepViaWheel</div>
+    <div data-source="numeric.controls">
+        <div id="numeric3" class="Numeric numeric-dark-blue"></div>
+
+        <script>
+            const numeric3 = new intell.ctrl.Numeric(document.getElementById('numeric3'));
+            numeric3.controls = true;
+            numeric3.stepViaWheel = true;
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="numeric.controls">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">nullable</div>
+    <div data-source="numeric.nullable">
+        <div id="numeric4" class="Numeric numeric-dark-blue"></div>
+
+        <script>
+            const numeric4 = new intell.ctrl.Numeric(document.getElementById('numeric4'));
+            numeric4.nullable = false;
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="numeric.nullable">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>

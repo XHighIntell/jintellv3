@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Documentation - jintell API</title>
+    <link rel="icon" href="/favicon.ico">
+
+    <!--<script src="../static/lib/jquery/jquery-3.6.0.min.js" defer></script>
+        <script src="../static/lib/jquery/jquery-4.0.0.min.js" defer></script>-->
+    <script src="../static/lib/jquery/jquery-3.6.0.min.js" defer></script>
+    <script src="../static/lib/highlight/highlight.min.js"></script>
+    <script src="../static/lib/jintellv3/intell.min.js" defer></script>
+    <script src="../static/js/docs.js" defer></script>
+
+    <link rel="stylesheet" href="/static/css/global.css"/>
+    <link rel="stylesheet" href="document.css"/>
+</head>
+<body>
+    <div class="application">
+        <div class="app-title-bar Container">
+            <div class="app-title-bar-content Content">
+                <a href="../../../" class="title">jintellv3 - Standard</a>
+                <div class="themes">
+                    <div class="theme theme-light selected" data-theme="Light"></div>
+                    <div class="theme theme-dark" data-theme="Dark"></div>
+                </div>
+                <div class="app-title-actions">
+                    <a class="action icon-flow-tree" title="Go to Document" href="../../../document.html"></a>
+                    <a class="action icon-github-circled" title="Source - Github" href="https://github.com/XHighIntell/jintellv3"></a>
+                </div>
+            </div>
+        </div>
+        <div class="app-body app-document Container">
+            <div class="Content">
+                <div class="docs-tree">
+                    <div class="filters">
+                        <div class="filter checked" data-filter="extension-method" title="Shows/Hides extension methods">
+                            <i class="icon icon-extension-method"></i>
+                        </div>
+                        <div class="filter" data-filter="class-friend" title="Toggles the visibility of nested classes">
+                            <i class="icon icon-class-friend"></i>
+                        </div>
+                        
+                        <div class="filter" data-filter="education" title="Shows/Hides example articles">
+                            <i class="icon icon-education"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="docs-content">
+                    <div class="error-overlay" style="display:none">
+                        <div class="title">Oooops!</div>
+                        <div class="message icon-cancel-3">Welcome Error!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        currentPage = 'document';        
+    </script>
+</body>
+</html>

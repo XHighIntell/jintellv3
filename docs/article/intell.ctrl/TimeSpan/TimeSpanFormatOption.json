@@ -1,0 +1,26 @@
+{
+    "kind": "interface",
+    "title": "TimeSpanFormatOption Interface",
+    "description": "Represents the options for parsing the timespan value.",
+    
+    
+    "fields": [
+        { "name": "strictness: number", "type": "number", 
+            "description": "Gets or sets the strictness level for parsing the input text value.",
+            "remarks": [
+                "The default value is <mark>0</mark>.",
+                "<p>When strictness equal 0, the <mark>/^(-?((\\d*\\.)?\\d+)(d|h|m|s|(ms)) *)*$/</mark> will be used.</p>",
+                "<p>When strictness equal 1, the <mark>/^(-?(\\d*\\.)?\\d+d)? *(-?(\\d*\\.)?\\d+h)? *(-?(\\d*\\.)?\\d+m)? *(-?(\\d*\\.)?\\d+s)? *(-?(\\d*\\.)?\\d+ms)?$/</mark> will be used.</p>"
+            ]
+        },
+        { "name": "decimalSeparator: string", "type": "string",
+            "description": " Gets or sets the decimal separator character.",
+            "remarks": "The default value is the locale’s decimal separator."
+        },
+        { "name": "thousandSeparator: string", "type": "string", 
+            "description": "Gets or sets the thousand separator character",
+            "remarks": "The default value is the locale’s thousand separator."
+        }
+    ]
+
+}
