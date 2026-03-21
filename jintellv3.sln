@@ -21,10 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{87B71711-4F71-4A27-96A7-C74AC3DC7D46}"
 	ProjectSection(SolutionItems) = preProject
+		build\build builder.cmd = build\build builder.cmd
 		build\build development.cmd = build\build development.cmd
-		build\build production.cmd = build\build production.cmd
 		build\build docs.cmd = build\build docs.cmd
-		build\build.js = build\build.js
+		build\build production.cmd = build\build production.cmd
 		build\install dependencies.cmd = build\install dependencies.cmd
 	EndProjectSection
 EndProject

@@ -1,0 +1,28 @@
+{
+    "typeAcquisition": {
+        "enable": true,
+        "include": [ "node" , "uglify-js" ]
+    },
+    "include": [
+        "**/*.ts",
+        "typescript.d.ts"
+    ],
+    "compilerOptions": {
+        "module": "es2022",
+        "target": "esnext",
+        "types": [],
+        "sourceMap": true,
+        "declaration": false,
+        "declarationMap": false,
+        "noUncheckedIndexedAccess": true,
+        "exactOptionalPropertyTypes": true,
+
+        "strictNullChecks": true,
+        "strict": true,
+        "verbatimModuleSyntax": true,
+        "noUncheckedSideEffectImports": true,
+        "moduleDetection": "force",
+        "skipLibCheck": true
+    },
+    "compileOnSave": true
+}

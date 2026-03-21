@@ -2,6 +2,8 @@
 obj
 bin
 output
+*.esproj.user
+*.csproj.user
 
 # Ignores Typescript output
 docs/static/js
@@ -10,3 +12,8 @@ docs/static/lib/jintellv3
 # Ignores Typescript output
 docs/portal/**/*.js
 docs/portal/**/*.js.map
+
+# Ignores Typescript output
+build/build.js
+build_debug/build.js
+build_debug/build.js.map
