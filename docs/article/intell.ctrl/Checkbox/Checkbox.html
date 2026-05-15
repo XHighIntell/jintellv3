@@ -2,9 +2,10 @@
 .Checkbox{display:flex;align-items:center;gap:.25em}
 .Checkbox>.Label{display:inline-flex;align-items:center;gap:.4em;cursor:pointer}
 .Checkbox>.Label:focus-visible{outline:none}
-.Checkbox>.Label>.Icon{display:flex;border:1px solid;border-radius:1px;transition:border-color .3s}
-.Checkbox>.Label>.Icon::before{content:"";display:flex;align-items:center;justify-content:center;width:.8em;height:.8em;margin:3px;font-family:fontello;visibility:hidden}
-.Checkbox.CHECKED>.Label>.Icon::before{visibility:visible}
+.Checkbox>.Label>.Icon{display:flex;align-items:center;justify-content:center;width:.8em;height:.8em;padding:3px;border:1px solid;border-radius:1px;transition:border-color .3s}
+.Checkbox>.Label>.Icon::before{content:"";font-family:fontello;pointer-events:none}
+.Checkbox.CHECKED>.Label>.Icon::before{content:""}
+.Checkbox.NULL>.Label>.Icon::before{content:"␀";font-size:.8em}
 .Checkbox.READONLY>.Label{cursor:not-allowed}
 .Checkbox>.checkbox-tip{}
 </style>
@@ -26,7 +27,6 @@
 .checkbox-light-blue.FOCUS>.Label>.Icon{outline:1px solid #000;outline-offset:1px}
 .checkbox-light-blue.READONLY>.Label>.Icon{color:#919191;background:#474d57;border-color:#000}
 .checkbox-light-blue.READONLY>.Label:active>.Icon{background:#474d57}
-.checkbox-light-blue.READONLY>.Label:hover>.Icon{border-color:#000}
 .checkbox-light-blue.READONLY.FOCUS>.Label>.Icon{border-color:#000}
 </style>
 <div class="code-block" data-source-id="checkbox-light-blue">
@@ -48,7 +48,6 @@
 .checkbox-dark-blue.FOCUS>.Label>.Icon{border-color:#00aeff}
 .checkbox-dark-blue.READONLY>.Label>.Icon{color:#919191;background:#474d57;border-color:#474d57}
 .checkbox-dark-blue.READONLY>.Label:active>.Icon{background:#474d57}
-.checkbox-dark-blue.READONLY>.Label:hover>.Icon{border-color:#fff}
 .checkbox-dark-blue.READONLY.FOCUS>.Label>.Icon{border-color:rgb(255 255 255/60%)}
 </style>
 <div class="code-block" data-source-id="checkbox-dark-blue">

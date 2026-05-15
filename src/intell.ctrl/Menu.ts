@@ -104,6 +104,8 @@
 
             __private.contextMenu = newValue;
             __private.element.classList.toggle('CONTEXTMENU', newValue);
+
+            toggle(__private.element, newValue == false);
         }
         //#endregion
 
@@ -120,12 +122,13 @@
             if (typeof modifiers == 'object') {
                 const item = new MenuItem();
 
-                if (modifiers.icon != null) item.elementIcon.textContent = modifiers.icon;
-                if (modifiers.iconClass != null) item.elementIcon.classList.add(modifiers.iconClass);
+                if (modifiers.icon != null) item.icon = modifiers.icon;
+                if (modifiers.class != null) item.element.classList.add(...modifiers.class.split(' '));
                 if (modifiers.text != null) item.text = modifiers.text;
                 if (modifiers.title != null) item.title = modifiers.title;
                 if (modifiers.disabled != null) item.disabled = modifiers.disabled;
                 if (modifiers.children != null) modifiers.children.forEach(child => item.add(child));
+                
 
                 this.#addItem(item);
                 return item;
@@ -238,9 +241,14 @@
                 activedMenu.hideChildren(0);
             }
 
+
             if (__private.contextMenu == true) {
                 hide(__private.element);
             }
+
+            const event = new Event('menublur');
+            (event as GlobalEventHandlersEventMap["menublur"]).menu = this;
+            __private.element.dispatchEvent(event);
         }
         #onUserKeydown(e: KeyboardEvent) {
             // Tab, ArrowLeft, ArrowRight, ArrowLeft, ArrowUp, ArrowDown

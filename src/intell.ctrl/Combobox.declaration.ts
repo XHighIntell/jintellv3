@@ -59,7 +59,7 @@
         parent?: ComboBox;
         group?: ComboBoxGroup;
 
-        //index: number;
+        icon?: string;
         disabled: boolean;
         selected: boolean;
         outline: boolean;
@@ -78,7 +78,6 @@
     }
     export interface ComboBoxAddOption<T = any> {
         icon?: string;
-        iconClass?: string;
         text?: string;
         description?: string;
         group?: string;

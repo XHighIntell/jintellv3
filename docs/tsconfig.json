@@ -4,10 +4,11 @@
         "include": [ "jquery" ]
     },
     "include": [
-        "**/*.ts",
-        "static/lib/jintellv3/intell.min.d.ts"
+        "portal/**/*.ts"
     ],
-    "references": [],
+    "references": [
+        { "path": "../src/tsconfig.json" }
+    ],
     "compilerOptions": {
         "noImplicitAny": false,
         "noEmitOnError": false,

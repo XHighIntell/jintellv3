@@ -92,7 +92,7 @@
             return __private.options.slice();
         }
 
-        /** Gets the selected option. */
+        /** Gets the selected option. In multiple selection mode, the first selected option is returned. */
         get selectedOption() { return this.options.find(item => item.selected) }
 
         /** Gets an array of all currently selected options. */
@@ -111,6 +111,21 @@
         /** Gets or sets the placement option of the dropdown picker. */
         get pickerOption() { return this.getPrivate().pickerOption }
         set pickerOption(newValue) { this.getPrivate().pickerOption = newValue }
+
+        /** [Extension] Gets or sets selected option by its value. */
+        get value(): T { return this.selectedOption?.value }
+        set value(newValue: T) {
+            const __private = this.getPrivate();
+            const newOption = __private.options.find(option => option.value == newValue);
+
+            if (newValue != null && newOption == null) throw new Error(`Could not find an option that matches the specified value: ${newValue}.`);
+
+            this.selectedOptions.forEach(option => option.selected = false);
+            if (newOption != null) newOption.selected = true;
+        }
+
+        // get values() { }
+        // set values() { }
 
         /** Gets or sets a value indicating whether multiple items can be selected. */
         get multiple() { return this.getPrivate().multiple }
@@ -176,8 +191,7 @@
         add(modifiers: ComboBoxAddOption<T>) {
             const item = new ComboBoxOption<T>();
 
-            if (modifiers.icon != null) item.elementIcon.textContent = modifiers.icon;
-            if (modifiers.iconClass != null) item.elementIcon.classList.add(modifiers.iconClass);
+            if (modifiers.icon != null) item.icon = modifiers.icon;
             if (modifiers.text != null) item.text = modifiers.text;
             if (modifiers.description != null) item.description = modifiers.description;
             if (modifiers.disabled != null) item.disabled = modifiers.disabled;
@@ -235,6 +249,11 @@
             }
         }
 
+        /** Removes all options and groups from the Combobox. */
+        clear() {
+            this.getPrivate().groups.slice().forEach(group => group.remove());
+        }
+
         /** Resets filters to default and display all options. The method is automatically invoked when the picker is hidden. */
         clearFilters() {
             const __private = this.getPrivate();
@@ -266,7 +285,6 @@
                     if (selectedOptions.length == 1) __private.elementSelectedContent.replaceChildren(selectedOptions[0]?.element.cloneNode(true));
                     else __private.elementSelectedContent.innerHTML = `${selectedOptions.length} selected`;
                 }
-                console.log('internalUpdateSelectedContent()');
             });
         }
 

@@ -61,6 +61,7 @@
 
 <style data-source="menu-dark-blue">
 .Menu:not(.CONTEXTMENU).menu-dark-blue{background:#000}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Item>.Label>.Icon{text-shadow:0 0 1px #000}
 .Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ACTIVE>.Label{background-color:#029de5c4;box-shadow: inset #0278af 0 0 1px 1px;border-color:#0085ab;}
 .Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ROOT:hover>.Label{background-color:#ffffff33}
 .Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ROOT.ACTIVE>.Label{border-color:#0085ab;background-color:#029de5c4}
@@ -69,6 +70,7 @@
 .Menu:not(.CONTEXTMENU).menu-dark-blue .Separator{background:#ffffff36}
 
 .Menu.CONTEXTMENU.menu-dark-blue{background:#000}
+.Menu.CONTEXTMENU.menu-dark-blue .Item>.Label>.Icon{text-shadow:0 0 1px #000}
 .Menu.CONTEXTMENU.menu-dark-blue .Item.ACTIVE>.Label{background-color:#029de5c4;box-shadow: inset #0278af 0 0 1px 1px;border-color:#0085ab;}
 .Menu.CONTEXTMENU.menu-dark-blue .Item.ROOT.ACTIVE>.Label{border-color:#0085ab;background-color:#029de5c4}
 .Menu.CONTEXTMENU.menu-dark-blue .Separator{background:#ffffff36}
@@ -145,15 +147,15 @@
         <script>
             const menu1 = new intell.ctrl.Menu(document.getElementById('menu1'));
             menu1.add({
-                iconClass: 'icon-doc', text: 'File', children: [
+                icon: 'class://icon-doc', text: 'File', children: [
                     {
                         text: 'New', children: [
-                            { iconClass: 'icon-stylesheet', text: 'AA', title: 'Creates new AA format file' },
-                            { iconClass: 'icon-html-file', text: 'BB', title: 'Creates new BB format file' }
+                            { icon: 'class://icon-stylesheet', text: 'AA', title: 'Creates new AA format file' },
+                            { icon: 'class://icon-html-file', text: 'BB', title: 'Creates new BB format file' }
                         ]
                     },
                     {
-                        iconClass: 'icon-folder-open-empty', text: 'Open', children: [
+                        icon: 'class://icon-folder-open-empty', text: 'Open', children: [
                             { text: 'Folder' },
                             { text: 'File' }
                         ]
@@ -163,7 +165,7 @@
                 ]
             });
             menu1.add({
-                iconClass:'icon-pencil', text: 'Edit', children: [
+                icon: 'class://icon-pencil', text: 'Edit', children: [
                     {
                         text: 'Go To', children: [
                             { text: 'Go To Text...' },
@@ -231,7 +233,7 @@
 <div class="example">
     <div class="title">Context Menu</div>
     <div id="menu3-container" data-source="context-menu" style="display:flex;flex-direction:column;align-items:flex-start;min-height:150px">
-        <div id="menu3" class="Menu menu-dark-blue" style="display:none"></div>
+        <div id="menu3" class="Menu menu-dark-blue"></div>
 
 
         <script>
@@ -241,15 +243,15 @@
             menu3.contextMenu = true;
 
             menu3.add({
-                iconClass: 'icon-doc', text: 'File', children: [
+                icon: 'class://icon-doc', text: 'File', children: [
                     {
                         text: 'New', children: [
-                            { iconClass: 'icon-stylesheet', text: 'AA', title: 'Creates new AA format file' },
-                            { iconClass: 'icon-html-file', text: 'BB', title: 'Creates new BB format file' }
+                            { icon: 'class://icon-stylesheet', text: 'AA', title: 'Creates new AA format file' },
+                            { icon: 'class://icon-html-file', text: 'BB', title: 'Creates new BB format file' }
                         ]
                     },
                     {
-                        iconClass: 'icon-folder-open-empty', text: 'Open', children: [
+                        icon: 'class://icon-folder-open-empty', text: 'Open', children: [
                             { text: 'Folder' },
                             { text: 'File' }
                         ]
@@ -259,7 +261,7 @@
                 ]
             });
             menu3.add({
-                iconClass: 'icon-pencil', text: 'Edit', children: [
+                icon: 'class://icon-pencil', text: 'Edit', children: [
                     {
                         text: 'Go To', children: [
                             { text: 'Go To Text...' },
@@ -269,7 +271,7 @@
                 ]
             });
             menu3.add({
-                iconClass: 'icon-arrows-ccw', text: 'Refresh'
+                icon: 'class://icon-arrows-ccw', text: 'Refresh'
             });
 
             const x = document.getElementById('menu3-container');
@@ -297,14 +299,17 @@
     <div id="menu4-container" data-source="predefined" style="display:flex;flex-direction:column;align-items:flex-start;min-height:150px">
         <div id="menu4" class="Menu menu-dark-blue" style="display:none">
             <div class="Children">
-                <div class="Item HAS-CHILDREN ROOT">
+                <div class="Item">
                     <div class="Label">
                         <div class="Icon icon-doc"></div>
                         <div class="Text">File</div>
                     </div>
                     <div class="Children">
-                        <div class="Item HAS-CHILDREN">
-                            <div class="Label"><div class="Icon"></div><div class="Text">New</div></div>
+                        <div class="Item">
+                            <div class="Label">
+                                <div class="Icon"></div>
+                                <div class="Text">New</div>
+                            </div>
 
                             <div class="Children">
                                 <div class="Item">
@@ -318,7 +323,6 @@
                                         <div class="Icon icon-html-file"></div>
                                         <div class="Text">BB</div>
                                     </div>
-                                    <div class="Children"><div class="Intersect"></div></div>
                                 </div>
                             </div>
                         </div>
@@ -333,26 +337,31 @@
                                         <div class="Icon"></div>
                                         <div class="Text">Folder</div>
                                     </div>
-                                    <div class="Children"></div>
                                 </div>
                                 <div class="Item">
-                                    <div class="Label"><div class="Icon"></div><div class="Text">File</div></div>
-                                    <div class="Children"></div>
+                                    <div class="Label">
+                                        <div class="Icon"></div>
+                                        <div class="Text">File</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div><div class="Separator"></div>
+                        </div>
+                        <div class="Separator"></div>
                         <div class="Item">
-                            <div class="Label"><div class="Icon"></div><div class="Text">Exit</div></div>
-                            <div class="Children"></div>
+                            <div class="Label">
+                                <div class="Icon"></div>
+                                <div class="Text">Exit</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="Item HAS-CHILDREN ROOT">
+                <div class="Item">
                     <div class="Label">
-                        <div class="Icon icon-pencil"></div><div class="Text">Edit</div>
+                        <div class="Icon icon-pencil"></div>
+                        <div class="Text">Edit</div>
                     </div>
                     <div class="Children">
-                        <div class="Item HAS-CHILDREN">
+                        <div class="Item">
                             <div class="Label">
                                 <div class="Icon"></div>
                                 <div class="Text">Go To</div>
@@ -360,13 +369,15 @@
                             <div class="Children">
                                 <div class="Item">
                                     <div class="Label">
-                                        <div class="Icon"></div><div class="Text">Go To Text...</div>
+                                        <div class="Icon"></div>
+                                        <div class="Text">Go To Text...</div>
                                     </div>
                                     
                                 </div>
                                 <div class="Item">
                                     <div class="Label">
-                                        <div class="Icon"></div><div class="Text">Go To All...</div>
+                                        <div class="Icon"></div>
+                                        <div class="Text">Go To All...</div>
                                     </div>
                                 </div>
                             </div>
@@ -374,7 +385,10 @@
                     </div>
                 </div>
                 <div class="Item">
-                    <div class="Label"><div class="Icon icon-arrows-ccw"></div><div class="Text">Refresh</div></div>
+                    <div class="Label">
+                        <div class="Icon icon-arrows-ccw"></div>
+                        <div class="Text">Refresh</div>
+                    </div>
                 </div>
             </div>
 

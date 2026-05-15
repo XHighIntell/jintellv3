@@ -39,6 +39,7 @@
             __private.elementName = elementName;
             __private.focused = false;
             __private.nullable = true;
+            __private.nullSelectionEnabled = false;
             __private.readonly = false;
 
             this.checked = null;
@@ -98,6 +99,11 @@
             if (__private.nullable == false && __private.checked == null) this.checked = false;
         }
 
+        /** Gets or sets whether a null value can be set from user interface. the default is false. */
+        get nullSelectionEnabled() { return this.getPrivate().nullSelectionEnabled }
+        set nullSelectionEnabled(newValue) { this.getPrivate().nullSelectionEnabled = newValue }
+
+        /** Gets or sets whether the control is not mutable, meaning the user can not edit the control; the default is false. */
         get readonly() { return this.getPrivate().readonly }
         set readonly(newValue) {
             const __private = this.getPrivate();
@@ -108,10 +114,11 @@
         //#endregion
 
         //#region methods
+        /** Cycles to the next value. Null -> true -> false. */
         #onUserNextValue() { 
             const __private = this.getPrivate();
             if (__private.readonly == true) return;
-            const nextValue = Checkbox.#nextValue(__private.checked);
+            const nextValue = Checkbox.#nextValue(__private.checked, __private.nullable && __private.nullSelectionEnabled);
 
             this.checked = nextValue;
             const event = new Event('checkboxchange', { bubbles: true, cancelable: false });
@@ -150,11 +157,16 @@
         }
         //#endregion
 
-        static #nextValue(checked: boolean) {
-            if (checked === true) return false
-            else if (checked === false) return true;
+        static #nextValue(checked: boolean, allowNull: boolean) {
+            let next: boolean;
 
-            return true;
+            if (checked === true) next = false;
+            else if (checked === false) next = null;
+            else if (checked == null) next = true;
+
+            if (next == null && allowNull == false) next = true;
+
+            return next;
         }
         static getClassName(checked: boolean): string {
             if (checked === true) return 'CHECKED';

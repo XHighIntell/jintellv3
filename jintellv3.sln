@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src", "src\src.csproj", "{6
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "build debug", "build_debug\build debug.esproj", "{8E0ECAA7-84F8-4333-B9D9-374B22262BFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "docs_src", "docsrc\docs_src.csproj", "{CD3C9B06-90DE-49BA-9BAC-4793F3C6D871}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "docssrc", "docsrc\docssrc.csproj", "{CD3C9B06-90DE-49BA-9BAC-4793F3C6D871}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "docs", "docs\docs.csproj", "{718966AB-D840-C99F-BC8C-757012BE68AA}"
 EndProject
@@ -15,8 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.filenesting.json = .filenesting.json
 		.gitignore = .gitignore
-		readme.md = readme.md
+		LICENSE = LICENSE
+		CONTRIBUTING.md = CONTRIBUTING.md
 		run iisexpress docs.cmd = run iisexpress docs.cmd
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{87B71711-4F71-4A27-96A7-C74AC3DC7D46}"

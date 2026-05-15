@@ -116,7 +116,10 @@
                 }
             ],
             "returns": "",
-            "remarks": "The <mark>showAsContextMenuAt</mark> method uses <a href='?q=intell.ctrl.showAt'><mark>intell.ctrl.showAt</mark></a> for positioning."
+            "remarks": [
+                "<p>The menu receives focus immediately after being shown, meaning other elements will lose focus.</p>",
+                "<p>The <mark>showAsContextMenuAt</mark> method uses <a href='?q=intell.ctrl.showAt'><mark>intell.ctrl.showAt</mark></a> for positioning.</p>"
+            ]
         },
         {
             "name": "getActiveItem(): MenuItem | undefined", 
@@ -134,6 +137,10 @@
         {
             "name": "menuclick", "bubbles": true, "cancelable": false,
             "description": "The menu's click event fires when a user clicks a menu item."
+        },
+        {
+            "name": "menublur", "bubbles": true, "cancelable": false,
+            "description": "The blur event fires when an Menu has lost focus."
         }
     ],
 

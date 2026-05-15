@@ -10,6 +10,7 @@
         text: string;
 
         nullable: boolean;
+        nullSelectionEnabled: boolean;
         readonly: boolean;
     }
 }

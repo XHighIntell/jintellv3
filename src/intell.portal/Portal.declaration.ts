@@ -6,11 +6,15 @@
         elementContent: HTMLElement;
         elementContentApplications: HTMLElement;
 
+        onChange: EventRegister<(this: Portal, event: { oldApplication: Application, newApplication: Application }) => any>;
+
         applications: Application[];
         selectedApplication?: Application;
         
         taskbar: Taskbar;
         overlay: Overlay;
+
+        _enabledStoringSelectedApplication?: boolean;
     }
 
     export interface TaskbarPrivate {

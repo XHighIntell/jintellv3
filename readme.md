@@ -16,7 +16,7 @@ A batch script(s) to automate building and deploying to GitHub Pages. All build 
 
 - `install dependencies.cmd`: Installs the dependencies required for building and deploying (`typescript`, `uglify-js`)
 
-- `build builder.cmd`: Builds the build tool required for the following build and deployment scripts.
+- `build builder.cmd`: Compiles the build tool required for subsequent build and deployment scripts. The output file (`build.js`) will be created in the `build` folder.
 
 - `build docs.cmd`: Builds all TypeScript files for the documentation website.
 

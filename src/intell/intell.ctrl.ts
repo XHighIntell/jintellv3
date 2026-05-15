@@ -164,6 +164,9 @@
             elementOffsetParent = elementOffsetParent.offsetParent as HTMLElement;
         }
 
+        // Uses the body element as a fallback when offsetParent is unavailable.
+        if (elementOffsetParent == null) elementOffsetParent = document.body;
+
         // --1b--
         let viewRect = new DOMRect(window.scrollX, window.scrollY, document.documentElement.clientWidth, document.documentElement.clientHeight);
         let container: DOMRect;
@@ -173,11 +176,9 @@
             const styles = getComputedStyle(elementOffsetParent);
             const borderLeft = parseFloat(styles.getPropertyValue('border-left-width'));
             const borderTop = parseFloat(styles.getPropertyValue('border-top-width'));
-            const borderRight = parseFloat(styles.getPropertyValue('border-right-width'));
-            const borderBottom = parseFloat(styles.getPropertyValue('border-bottom-width'));
             const parentRect = elementOffsetParent.getBoundingClientRectOffset();
-
-            container = new DOMRect(parentRect.left + borderLeft, parentRect.top + borderTop, parentRect.width - borderLeft - borderRight, parentRect.height - borderTop - borderBottom);
+            
+            container = new DOMRect(parentRect.left + borderLeft, parentRect.top + borderTop, elementOffsetParent.clientWidth, elementOffsetParent.clientHeight);
             container = container.intersect(viewRect);
         }
         //#endregion

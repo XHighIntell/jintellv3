@@ -109,8 +109,8 @@
             groupPrivate.parent = this;
         }
 
-        /**   */
-        enableCollapseStorage(key: string) {
+        /** Allows the portal to load and save the collapsed state in localStorage. */
+        enableStoringCollapse(key: string = 'portal.taskbar.collapsed') {
             const __private = this.getPrivate();
             __private.collapseStorageKey = key;
 
@@ -135,7 +135,6 @@
 
             shortcut.selected = true;
             portal.open(application);
-            console.log('application', application);
         }
 
         //@ts-ignore

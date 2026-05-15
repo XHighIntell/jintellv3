@@ -70,31 +70,9 @@
         get icon() { return this.getPrivate().icon }
         set icon(newValue) {
             const __private = this.getPrivate();
-            const previous = __private.icon;
-            const elementIcon = __private.elementApplicationIcon;
 
-            //#region removes the previous value
-            if (previous?.startsWith('class://')) {
-                const classname = previous.replace('class://', '');
-
-                if (classname != '' && classname != 'icon') elementIcon.classList.remove(classname);
-            }
-            else if (previous?.startsWith('http://')) elementIcon.style.backgroundImage = '';
-            else if (previous?.startsWith('https://')) elementIcon.style.backgroundImage = '';
-            //#endregion
-
-            //#region add the new value
-            const icon = __private.icon = newValue;
-            elementIcon.setAttribute('data-icon', icon);
-
-            if (icon.startsWith('class://')) {
-                const classname = icon.replace('class://', '');
-
-                if (classname != '') elementIcon.classList.add(classname);
-            }
-            else if (icon.startsWith('http://')) elementIcon.style.backgroundImage = `url(${icon})`;
-            else if (icon.startsWith('https://')) elementIcon.style.backgroundImage = `url(${icon})`;
-            //#endregion
+            ctrl.template.setBackgroundImageOrClass(__private.elementApplicationIcon, newValue, __private.icon);
+            __private.icon = newValue;
         }
 
 

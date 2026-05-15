@@ -1,5 +1,5 @@
 ﻿<style data-source="ComboBox">
-.ComboBox{display:flex;align-items:center;gap:.4em;padding:.25em .325em .25em .625em;min-width:100px;border:1px solid;transition:border .3s;outline:none;user-select:none}
+.ComboBox{position:relative;display:flex;align-items:center;gap:.4em;padding:.25em .325em .25em .625em;min-width:100px;border:1px solid;transition:border .3s;outline:none;user-select:none}
 .ComboBox::after{content:'\e818';margin-left:auto;font-family:'fontello'}
 .ComboBox .Selected-Content{user-select:none}
 .ComboBox .Selected-Content:empty::before{content:" ";white-space:pre}
@@ -9,7 +9,7 @@
 .ComboBox .Item>.Text{}
 .ComboBox .Item>.Description{font-size:.6em;font-style:italic;}
 
-.ComboBox>.Picker{position:absolute;display:none;max-height:calc(100vh);background:#fff;border:1px solid;box-sizing:border-box;z-index:100;overflow:auto;user-select:text}
+.ComboBox>.Picker{position:absolute;display:none;min-width:100%;width:max-content;max-height:calc(100vh);background:#fff;border:1px solid;box-sizing:border-box;z-index:100;overflow:auto;user-select:text}
 .ComboBox>.Picker>.Search{padding:5px;}
 .ComboBox>.Picker>.Search input{min-width:100%;padding:4px 6px;border:1px solid;border-radius:1px;transition:border .3s;box-sizing:border-box}
 .ComboBox>.Picker>.Search input:hover{}
@@ -153,22 +153,22 @@
         <script>
             const combobox1 = new intell.ctrl.ComboBox(document.getElementById('combobox1'));
             combobox1.filterEnabled = true;
-            combobox1.add({ iconClass: 'icon-home-1', text: 'Dog', value: 123, description: 'High Loyalty' });
-            combobox1.add({ iconClass: 'icon-home-1', text: 'Cat', value: 1234, description: 'Lucky Aura' });
-            combobox1.add({ iconClass: 'icon-bug', group: 'Monster', text: 'Mythara', value: 1, description: 'Magical Monster' });
-            combobox1.add({ iconClass: 'icon-bug', group: 'Monster', text: 'Gorgath', value: 2, description: 'Friendly Fire' });
-            combobox1.add({ iconClass: 'icon-bug', group: 'Monster', text: 'Velzura', value: 3 });
+            combobox1.add({ icon: 'class://icon-home-1', text: 'Dog', value: 123, description: 'High Loyalty' });
+            combobox1.add({ icon: 'class://icon-home-1', text: 'Cat', value: 1234, description: 'Lucky Aura' });
+            combobox1.add({ icon: 'class://icon-bug', group: 'Monster', text: 'Mythara', value: 1, description: 'Magical Monster' });
+            combobox1.add({ icon: 'class://icon-bug', group: 'Monster', text: 'Gorgath', value: 2, description: 'Friendly Fire' });
+            combobox1.add({ icon: 'class://icon-bug', group: 'Monster', text: 'Velzura', value: 3 });
 
-            combobox1.add({ iconClass: 'icon-adult', group: 'Human', text: 'Gandalf', value: 4, description: 'Magical, Mana Regen'  });
-            combobox1.add({ iconClass: 'icon-adult', group: 'Human', text: 'Legolas', value: 5, description: 'Bounus Projectile'  });
+            combobox1.add({ icon: 'class://icon-adult', group: 'Human', text: 'Gandalf', value: 4, description: 'Magical, Mana Regen'  });
+            combobox1.add({ icon: 'class://icon-adult', group: 'Human', text: 'Legolas', value: 5, description: 'Bounus Projectile'  });
 
 
             const combobox2 = new intell.ctrl.ComboBox(document.getElementById('combobox2'));
-            combobox2.add({ iconClass: 'icon-namespace', text: 'Namespace', value: 123, description: 'Organize and manage the scope of classes, interfaces, structures, and other types in larger projects.' });
-            combobox2.add({ iconClass: 'icon-interface', text: 'Interface', value: 1234, description: 'Interfaces are a fundamental programming construct used to define a contract that classes or structs must adhere to.' });
-            combobox2.add({ iconClass: 'icon-method', group: '1-10', text: 'Method', value: 1, description: 'A block of code that performs a specific task. Methods are used to perform certain actions, and they are also known as functions.' });
-            combobox2.add({ iconClass: 'icon-field', group: '1-10', text: 'Field', value: 2 });
-            combobox2.add({ iconClass: 'icon-class', group: '1-10', text: 'Class', value: 2, description: 'Classes are fundamental to object-oriented programming.' });
+            combobox2.add({ icon: 'class://icon-namespace', text: 'Namespace', value: 123, description: 'Organize and manage the scope of classes, interfaces, structures, and other types in larger projects.' });
+            combobox2.add({ icon: 'class://icon-interface', text: 'Interface', value: 1234, description: 'Interfaces are a fundamental programming construct used to define a contract that classes or structs must adhere to.' });
+            combobox2.add({ icon: 'class://icon-method', group: '1-10', text: 'Method', value: 1, description: 'A block of code that performs a specific task. Methods are used to perform certain actions, and they are also known as functions.' });
+            combobox2.add({ icon: 'class://icon-field', group: '1-10', text: 'Field', value: 2 });
+            combobox2.add({ icon: 'class://icon-class', group: '1-10', text: 'Class', value: 2, description: 'Classes are fundamental to object-oriented programming.' });
 
             document.addEventListener('comboboxchange', function(e) {
                 console.log('comboboxchange', e.combobox, e.combobox.selectedOption?.text);
@@ -195,17 +195,17 @@
             const combobox3 = new intell.ctrl.ComboBox(document.getElementById('combobox3'));
             combobox3.filterEnabled = true;
             combobox3.multiple = true;
-            combobox3.add({ iconClass: 'icon-keyboard', group: 'Lightning', text: 'Spark', value: 1, disabled: true });
-            combobox3.add({ iconClass: 'icon-keyboard', group: 'Lightning', text: 'Arc', value: 2 });
-            combobox3.add({ iconClass: 'icon-keyboard', group: 'Lightning', text: 'Ball Lightning', value: 3 });
+            combobox3.add({ icon: 'class://icon-keyboard', group: 'Lightning', text: 'Spark', value: 1, disabled: true });
+            combobox3.add({ icon: 'class://icon-keyboard', group: 'Lightning', text: 'Arc', value: 2 });
+            combobox3.add({ icon: 'class://icon-keyboard', group: 'Lightning', text: 'Ball Lightning', value: 3 });
 
-            combobox3.add({ iconClass: 'icon-keyboard', group: 'Fire', text: 'Firebolt', value: 4 });
-            combobox3.add({ iconClass: 'icon-keyboard', group: 'Fire', text: 'Flame Wall', value: 5, disabled: true});
-            combobox3.add({ iconClass: 'icon-keyboard', group: 'Fire', text: 'Detonate Dead', value: 6 });
+            combobox3.add({ icon: 'class://icon-keyboard', group: 'Fire', text: 'Firebolt', value: 4 });
+            combobox3.add({ icon: 'class://icon-keyboard', group: 'Fire', text: 'Flame Wall', value: 5, disabled: true});
+            combobox3.add({ icon: 'class://icon-keyboard', group: 'Fire', text: 'Detonate Dead', value: 6 });
 
-            combobox3.add({ iconClass: 'icon-keyboard', group: 'Cold', text: 'Ice Nova', value: 7 });
-            combobox3.add({ iconClass: 'icon-keyboard', group: 'Cold', text: 'Frost Bomb', value: 8 });
-            combobox3.add({ iconClass: 'icon-keyboard', group: 'Cold', text: 'Frost Wall', value: 9, disabled: true });
+            combobox3.add({ icon: 'class://icon-keyboard', group: 'Cold', text: 'Ice Nova', value: 7 });
+            combobox3.add({ icon: 'class://icon-keyboard', group: 'Cold', text: 'Frost Bomb', value: 8 });
+            combobox3.add({ icon: 'class://icon-keyboard', group: 'Cold', text: 'Frost Wall', value: 9, disabled: true });
         </script>
     </div>
 

@@ -24,7 +24,7 @@
     $('#buttonTest').on('click', function() {
         $('.box-overlay').remove();
 
-        const rect = intell.ctrl.getBoundingClientRectOffset(box);
+        const rect = box.getBoundingClientContentRectOffset();
         const element = $('<div class="box-overlay"></div>')[0];
 
         element.style.left = rect.left + 'px';

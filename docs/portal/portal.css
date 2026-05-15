@@ -1,5 +1,6 @@
 ﻿.Portal{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;overflow:hidden}
 .Portal>header{grid-area:1/2 span;background-color:#1c1c1c}
+.Portal>header>.Label{display:flex}
 .Portal>header>.Label>.Text{margin-left:10px;padding:.2em 10px;font-size:1.25em;color:#55b3ff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none}
 
 .Portal>main{flex:1 1 auto;display:flex;overflow:hidden}
@@ -45,11 +46,11 @@
 .Portal>main>.Content>.Overlay>.Content>.Waiting-Box .Cycle2{position:absolute;width:24px;height:24px;animation:pWz4 1.3s linear infinite;border:3px solid transparent;border-top:3px solid #0066ff;border-radius:50%}
 .Portal>main>.Content>.Overlay>.Content>.Application-Details{display:flex;flex-direction:column;align-items:center}
 .Portal>main>.Content>.Overlay>.Content>.Application-Details>header{display:flex;align-items:center;gap:.4em}
-.Portal>main>.Content>.Overlay>.Content .Application-Icon{display:flex;align-items:center;justify-content:center;width:1.25em;height:1.25em;background:center no-repeat;font-family:fontello;color:#0b6fab;font-size:1.5em}
-.Portal>main>.Content>.Overlay>.Content .Application-Name{color:black;font-size:1.3em}
-.Portal>main>.Content>.Overlay>.Content .Application-Description{grid-column:1/-1;text-align:center;color:rgba(0,0,0,.5)}
+.Portal>main>.Content>.Overlay>.Content .Application-Icon{display:flex;align-items:center;justify-content:center;width:1.25em;height:1.25em;background:center no-repeat;font-family:fontello;color:#0a92e4;font-size:1.5em}
+.Portal>main>.Content>.Overlay>.Content .Application-Name{font-size:1.3em}
+.Portal>main>.Content>.Overlay>.Content .Application-Description{grid-column:1/-1;text-align:center}
 .Portal>main>.Content>.Overlay>.Content .Error{margin-top:1.5em}
-.Portal>main>.Content>.Overlay>.Content .Error .Message{display:flex;align-items:center;margin-bottom:20px;border-radius:1px;padding:10px;background:rgba(255,0,0,.05)}
+.Portal>main>.Content>.Overlay>.Content .Error .Message{display:flex;align-items:center;margin-bottom:20px;border-radius:1px;padding:10px}
 .Portal>main>.Content>.Overlay>.Content .Error .Message::before{content:"\2716";display:flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;margin-right:.5em;font-size:.9em;color:#fff;background:#e20000;border-radius:50%}
 .Portal>main>.Content>.Overlay>.Content .Error .Stack{white-space:pre-wrap;color:#ec0000}
 .Portal>main>.Content>.Overlay.ACTIVE{opacity:1;transition:opacity .5s .2s}
@@ -70,3 +71,17 @@
 .Portal>main>.Content>.Applications>*:not(.Application-Wrapper)::-webkit-scrollbar-thumb:active{background:#ffffff4d}
 .Portal>main>.Content>.Applications>*:not(.Application-Wrapper)::-webkit-scrollbar-corner{display:none}
 .Portal>main>.Content>.Applications>*:not(.Application-Wrapper)::-webkit-scrollbar-button{display:none}
+
+
+
+.Portal.portal-light-blue{}
+.Portal.portal-light-blue>main>.Content>.Overlay{background:#fff}
+.Portal.portal-light-blue>main>.Content>.Overlay>.Content .Application-Name{color:black}
+.Portal.portal-light-blue>main>.Content>.Overlay>.Content .Application-Description{color:rgba(0,0,0,.5)}
+.Portal.portal-light-blue>main>.Content>.Overlay>.Content .Error .Message{color:#000;background:rgba(255,0,0,.05);}
+
+.Portal.portal-dark-blue{}
+.Portal.portal-dark-blue>main>.Content>.Overlay{background:#000}
+.Portal.portal-dark-blue>main>.Content>.Overlay>.Content .Application-Name{color:#fff}
+.Portal.portal-dark-blue>main>.Content>.Overlay>.Content .Application-Description{color:rgba(255,255,255,.5)}
+.Portal.portal-dark-blue>main>.Content>.Overlay>.Content .Error .Message{color:#fff;background:rgba(255,0,0,.1);}

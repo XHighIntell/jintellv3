@@ -43,6 +43,27 @@
     export function defineProperties<T>(o: T, properties: defineProperties<T>): T {
         return Object.defineProperties(o, properties)
     }
+
+    /** [Internal] Sets background-image or classList of the element. */
+    export function setBackgroundImageOrClass(element: HTMLElement, newValue: string, previous?: string) {
+        //#region removes the previous value
+        if (previous?.startsWith('class://')) {
+            const classname = previous.replace('class://', '');
+
+            if (classname != '' && classname != 'icon') element.classList.remove(classname);
+        }
+        else element.style.backgroundImage = '';
+        //#endregion
+
+        //#region add the new value
+        if (newValue.startsWith('class://')) {
+            const classname = newValue.replace('class://', '');
+
+            if (classname != '') element.classList.add(classname);
+        }
+        else element.style.backgroundImage = `url(${newValue})`;
+        //#endregion
+    }
     //#endregion
 
     function getPrivate(o?: object) { return this[privateKey] ??= o ?? {}; }

@@ -1,0 +1,105 @@
+{
+    "kind": "class",
+    "title": "TargetPopup Class",
+    "description": "Represents a container that can be displayed anywhere or attached to another element.",
+
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)",
+            "description": "Initializes a new instance of the TargetPopup class from element.",
+            "parameters": [
+                {
+                    "name": "element",
+                    "type": "HTMLElement",
+                    "description": "The element for which to create TargetPopup control."
+                }
+            ]
+        }
+    ],
+
+    "properties": [
+        {
+            "name": "readonly element: HTMLElement",
+            "type": "HTMLElement",
+            "description": "Gets the root element of the control."
+        },
+        {
+            "name": "readonly elementAttached?: HTMLElement",
+            "type": "HTMLElement | undefined",
+            "description": "Gets the element attached to the TargetPopup.",
+            "remarks": "If the TargetPopup is attached to an element, the <mark>POPUP-ATTACHED</mark> class is added to that element."
+        },
+        {
+            "name": "readonly visible: boolean",
+            "type": "boolean",
+            "description": "Gets a value indicating whether the popup is displayed."
+        },
+
+
+        {
+            "name": "locations: number[]",
+            "type": "number[]",
+            "description": "Gets or sets the placement locations for the popup.",
+            "remarks": "The default value is <mark>[4, 12]</mark>."
+        },
+        {
+            "name": "option: ShowAtOption",
+            "type": {
+                "name": "ShowAtOption",
+                "href": "?q=intell.math.ShowAtOption"
+            },
+            "description": "Gets or sets the placement option for the popup.",
+            "remarks": "The default value is <mark>{ distance: 0 }</mark>."
+        }
+    ],
+
+    "methods": [
+        {
+            "name": "showAt",
+            "description": "Shows the popup.",
+            "overloads": [
+                {
+                    "name": "showAt(target: HTMLElement): void",
+                    "description": "Shows the popup so that it stays near another element."
+                },
+                {
+                    "name": "showAt(target: PointLike): void",
+                    "description": "Shows the popup at the coordinates relative to the document."
+                }
+            ],
+            "remarks": "The <mark>showAt</mark> method uses <a href='?q=intell.ctrl.showAt'><mark>intell.ctrl.showAt</mark></a> for positioning."
+        },
+        {
+            "name": "hide",
+            "description": "Hides the popup."
+        }
+    ],
+
+    "events": [
+        {
+            "name": "targetpopuphide", "bubbles": true, "cancelable": false,
+            "description": "The hiding event fires when the popup is hidden."
+        }
+    ],
+
+    "static_methods": [
+        {
+            "name": "showAt(element: HTMLElement, target: HTMLElement, locations?: number[], option?: math.ShowAtOption): TargetPopup",
+            "description": "Shows the specified element as the TargetPopup.",
+            "overloads": [
+                {
+                    "name": "showAt(element: HTMLElement, target: HTMLElement, locations?: number[], option?: math.ShowAtOption): TargetPopup",
+                    "description": "Shows the popup so that it stays near another element."
+                },
+                {
+                    "name": "showAt(element: HTMLElement, target: PointLike, locations?: number[], option?: math.ShowAtOption): TargetPopup",
+                    "description": "Shows the popup at the coordinates relative to the document."
+                }
+            ],
+            "returns": "Returns the created <mark>TargetPopup</mark>.",
+            "remarks": "The <mark>showAt</mark> instantiates a new TargetPopup or reuses; sets its location and options, and then calls <mark>TargetPopup.showAt</mark>."
+        }
+    ],
+
+    "examples": "<a href=\"?q=intell.ctrl.TargetPopup-demo\">Click here</a> for more examples."
+}

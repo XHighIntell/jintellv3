@@ -41,16 +41,25 @@
         childrenDirection?: MenuChildrenDirection;
         childrenIntersectEnabled?: boolean;
 
+        icon?: string;
+
         _hideChildrenTimer: number;
         _showChildrenTimer: number;
     }
 
     export interface MenuItemAddModifiers {
+        /** Initializes the specified value for the menu icon. The icon can be an image URL (http://) or a CSS class (class://). */
         icon?: string;
-        iconClass?: string;
+
+        /** Initializes the specified value for the menu class. */
+        class?: string;
+
+        /** Initializes the specified value for the menu text. */
         text?: string;
+
+        /** Initializes the specified value for the menu title. */
         title?: string;
-        //description?: string;
+
         disabled?: boolean;
         children?: MenuItemAddModifiers[];
     }
@@ -59,5 +68,16 @@
 
 
 interface GlobalEventHandlersEventMap {
-    menuclick: Event & { menu: intell.ctrl.Menu, menuitem: intell.ctrl.MenuItem };
+    menuclick: Event & {
+        /** A reference to the Menu to which the event was originally dispatched. */
+        menu: intell.ctrl.Menu,
+
+        /** A reference to the MenuItem to which the event was originally dispatched. */
+        menuitem: intell.ctrl.MenuItem
+    };
+
+    menublur: Event & {
+        /** A reference to the Menu to which the event was originally dispatched. */
+        menu: intell.ctrl.Menu,
+    };
 }

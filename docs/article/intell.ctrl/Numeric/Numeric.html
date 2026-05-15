@@ -1,12 +1,13 @@
 ﻿<style data-source="numeric">
-.Numeric{--prefix-margin-left:.25em;--prefix-margin-right:.1em;--suffix-margin-left:.1em;--suffix-margin-right:.25em}
 .Numeric{display:flex;border:1px solid;transition:border .3s}
+.Numeric.HAS-PREFIX{--prefix-margin-left:.25em;--prefix-margin-right:.1em}
+.Numeric.HAS-SUFFIX{--suffix-margin-left:.1em;--suffix-margin-right:.25em}
 .Numeric:hover{border:1px solid}
 .Numeric:FOCUS{border-color:#0098ff}
 .Numeric>.Modifiers{position:relative;flex:1 1 auto;display:flex}
-.Numeric>.Modifiers input{flex:1 1 auto;width:100%;padding:2px max(.4em,var(--suffix-margin-left) + var(--suffix-width) + var(--suffix-margin-right)) 2px max(.4em,var(--prefix-margin-left) + var(--prefix-width) + var(--prefix-margin-right));line-height:1.5em;border:none;color:inherit;outline:none;background:none;text-align:right;font-size:inherit}
-.Numeric>.Modifiers>.Prefix{position:absolute;left:var(--prefix-margin-left);align-self:center;text-align:right;font-size:.75em;pointer-events:none}
-.Numeric>.Modifiers>.Suffix{position:absolute;right:var(--suffix-margin-right);margin-top:.1em;align-self:center;font-size:.75em;pointer-events:none}
+.Numeric>.Modifiers input{flex:1 1 auto;width:100%;padding:2px calc(2px + var(--suffix-margin-left, 0px) + var(--suffix-width, 0px) + var(--suffix-margin-right, 0px)) 2px calc(2px + var(--prefix-margin-left, 0px) + var(--prefix-width, 0px) + var(--prefix-margin-right, 0px));line-height:1.5em;border:none;color:inherit;outline:none;background:none;text-align:right;font-size:inherit}
+.Numeric>.Modifiers>.Prefix{position:absolute;left:var(--prefix-margin-left, 0);align-self:center;text-align:right;font-size:.75em;pointer-events:none}
+.Numeric>.Modifiers>.Suffix{position:absolute;right:var(--suffix-margin-right, 0);margin-top:.1em;align-self:center;font-size:.75em;pointer-events:none}
 .Numeric>.Actions{display:flex;width:1.25em;flex-direction:column}
 .Numeric>.Actions>.Action{flex:1 1 auto;display:flex;height:50%;align-items:center;justify-content:center;cursor:pointer;font-size:.75em}
 .Numeric>.Actions>.Action:hover{background:rgba(255,255,255,.1)}

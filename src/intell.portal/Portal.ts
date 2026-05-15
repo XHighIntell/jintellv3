@@ -1,6 +1,8 @@
 ﻿namespace intell.portal {
     /** Creates a portal for managing applications. */
     export class Portal {
+
+        /** Initializes a new Portal.*/
         constructor(element?: HTMLElement) {
             //#region 1. Quality of life features
             // --a-- If the element has already been used to create this control, return the previous instance
@@ -35,16 +37,22 @@
             __private.elementMain = elementMain;
             __private.elementContent = elementContent;
             __private.elementContentApplications = elementContentApplications;
+            __private.onChange = new EventRegister(this);
             __private.applications = [];
             __private.taskbar = new Taskbar(this, elementTaskbar); __private.taskbar.element.prependTo(elementMain);
             __private.overlay = new Overlay(elementContentOverlay); __private.overlay.element.prependTo(elementContent);
-
+            
 
             element.addEventListener('click', e => this.#onUserClick(e));
             //element.addEventListener('focus', () => this.#onUserFocus());
             //element.addEventListener('blur', () => this.#onUserBlur());
             //element.addEventListener('contextmenu', () => false);
         }
+
+        //#region events
+        /** Occurs when the selectedApplication property value changes. */
+        get onChange() { return this.getPrivate().onChange }
+        //#endregion
 
         //#region properties
         /** Gets the root element of the portal. */
@@ -112,7 +120,7 @@
             else if (arg1 instanceof Application) {
                 const application = arg1;
 
-                // 1. if open an application already opened, exit this block
+                // 1. if the application already opened, exit this block
                 // 2. set active class, hide all other applications
                 //      a. hide the container of application
                 //      b. hide all applications
@@ -133,10 +141,24 @@
                 ctrl.hide(__private.elementContentApplications);
                 applications.forEach(value => ctrl.hide(value.elementRoot));
 
-                if (application.status == "NONE") {
-                    const loadTask = application.load();
-                    __private.overlay.show(application);
+                let loadTask: Promise<void>;
 
+                if (application.status == "NONE") {
+                    loadTask = application.load();
+                    __private.overlay.show(application);
+                }
+                else if (application.status == "LOADING") __private.overlay.show(application);
+                else if (application.status == "LOADED") {
+                    __private.overlay.hide();
+                    ctrl.show(__private.elementContentApplications);
+                    ctrl.show(application.elementRoot);
+                }
+                else if (application.status == "FAIL") __private.overlay.show(application);
+
+                // triggers onChange event
+                __private.onChange.dispatch({ oldApplication, newApplication });
+
+                if (loadTask != null) {
                     try {
                         await loadTask;
 
@@ -147,7 +169,7 @@
                         }
                         else {
                             ctrl.hide(application.elementRoot);
-                        } 
+                        }
 
                         //application.onOpen.dispatch();
                     }
@@ -156,19 +178,52 @@
                         throw e;
                     }
                 }
-                else if (application.status == "LOADING") __private.overlay.show(application);
-                else if (application.status == "LOADED") {
-                    __private.overlay.hide();
-                    ctrl.show(__private.elementContentApplications);
-                    ctrl.show(application.elementRoot);
-                }
-                else if (application.status == "FAIL") {
-                    __private.overlay.show(application);
-                }
 
                 __private.elementContentApplications.setAttribute('data-active-application', manifest.id);
             }
         }
+
+        /** [extension] Enables storing the selectedApplication state in url; Returns the stored application id. */
+        enableStoringSelectedApplicationInUrl(key: string = 'application'): string | undefined {
+            const __private = this.getPrivate();
+
+            if (__private._enabledStoringSelectedApplication == true) throw new Error('Already enabled storing selectedApplication state.');
+            __private._enabledStoringSelectedApplication = true;
+
+            __private.onChange.addListener(e => {
+                const qs = intell.qs();
+                qs[key] = e.newApplication.manifest.id;
+
+                const names = Object.getOwnPropertyNames(qs);
+                const url = '?' + names.map(function(name) {
+                    return name + '=' + qs[name];
+                }).join('&') + location.hash;
+
+                history.pushState(null, document.title, url);
+            });
+            window.addEventListener("popstate", e => {
+                const id = intell.qs()[key];
+                if (id) this.open(id);
+            });
+
+            return qs()[key];
+        }
+
+        /** [extension] Enables storing the selectedApplication state in localStorage; Returns the stored application id. */
+        enableStoringSelectedApplicationInLocalStorage(key: string = 'portal.application') {
+            const __private = this.getPrivate();
+
+            if (__private._enabledStoringSelectedApplication == true) throw new Error('Already enabled storing selectedApplication state.');
+            __private._enabledStoringSelectedApplication = true;
+
+            __private.onChange.addListener(e => {
+                const id = e.newApplication.manifest.id;
+                localStorage.setItem(key, id);
+            });
+
+            return localStorage.getItem(key);
+        }
+
 
         //#endregion
 

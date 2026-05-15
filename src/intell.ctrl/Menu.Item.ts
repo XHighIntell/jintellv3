@@ -129,6 +129,14 @@
         get childrenIntersectEnabled() { return this.getPrivate().childrenIntersectEnabled }
         set childrenIntersectEnabled(newValue) { this.getPrivate().childrenIntersectEnabled = newValue }
 
+        get icon() { return this.getPrivate().icon }
+        set icon(newValue) {
+            const __private = this.getPrivate();
+
+            template.setBackgroundImageOrClass(__private.elementIcon, newValue, __private.icon);
+            __private.icon = newValue;
+        }
+
         /** Gets or sets the displaying text of the Text element. */
         get text() { return this.getPrivate().elementText.textContent }
         set text(newValue) { this.getPrivate().elementText.textContent = newValue }
@@ -241,8 +249,8 @@
             if (typeof modifiers == 'object') {
                 const item = new MenuItem();
 
-                if (modifiers.icon != null) item.elementIcon.textContent = modifiers.icon;
-                if (modifiers.iconClass != null) item.elementIcon.classList.add(modifiers.iconClass);
+                if (modifiers.icon != null) item.icon = modifiers.icon;
+                if (modifiers.class != null) item.element.classList.add(...modifiers.class.split(' '));
                 if (modifiers.text != null) item.text = modifiers.text;
                 if (modifiers.title != null) item.title = modifiers.title;
                 if (modifiers.disabled != null) item.disabled = modifiers.disabled;

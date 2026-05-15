@@ -73,9 +73,13 @@
             "description": "Gets or sets a value indicating whether the intersection overlay is enabled.",
             "remarks": "<p>The default value is <mark>undefined</mark>.</p>"
         },
+
+        { 
+            "name": "icon?: string", "type": "string", "description": "Gets or sets the icon of the MenuItem.",
+            "remarks": "The icon can be an image URL (http:\/\/) or a CSS class (class:\/\/)."
+        },
         { "name": "text: string", "type": "string", "description": "Gets or sets the displaying text of the Text element." },
         { "name": "title: string", "type": "string", "description": "Gets or sets the title of the Label element ." }
-
     ],
 
     "methods": [

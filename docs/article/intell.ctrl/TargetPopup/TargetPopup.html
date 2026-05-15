@@ -1,0 +1,185 @@
+﻿<style>
+    .example .actions{display:flex;background:#ccd5f0}
+    .example .actions>.action{display:flex;align-items:center;justify-content:center;width:30px;height:30px;cursor:pointer}
+    .example .actions>.action:hover{background:rgba(0,234,255,.3)}
+
+    .Dark .example .actions{background:#ffffff1c}
+    .Dark .example .actions>.action{}
+    .Dark .example .actions>.action:hover{background:rgb(255 255 255/20%)}
+    .Dark .example .actions>.action.POPUP-ATTACHED{background:rgb(255 255 255/50%)}
+</style>
+
+<style data-source="TargetPopup">
+.TargetPopup{position:absolute;padding:2px 8px;box-shadow:0 0 2px black;z-index:100}
+.POPUP-ATTACHED{outline:1px dashed #0092ff}
+</style>
+<div class="code-block" data-source-id="TargetPopup" style="margin-top:0">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">TargetPopup</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="targetpopup-light-blue">
+.TargetPopup.targetpopup-light-blue{background:#fff}
+</style>
+<div class="code-block" data-source-id="targetpopup-light-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">targetpopup-light-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="targetpopup-dark-blue">
+.TargetPopup.targetpopup-dark-blue{border:1px solid #ffffff59;background:#000}
+</style>
+<div class="code-block" data-source-id="targetpopup-dark-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">targetpopup-dark-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="fade-animation">
+.TargetPopup.fade-animation{margin-top:10px;opacity:0;transition:opacity .5s,margin-top .5s}
+.TargetPopup.fade-animation.ACTIVE{margin-top:0;opacity:1}
+</style>
+<div class="code-block" data-source-id="fade-animation">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">fade-animation</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="theme-switch">
+    <div class="theme" data-theme="light-blue"><i class="icon icon-theme"></i> light-blue</div>
+    <div class="theme selected" data-theme="dark-blue"><i class="icon icon-theme"></i> dark-blue</div>
+</div>
+<fieldset id="options">
+    <legend>More styles</legend>
+    
+    <div class="Checkbox" data-class="fade-animation">Fade Animation</div>
+</fieldset>
+
+<script>
+    document.querySelector('.theme-switch').addEventListener('article-theme-change', function(e) {
+        $('.TargetPopup').removeClass(['targetpopup-light-blue', 'targetpopup-dark-blue']).addClass('targetpopup-' + e.detail.name);
+    });
+    document.querySelectorAll('#options .Checkbox').forEach(element => new intell.ctrl.Checkbox(element));
+    document.getElementById('options').addEventListener('checkboxchange', function(e) {
+        const checkbox = e.checkbox;
+        const className = checkbox.element.getAttribute('data-class');
+        
+        $('.TargetPopup').toggleClass(className, checkbox.checked);
+    });
+</script>
+
+<div class="example">
+    <div class="title">Normal</div>
+    <div data-source="Normal">
+        <div id="example1" class="actions">
+            <div class="action">+</div>
+            <div class="action">-</div>
+        </div>
+
+        <div id="targetpopup1" class="TargetPopup targetpopup-dark-blue">
+            Name: <input />
+        </div>
+
+        <script>
+            const targetpopup1 = new intell.ctrl.TargetPopup(document.getElementById('targetpopup1'));
+
+            document.getElementById('example1').addEventListener('click', e => {
+                if (e.target.matches('.action') == true) targetpopup1.showAt(e.target);
+            });
+
+            document.addEventListener("targetpopuphide", function (e) {
+                console.log("targetpopuphide", e);
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="Normal">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">The Static Way</div>
+    <div data-source="Static-Way">
+        <div id="example2" class="actions">
+            <div class="action">+</div>
+            <div class="action">-</div>
+        </div>
+
+        <div id="targetpopup2" class="TargetPopup targetpopup-dark-blue" style="display:none">
+            Name: <input />
+        </div>
+
+        <script>
+            document.getElementById('example2').addEventListener('click', e => {
+                if (e.target.matches('.action') == true) intell.ctrl.TargetPopup.showAt(document.getElementById('targetpopup2'), e.target);
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="Static-Way">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">Shows on Another</div>
+    <div data-source="Normal2">
+        <button>+</button><button>-</button>
+
+        <div id="example3" class="actions">
+            <div class="action" data-name="+">+</div>
+            <div class="action" data-name="-">-</div>
+        </div>
+
+        <div id="targetpopup3" class="TargetPopup targetpopup-dark-blue">
+            Name: <input />
+        </div>
+
+        <script>
+            const targetpopup3 = new intell.ctrl.TargetPopup(document.getElementById('targetpopup3'));
+            const example3 = document.getElementById('example3');
+
+            document.querySelector('[data-source="Normal2"]').addEventListener('mouseup', e => {
+                if (e.target.matches('button') == true) {
+                    targetpopup3.showAt(example3.querySelector(`.action[data-name='${e.target.textContent}']`));
+                }
+            });
+
+            example3.addEventListener('mouseup', e => {
+                if (e.target.matches('.action') == true) targetpopup3.showAt(e.target);
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="Normal2">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,14 +27,19 @@
         
         { "name": "readonly groups: ComboBoxGroup[]", "type": "ComboBoxGroup[]", "description": "Gets an array containing all groups." },
         { "name": "readonly options: ComboBoxOption[]", "type": "ComboBoxOption[]", "description": "Gets an array containing all option items." },
-        { "name": "readonly selectedOption: ComboBoxOption", "type": "ComboBoxOption", "description": "Gets the selected option." },
+        { "name": "readonly selectedOption: ComboBoxOption", "type": "ComboBoxOption", "description": "Gets the selected option. In multiple selection mode, the first selected option is returned." },
         { "name": "readonly selectedOptions: ComboBoxOption[]", "type": "ComboBoxOption[]", "description": "Gets an array of all currently selected options." },
         { "name": "readonly outlinedOption: ComboBoxOption", "type": "ComboBoxOption", "description": "Gets the active outlined option." },
-
         { "name": "readonly pickerVisible: boolean", "type": "boolean", "description": "Gets a value indicating whether the dropdown picker is displayed." },
+
         { "name": "pickerLocations: number[]", "type": "number[]", "description": "Gets or sets the preferred placement locations of the dropdown picker.", "remarks": "The default value is <mark>[9, 1]</mark>." },
         { "name": "pickerOption: ShowAtOption", "type": {"name": "ShowAtOption", "href": "?q=intell.math.ShowAtOption"}, "description": " Gets or sets the placement option of the dropdown picker.",
               "remarks": "The default value is <mark>{ distance: -1, distanceToContainer: 1 }</mark>."
+        },
+
+        { 
+            "name": "value: T", "type": "T", "description": "Gets or sets selected option by its value.",
+            "remarks": "Throws an error if the option is not found when <mark>newValue</mark> is not null."
         },
 
         { 
@@ -130,10 +135,14 @@
              }
         },
         {
+            "name": "clear(): void", 
+            "description": "Removes all options and groups from the Combobox."
+        },
+        {
             "name": "clearFilters(): void", 
             "description": "Resets filters to default and display all options.",
             "remarks": "The method is automatically invoked when the picker is hidden."
-        },
+        }
     ],
 
     "events": [
@@ -143,5 +152,5 @@
         }
     ],
 
-    "examples": "<a href=\"?q=intell.ctrl.Checkbox-demo\">Click here</a> for more examples.",
+    "examples": "<a href=\"?q=intell.ctrl.ComboBox-demo\">Click here</a> for more examples.",
 }

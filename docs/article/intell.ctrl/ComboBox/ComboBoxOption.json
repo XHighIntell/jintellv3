@@ -50,6 +50,10 @@
             "remarks": "If all options within a group are hidden, the group's visibility will be toggled to hidden as well."
         },
         { "name": "value: T", "type": "T", "description": "Gets the assigned value of the option." },
+        { 
+            "name": "icon?: string", "type": "string", "description": "Gets or sets the icon of the Option.",
+            "remarks": "The icon can be an image URL (http:\/\/) or a CSS class (class:\/\/)."
+        },
         { "name": "text: string", "type": "string", "description": "Gets or sets the display text of the option." },
         { "name": "description: string", "type": "string", "description": "Gets or sets the display description of the option." }
 

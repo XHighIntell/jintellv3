@@ -76,7 +76,14 @@
                         { "icon": "interface",  "id": "intell.ctrl.TimeSpanFormatOption", "name": "TimeSpanFormatOption", "url": "intell.ctrl/TimeSpan/TimeSpanFormatOption.json", "hidden": true, "tags": ["interface-friend"] },
                         { "icon": "education", "id": "intell.ctrl.TimeSpan-demo", "name": "Example", "url": "intell.ctrl/TimeSpan/TimeSpan.html", "tags": ["education"] }
                     ] 
+                },
+                { 
+                    "icon": "class", "id": "intell.ctrl.TargetPopup", "name": "TargetPopup", "url": "intell.ctrl/TargetPopup/TargetPopup.json", 
+                    "children": [
+                        { "icon": "education", "id": "intell.ctrl.TargetPopup-demo", "name": "Example", "url": "intell.ctrl/TargetPopup/TargetPopup.html", "tags": ["education"] }
+                    ] 
                 }
+
             ]
         },
         {

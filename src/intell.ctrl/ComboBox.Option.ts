@@ -43,11 +43,23 @@
         /** Gets the Text element of the option. */
         get elementText() { return this.getPrivate().elementText }
 
+        /** Gets the Description element of the option. */
+        get elementDescription() { return this.getPrivate().elementDescription }
+
         /** Gets the parent ComboBox of the option. */
         get parent() { return this.getPrivate().parent }
 
         /** Gets the parent group of the option. */
         get group() { return this.getPrivate().group }
+
+        /** Gets or sets the icon of the MenuItem. The icon can be an image URL (http://) or a CSS class (class://). */
+        get icon() { return this.getPrivate().icon }
+        set icon(newValue) {
+            const __private = this.getPrivate();
+
+            template.setBackgroundImageOrClass(__private.elementIcon, newValue, __private.icon);
+            __private.icon = newValue;
+        }
 
         /** Gets or sets a value indicating whether interaction with the option is disabled. If disabled, the option will not respond to mouse clicks or keyboard selection. */
         get disabled() { return this.getPrivate().disabled }

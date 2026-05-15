@@ -134,8 +134,11 @@
         get max() { return this.getPrivate().max }
         set max(newValue) { this.getPrivate().max = newValue }
 
+        /** Gets or sets the prefix character for the Numeric */
         get prefix() { return this.getPrivate().prefix }
         set prefix(newValue) {
+            newValue ??= ""; newValue = newValue.trim();
+
             const __private = this.getPrivate();
             __private.elementPrefix.textContent = __private.prefix = newValue;
 
@@ -144,29 +147,14 @@
             const fontSize = parseFloat(inputComputedStyle.fontSize);
 
             __private.element.style.setProperty('--prefix-width', `${prefixTextWidth / fontSize}em`);
-            //this.renderPrefix();
-        }
-        /** unused */
-        renderPrefix() {
-            const __private = this.getPrivate();
-            const inputComputedStyle = getComputedStyle(__private.elementInput);
-            const textAlign = inputComputedStyle.textAlign;
-            
-
-            if (textAlign == 'start' || textAlign == 'left' || textAlign == 'justify') {
-                __private.elementPrefix.style.right = '';
-            }
-            else if (textAlign == 'end' || textAlign == 'right' || textAlign == '-webkit-right') {
-                const inputPaddingRight = parseFloat(inputComputedStyle.paddingRight);
-                const inputTextWidth = getTextMetrics(__private.elementInput.value, __private.elementInput).width;
-                const right = inputPaddingRight + inputTextWidth;
-
-                __private.elementPrefix.style.right = `${right}px`;
-            }
+            __private.element.classList.toggle('HAS-PREFIX', newValue != "");
         }
 
+        /** Gets or sets the suffix character for the Numeric */
         get suffix() { return this.getPrivate().suffix }
         set suffix(newValue) {
+            newValue ??= ""; newValue = newValue.trim();
+
             const __private = this.getPrivate();
             __private.elementSuffix.textContent = __private.suffix = newValue;
 
@@ -176,6 +164,7 @@
             const em = textWidth / fontSize;
 
             __private.element.style.setProperty('--suffix-width', `${em}em`);
+            __private.element.classList.toggle('HAS-SUFFIX', newValue != "");
         }
 
         /** Gets or sets the value to increment or decrement the spin box (also known as an up-down control) when the up or down buttons are clicked; the default is 1. */
@@ -417,8 +406,16 @@
             // This replacement step is necessary in case the user wants to swap '.' with ','
             text = text.replace(/,/g, 'a').replace('.', 'b'); // => 1a000a000b14
 
+            let thousandSeparator = '';
+            let decimalSeparator = '';
+
+            if (option?.thousandSeparator == null && option?.decimalSeparator == null) {
+                thousandSeparator = localeThousandSeparator;
+                decimalSeparator = localeDecimalSeparator;
+            }
+
             // --3b--
-            text = text.replace(/a/g, option?.thousandSeparator ?? '').replace('b', option?.decimalSeparator ?? '.');
+            text = text.replace(/a/g, thousandSeparator).replace('b', decimalSeparator);
 
             return text;
         }
