@@ -1,0 +1,35 @@
+{
+    "kind": "method",
+    "title": "HTMLElement.prototype",
+    "description": "Useful built-in extensions for the <mark>HTMLElement</mark> prototype.",
+
+    "methods": [
+        {
+            "name": "function getBoundingClientRectOffset(): DOMRect",
+            "description": "Gets a DOMRect object that describes the element’s size and its position relative (including borders) to the document rather than the viewport.",
+            "returns": {
+                "type": { "name": "DOMRect" },
+                "description": "Returns a DOMRect object."
+            }
+        },
+        {
+            "name": "function getBoundingClientContentRectOffset(): DOMRect",
+            "description": "Gets a DOMRect object that describes the element’s size and its content position (excluding borders) relative to the document rather than the viewport.",
+            "returns": {
+                "type": { "name": "DOMRect" },
+                "description": "Returns a DOMRect object."
+            }
+        },
+        {
+            "name": "function setOffset(offset: intell.math.PointLike): void",
+            "description": "Sets the current coordinates of the element relative to the document.",
+            "parameters": [
+                {
+                    "name": "offset",
+                    "type": "intell.math.PointLike",
+                    "description": "The new coordinates offset."
+                }
+            ]
+        }
+    ]
+}

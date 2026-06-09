@@ -1,0 +1,38 @@
+{
+    "kind": "method",
+    "title": "Element.prototype",
+    "description": "Useful built-in extensions for the <mark>Element</mark> prototype.",
+
+    "methods": [
+        {
+            "name": "function appendTo(target: Element): this",
+            "description": "Appends the element to the end of the target element.",
+            "parameters": [
+                {
+                    "name": "target",
+                    "type": "Element",
+                    "description": "Appended to the end of the target element."
+                }
+            ],
+            "returns": {
+                "type": { "name": "this" },
+                "description": "Returns the same element instance to allow for method chaining."
+            }
+        },
+        {
+            "name": "function prependTo(target: Element): this",
+            "description": "Appends the element to the beginning of the target element.",
+            "parameters": [
+                {
+                    "name": "target",
+                    "type": "Element",
+                    "description": "Appended to the beginning of the target element."
+                }
+            ],
+            "returns": {
+                "type": { "name": "this" },
+                "description": "Returns the same element instance to allow for method chaining."
+            }
+        }
+    ]
+}

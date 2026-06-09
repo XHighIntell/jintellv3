@@ -93,6 +93,14 @@
                 { "icon": "interface", "id": "intell.math.ShowAtOption", "name": "ShowAtOption" },
 
             ]
+        },
+        {
+            "icon": "namespace",
+            "name": "globalThis",
+            "children": [
+                { "icon": "class", "id": "globalThis.Element", "name": "Element", "url": "globalThis/Element.json" },
+                { "icon": "class", "id": "globalThis.HTMLElement", "name": "HTMLElement", "url": "globalThis/HTMLElement.json" }
+            ]
         }
     ]
 }

@@ -25,8 +25,6 @@
 
             if (elementContent == null) elementContent = $$$(`<div class="Content"></div>`)[0].appendTo(elementMain);
             if (elementContentApplications == null) elementContentApplications = $$$(`<div class="Applications"></div>`)[0].appendTo(elementContent);
-
-            if (element.tabIndex == -1) element.tabIndex = 0;
             //#endregion
 
             Portal.setItem(element, this);

@@ -57,7 +57,7 @@
             ],
             "returns": {
                 "type": { "name": "Application", "href": "?q=intell.portal.Application" },
-                "description":  "Returns the same application instance to allow for method chaining."
+                "description": "Returns the same application instance to allow for method chaining."
             }
         },
         {

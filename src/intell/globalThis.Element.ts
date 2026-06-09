@@ -13,7 +13,7 @@ interface HTMLElement {
     /** [Extension] Returns a DOMRect object that describes the element’s size and its content position (excluding borders) relative to the document rather than the viewport. */
     getBoundingClientContentRectOffset(this: HTMLElement): DOMRect;
 
-    /** [Extension] Set the current coordinates of the element relative to the document. */
+    /** [Extension] Sets the current coordinates of the element relative to the document. */
     setOffset(this: HTMLElement, offset: intell.math.PointLike): void;
 }
 
