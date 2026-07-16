@@ -83,7 +83,13 @@
                         { "icon": "education", "id": "intell.ctrl.TargetPopup-demo", "name": "Example", "url": "intell.ctrl/TargetPopup/TargetPopup.html", "tags": ["education"] }
                     ] 
                 }
-
+                ,
+                { 
+                    "icon": "class", "id": "intell.ctrl.Carousel", "name": "Carousel", "url": "intell.ctrl/Carousel/Carousel.json", 
+                    "children": [
+                        { "icon": "education", "id": "intell.ctrl.Carousel-demo", "name": "Example", "url": "intell.ctrl/Carousel/Carousel.html", "tags": ["education"] }
+                    ] 
+                }
             ]
         },
         {

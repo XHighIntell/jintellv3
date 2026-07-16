@@ -1,0 +1,261 @@
+﻿<style data-source="Carousel">
+.Carousel{position:relative;display:flex;align-items:center;gap:.25em;overflow:hidden}
+.Carousel>.Prev,.Carousel>.Next{position:absolute;align-content:center;padding:2px 35px;color:#00aeff;font-family:'fontello';font-size:2.5em;opacity:0;transition:opacity .4s;cursor:pointer}
+.Carousel>.Prev{left:0;top:0;bottom:0;background:linear-gradient(-90deg, transparent, #0006)}
+.Carousel>.Prev::before{content:""}
+.Carousel>.Next{right:0;top:0;bottom:0;background:linear-gradient(90deg, transparent, #0006)}
+.Carousel>.Next::before{content:""}
+.Carousel:hover>.Prev,.Carousel:hover>.Next{opacity:1}
+
+
+.Carousel>.Prev:hover,.Carousel>.Next:hover{color:#91e4ff}
+.Carousel>.Indicators{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;z-index:10}
+.Carousel>.Indicators>.Indicator{position:relative;width:60px;height:6px;padding:9px 0;margin:0 5px;cursor:pointer}
+.Carousel>.Indicators>.Indicator::before{content:"";position:absolute;left:0;right:0;height:inherit;}
+.Carousel>.Indicators>.Indicator::after{content:"";position:absolute;left:0;width:0px;height:inherit;transition:width var(--interval) linear}
+.Carousel>.Indicators>.Indicator.RUNNING:after{width:100%}
+.Carousel>.Children{display:contents}
+.Carousel>.Children>.Item{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;transition:opacity 2s}
+.Carousel>.Children>.Item.IN-LEFT{animation:carousel-in-left 4s ease-out forwards}
+.Carousel>.Children>.Item.IN-RIGHT{animation:carousel-in-right 4s ease-out forwards}
+.Carousel>.Children>.Item.ACTIVE{opacity:1}
+.Carousel>.Children>.Item.OUT{}
+.Carousel>.Children>.Item.OUT-LEFT{}
+.Carousel>.Children>.Item.OUT-RIGHT{}
+
+@keyframes carousel-in-left {
+    0%{transform:translateX(-80px)}
+    20%{transform:translateX(-20px)}
+    100%{transform:translateX(0)}
+}
+@keyframes carousel-in-right {
+    0%{transform:translateX(80px)}
+    20%{transform:translateX(20px)}
+    100% {transform:translateX(0)}
+}
+</style>
+<div class="code-block" data-source-id="Carousel" style="margin-top:0">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i><div class="name">Carousel</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="carousel-light-blue">
+.carousel-light-blue>.Indicators>.Indicator::before{background:#ffffff4d;outline:1px solid #0000004d}
+.carousel-light-blue>.Indicators>.Indicator.ACTIVE::before{background:#0e86ca}
+.carousel-light-blue>.Indicators>.Indicator.RUNNING::after{background:#00aeff}
+</style>
+<div class="code-block" data-source-id="carousel-light-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">carousel-light-blue</div>
+        </div>
+    </div>
+</div>
+
+<style data-source="carousel-dark-blue">
+.carousel-dark-blue>.Indicators>.Indicator::before{background:#0000004d;outline:1px solid #ffffff4d}
+.carousel-dark-blue>.Indicators>.Indicator.ACTIVE::before{background:#0e86ca}
+.carousel-dark-blue>.Indicators>.Indicator.RUNNING::after{background:#00aeff}
+</style>
+<div class="code-block" data-source-id="carousel-dark-blue">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">carousel-dark-blue</div>
+        </div>
+    </div>
+</div>
+                        
+<style data-source="small-button">
+.Carousel.small-button>.Prev,.Carousel.small-button>.Next{padding:10px 15px;border:solid 1px #ffffff26;background:#0006}
+.Carousel.small-button>.Prev{left:20px;top:unset;bottom:unset}
+.Carousel.small-button>.Next{right:20px;top:unset;bottom:unset}
+
+.Carousel.small-button{}
+.Carousel.small-button{}
+</style>
+<div class="code-block" data-source-id="small-button">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">small-button</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="theme-switch">
+    <div class="theme" data-theme="light-blue"><i class="icon icon-theme"></i> light-blue</div>
+    <div class="theme selected" data-theme="dark-blue"><i class="icon icon-theme"></i> dark-blue</div>
+</div>
+
+<script>
+    document.querySelector('.theme-switch').addEventListener('article-theme-change', function(e) {
+        $('.Carousel').removeClass(['carousel-light-blue', 'carousel-dark-blue']).addClass('carousel-' + e.detail.name);
+    });
+</script>
+
+<div class="example">
+    <div class="title">Auto Mode + Small Buttons</div>
+    <div data-source="prefix+suffix">
+        <div id="carousel1" class="Carousel carousel-dark-blue small-button" style="height:300px">
+            <div class="Children">
+                <div class="Item slide1"></div>
+                <div class="Item slide2"></div>
+                <div class="Item slide3"></div>
+            </div>
+        </div>
+
+        <style>
+            #carousel1{background:#000}
+            #carousel1 .slide1{background:center/cover url(https://images.wallpaperscraft.com/image/single/earth_planet_atmosphere_234270_1920x1080.jpg) no-repeat}
+            #carousel1 .slide2{background:center/cover url(https://images.wallpaperscraft.com/image/single/planet_space_universe_127497_1920x1080.jpg) no-repeat}
+            #carousel1 .slide3{background:center/cover url(https://images.wallpaperscraft.com/image/single/planets_stars_galaxy_146898_1920x1080.jpg) no-repeat}
+        </style>
+        <script>
+            const carousel1 = new intell.ctrl.Carousel(document.getElementById('carousel1'));
+            carousel1.start();
+            
+            document.addEventListener('carouselchange', function(e) {
+                console.log('carouselchange', e.oldItem, e.newItem);
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="prefix+suffix">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="example">
+    <div class="title">Video + Transition + Animation</div>
+    <div data-source="extra">
+        <div id="carousel2" class="Carousel carousel-dark-blue">
+            <div class="Children">
+                <div class="Item slide1">
+                    <video class="background-video" autoplay muted loop>
+                          <source src="/article/intell.ctrl/Carousel/static/1.mp4" type="video/mp4" />
+                    </video>
+                    <div class="content">
+                        <div class="title">WRATH OF FIRE</div>
+                        <div class="separate"></div>
+                        
+                        <div class="description">THE DEMON AWAKENED</div>
+                    </div>
+                </div>
+                <div class="Item slide2">
+                    <video class="background-video" autoplay muted loop>
+                          <source src="/article/intell.ctrl/Carousel/static/Sekiro Cinemagraph 1.mp4" type="video/mp4" />
+                    </video>
+                    <div class="content">
+                        <div class="title">THE SHADOWS DIE TWICE</div>
+                        <div class="separate"></div>
+                        <div class="description desc-1">Explore late 1500s Sengoku Japan, a brutal period of constant life and death conflict, as you come face to face with larger than life foes in a dark and twisted world.</div>
+                        <div class="description desc-2">Unleash an arsenal of deadly prosthetic tools and powerful ninja abilities while you blend stealth, vertical traversal, and visceral head to head combat in a bloody confrontation.</div>
+                    </div>
+                </div>
+                <div class="Item slide3">
+                    <div class="content">
+                        <div class="title">What's next?</div>
+                        <div class="separate"></div>
+                        <div class="description desc-1">This three-slide example gives you ideas on using video backgrounds, transitions, and animations. You can go further by using JavaScript to make your slides more expressive.</div>
+                        <div class="description desc-2">Some things in this dark world are worth any price!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            #carousel2{aspect-ratio:1.777;background:#000}
+            #carousel2 .slide1{}
+            #carousel2 .slide1::before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;background:radial-gradient(rgba(0,0,0,.3) 15%,transparent 15%),3px 3px radial-gradient(rgba(0,0,0,.3) 15%, transparent 15%);background-size:6px 6px;z-index:1}
+            #carousel2 .slide1>.background-video{position:absolute;width:106%;margin-left:-3%}
+            #carousel2 .slide1>.background-video::before{}
+            #carousel2 .slide1>.content{position:relative;display:flex;flex-direction:column;padding-top:50px;z-index:2}
+            #carousel2 .slide1>.content>.title{text-align:center;font-weight:700;font-size:40px;color:#0000004d;-webkit-text-stroke:1px #fff;opacity:0;transform:translateY(15px);transition:opacity 1s .6s,transform 1s .6s}
+            #carousel2 .slide1>.content>.separate{height:20px;margin:10px 0;background:center url(/article/intell.ctrl/Carousel/static/separate.png) no-repeat;background-size:contain;opacity:0;transition:opacity 1s .6s}
+            #carousel2 .slide1>.content>.description{margin-top:0px;text-align:center;font-weight:700;font-size:2em;opacity:0;background-image:linear-gradient(180deg, #ff9200 0%, #4e0000 100%);color:transparent;background-clip:text;text-shadow:none;-webkit-text-stroke:.2px #ffb000;transform:translateY(15px);transition:opacity 1s 1s,transform 1s 1s}
+            #carousel2 .slide1.ACTIVE>.content>.title{opacity:1;transform:unset}
+            #carousel2 .slide1.ACTIVE>.content>.separate{opacity:1}
+            #carousel2 .slide1.ACTIVE>.content>.description{opacity:1;transform:unset}
+            
+            #carousel2 .slide2{}
+            #carousel2 .slide2::before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;background:radial-gradient(rgba(0,0,0,.3) 15%,transparent 15%),3px 3px radial-gradient(rgba(0,0,0,.3) 15%, transparent 15%);background-size:6px 6px;z-index:1}
+            #carousel2 .slide2>.background-video{position:absolute;width:130%;margin-left:-15%}
+            #carousel2 .slide2>.background-video::before{}
+            #carousel2 .slide2>.content{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;padding-top:50px;z-index:2}
+            #carousel2 .slide2>.content>.title{text-align:center;font-size:2em;opacity:0;background-image:linear-gradient(180deg,#ce7600 0%,#000000 100%);color:transparent;background-clip:text;text-shadow:none;-webkit-text-stroke:.2px #000000;font-family:AORUS;transform:translateY(15px);transition:opacity 1s 1s,transform 1s 1s}
+            #carousel2 .slide2>.content>.separate{height:20px;margin:10px 0;background:center url(/article/intell.ctrl/Carousel/static/separate.png) no-repeat;background-size:contain;opacity:0;transition:opacity 1s .6s}
+            #carousel2 .slide2>.content>.description{position:absolute;padding:20px;text-shadow:0 0 3px #000,0 0 1px #000;font-size:1.2em}
+            #carousel2 .slide2>.content>.description.desc-1{bottom:60px;width:34%}
+            #carousel2 .slide2>.content>.description.desc-2{right:0;bottom:60px;width:32%;text-align:right}
+            #carousel2 .slide2>.content>.description>span{transition:opacity 1s calc(1s + 0.2s * var(--i));opacity:0}
+            #carousel2 .slide2.ACTIVE>.content>.title{opacity:1;transform:unset}
+            #carousel2 .slide2.ACTIVE>.content>.separate{opacity:1}
+            #carousel2 .slide2.ACTIVE>.content>.description>span{opacity:1}
+            
+            #carousel2 .slide3{background:center/cover url(https://images.wallpaperscraft.com/image/single/silhouette_moon_boat_135277_1920x1080.jpg) no-repeat}
+            #carousel2 .slide3::before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;background:radial-gradient(rgba(0,0,0,.3) 15%,transparent 15%),3px 3px radial-gradient(rgba(0,0,0,.3) 15%, transparent 15%);background-size:6px 6px;z-index:1}
+            #carousel2 .slide3>.background-video{position:absolute;width:130%;margin-left:-15%}
+            #carousel2 .slide3>.background-video::before{}
+            #carousel2 .slide3>.content{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;padding-top:50px;z-index:2}
+            #carousel2 .slide3>.content>.title{padding:0 20px;text-align:right;font-size:2em;opacity:0;background-image:linear-gradient(180deg,#ce7600 0%,#000000 100%);color:transparent;background-clip:text;text-shadow:none;-webkit-text-stroke:.2px #000000;font-family:AORUS;transform:translateY(15px);transition:opacity 1s 1s,transform 1s 1s}
+            #carousel2 .slide3>.content>.separate{height:20px;margin:4px 10px;background:right 0 url(/article/intell.ctrl/Carousel/static/separate.png) no-repeat;background-size:contain;opacity:0;transition:opacity 1s .6s}
+            #carousel2 .slide3>.content>.description{align-self:flex-end;padding:20px;text-align:right;text-shadow:0 0 3px #000,0 0 1px #000;font-size:1.2em}
+            #carousel2 .slide3>.content>.description.desc-1{width:45%}
+            #carousel2 .slide3>.content>.description.desc-2{width:50%;text-align:right}
+            #carousel2 .slide3>.content>.description>span{display:inline-block;transition:opacity 1s calc(1s + 0.2s * var(--i));opacity:0;animation:1s ease-out calc(1s + 0.2s * var(--i)) slide3-span forwards}
+            #carousel2 .slide3.ACTIVE>.content>.title{opacity:1;transform:unset}
+            #carousel2 .slide3.ACTIVE>.content>.separate{opacity:1}
+            #carousel2 .slide3.ACTIVE>.content>.description>span{opacity:1}
+
+
+            @keyframes slide3-span {
+                0% {transform:translateY(10px)}
+                60%{transform:translateY(-10px)}
+	            100%{transform:translateY(0px)}
+            }
+
+            
+
+
+            
+        </style>
+        <script>
+            const carousel2 = new intell.ctrl.Carousel(document.getElementById('carousel2'));
+            !function() {
+                let i = 0;
+                carousel2.element.querySelectorAll('.slide2>.content>.description').forEach(a => {
+                    a.innerHTML = a.innerText.split(' ').map(text => {
+                        i++;
+                        return `<span style="--i:${i}">${text}</span>`
+                    }).join(' ');
+                });
+                i = 0;
+                carousel2.element.querySelectorAll('.slide3>.content>.description').forEach(a => {
+                    a.innerHTML = a.innerText.split(' ').map(text => {
+                        i++;
+                        return `<span style="--i:${i}">${text}</span>`
+                    }).join(' ');
+                });
+            }();
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="extra">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code</div>
+            </div>
+        </div>
+    </div>
+</div>

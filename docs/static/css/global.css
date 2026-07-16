@@ -1,5 +1,11 @@
 ﻿@import url('../font/fontello/style.css');
 
+@font-face{
+    font-family:AORUS;
+    src:url(/static/font/AORUS/AORUS.woff) format("woff");
+    src:url(/static/font/AORUS/AORUS.woff2) format("woff2");
+}
+
 a{color:#008dff}
 a:hover{color:#0058ff}
 

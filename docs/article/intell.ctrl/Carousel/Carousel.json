@@ -1,0 +1,57 @@
+{
+    "kind": "class",
+    "title": "Carousel Class",
+    "description": "Represents a carousel that displays slides of content with navigation buttons.",
+    
+    "constructors": [
+        {
+            "name": "constructor(element?: HTMLElement)", 
+            "description": "Initializes a new carousel.", 
+            "parameters": [
+                {
+                    "name": "element", 
+                    "type": "HTMLElement",
+                    "description": "The element for which to create carousel control."
+                }
+            ]
+        }
+    ],
+    
+    "properties": [
+        { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
+        { "name": "readonly elementChildren: HTMLElement", "type": "HTMLElement", "description": "Gets the element that contains the slide elements." },
+        { "name": "readonly elementPrev: HTMLElement", "type": "HTMLElement", "description": "Gets the navigation button element used to move backward." },
+        { "name": "readonly elementNext: HTMLElement", "type": "HTMLElement", "description": "Gets the navigation button element used to move forward." },
+        { "name": "readonly elementIndicators: HTMLElement", "type": "HTMLElement", "description": "Gets the element that contains indicator elements." },
+        { "name": "readonly focused: boolean", "type": "boolean", "description": "Gets a value indicating whether the control have input focus." },
+
+        { "name": "readonly items: CarouselItem[]", 
+          "type": { "name": "CarouselItem[]", "href": "?q=intell.ctrl.CarouselItem" }, 
+          "description": "Gets an array containing all items." 
+        },
+        { "name": "readonly activeItem?: CarouselItem", 
+          "type": { "name": "CarouselItem[]", "href": "?q=intell.ctrl.CarouselItem" }, 
+          "description": "Gets the currently active item" 
+        },
+        { "name": "readonly activeIndex: number", "type": "number", "description": "Gets the index of the currently active item." },
+
+        { "name": "readonly running: boolean", "type": "boolean", "description": "Gets a value indicating whether the carousel is automatically cycling." },
+
+        { "name": "interval: number", "type": "string", "description": "Gets or sets the time interval between automatic item cycles." },
+    ],
+
+    "events": [
+        {
+            "name": "carouselchange", "bubbles": true, "cancelable": false, 
+            "description": "The change event is fired when the user modifies and commits the checked.",
+        
+            "fields": [
+                { "name": "carousel: Carousel","type": { "name": "Carousel", "href": "?q=intell.ctrl.Carousel"} , "description": "A reference to the control to which the event was originally dispatched." },
+                { "name": "oldItem: CarouselItem", "type": "CarouselItem", "description": "The previous slide before it changes." },
+                { "name": "newItem: CarouselItem", "type": "CarouselItem", "description": "The current slide." },
+            ]
+        }
+    ],
+
+    "after": ["<div><a href=\"?q=intell.ctrl.Carousel-demo\">Click here</a> for more examples.</div>"]
+}
