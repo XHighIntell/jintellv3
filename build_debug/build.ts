@@ -50,7 +50,7 @@ namespace builder {
         else if (target == 'docs') {
             return [
                 { type: 'tsconfig', name: 'src/tsconfig.json', config: '../src/tsconfig.json', minify: true },
-                { type: 'tsconfig', name: 'docs_src/tsconfig.json', config: '../docsrc/tsconfig.json', minify: true },
+                { type: 'tsconfig', name: 'docsrc/tsconfig.json', config: '../docsrc/tsconfig.json', minify: true },
                 { type: 'tsconfig', name: 'docs/tsconfig.json', config: '../docs/tsconfig.json', minify: true },
             ];
         }
