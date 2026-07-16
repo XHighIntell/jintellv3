@@ -1,0 +1,11 @@
+﻿[*.cs]
+
+# IDE0130: Namespace does not match folder structure
+dotnet_diagnostic.IDE0130.severity = none
+
+[*.csproj]
+indent_style = space
+
+[*.json]
+indent_style = space
+indent_size = 4

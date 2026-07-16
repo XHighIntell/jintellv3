@@ -366,6 +366,8 @@
 
             $body.append(this.displayEventTags(event.bubbles, event.cancelable));
             $body.append(this.displayDescription(event.description));
+            $body.append(this.displayProperties(event.properties));
+            $body.append(this.displayFields(event.fields));
 
             return $element[0];
         }
@@ -516,6 +518,9 @@
         bubbles?: boolean,
         cancelable?: boolean
         description: Name;
+
+        properties?: Property[];
+        fields?: Property[];
     }
     export interface Method {
         name: Name;
