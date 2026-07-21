@@ -147,7 +147,7 @@
         //#endregion
 
         //#region methods
-        /** Shows the dropdown picker.  */
+        /** Shows the dropdown children.  */
         showChildren(delay: number = Menu.CHILDREN_VISIBLE_DELAY, force: boolean = false) {
             const __private = this.getPrivate();
 
@@ -202,7 +202,7 @@
             }  
         }
 
-        /** Hides the children, resets filters and the outlined option. */
+        /** Hides the dropdown children. */
         hideChildren(delay: number = Menu.CHILDREN_VISIBLE_DELAY) {
             const __private = this.getPrivate();
 
@@ -331,26 +331,44 @@
 
         isMenu(): this is Menu { return false }
         isMenuItem(): this is MenuItem { return true }
-        isMenuItemRoot(): this is MenuItem { return this.parent?.isMenu() == true }
+        isMenuItemRoot(): boolean { return this.parent?.isMenu() == true }
 
         #onUserFocus() { }
         #onUserBlur() { }
         #onUserMouseenter(e: MouseEvent) {
             const menu = this.getMenu();
+            const __private = this.getPrivate();
+            const menuPrivate = menu.getPrivate();
+
             if (menu.focused == true) {
                 this.active = true;
 
                 // If the menu is a context menu, treat root menus and submenus identically
-                if (menu.contextMenu == true) this.showChildren();                
+                if (menu.contextMenu == true) this.showChildren();
                 else {
                     // If the menu is not a context menu, root menu children will be shown immediately
                     if (this.parent == menu) this.showChildren(0);
                     else this.showChildren();
-                }                
+                }
             }
+            else {
+                //#region Coding for feature: hoverMenu
+                if (menu.hoverMenu == true) {
+                    // element.focus() triggers Menu.#onUserFocus() only when the document has focus. 
+                    menu.element.focus();
+                    if (document.hasFocus() == false) menuPrivate.onUserFocus();
+                    
+                    this.active = true;
+                    this.showChildren(0);
+                }
+                //#endregion
+            }
+
         }
         #onUserMouseout(e: MouseEvent) {
             const menu = this.getMenu();
+            const __private = this.getPrivate();
+            const menuPrivate = menu.getPrivate();
 
             if (menu.focused == true) {
                 const target = e.target as HTMLElement;
@@ -358,12 +376,43 @@
                 // 1. Ensures the mouse has completely exited the MenuItem's boundaries
                 if (this.element.contains(e.relatedTarget as HTMLElement) == true) return;
 
+                //#region Coding for feature: hoverMenu
+                if (menu.hoverMenu == true) {
+                    if (this.isMenuItemRoot() == true) {
+                        this.hideChildren(Menu.CHILDREN_VISIBLE_DELAY + 50);
+                
+                        setTimeout(() => {
+                            // Did the user completely leave the menu?
+                            //   Users may leave and enter another MenuItem
+                            //   Users may leave and re-enter the same MenuItem.
+                            const isOut = menuPrivate.children.every(item => {
+                                if (item == this) return __private.childrenVisible == false;
+                                else return item.active == false;
+                            });
+
+                            if (isOut == true) {
+                                this.active = false;
+
+                                // element.blur() triggers Menu.#onUserBlur() only when the document has focus.
+                                menu.element.blur();
+                                if (document.hasFocus() == false) menuPrivate.onUserBlur();                                
+                            }
+                            
+                        }, Menu.CHILDREN_VISIBLE_DELAY + 51);
+
+                        return;
+                    }
+                }
+                //#endregion
+
                 // 2. Ensures the mouse is not exited from elementChildren
                 if (this.elementChildren.contains(target) == true) return;
 
                 // If the menu is a context menu, treat root menus and submenus identically
-                if (this.isMenuItemRoot() == true && menu.contextMenu == false) { }
-                else this.active = false;
+                if (menu.contextMenu == true) { this.active = false; return }
+
+                // Only deactivate when the item is a submenu.
+                if (this.isMenuItemRoot() == false) this.active = false;                
             }
         }
         #onUserMousedown(e: MouseEvent) {

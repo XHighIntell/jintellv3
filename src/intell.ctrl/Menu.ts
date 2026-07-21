@@ -38,6 +38,9 @@
             __private.rootChildrenOption = { distance: -1, distanceToContainer: 1 };
             __private.rootChildrenDirection = 'row';
             __private.rootChildrenIntersectEnabled = true;
+            __private.hoverMenu = false;
+            __private.onUserFocus = this.#onUserFocus.bind(this);
+            __private.onUserBlur = this.#onUserBlur.bind(this);
             this.contextMenu = false;
 
             element.addEventListener('focus', () => this.#onUserFocus());
@@ -96,6 +99,14 @@
         /** Gets or sets a value indicating whether the intersection overlay is enabled for all root-item dropdowns. */
         get rootChildrenIntersectEnabled() { return this.getPrivate().rootChildrenIntersectEnabled }
         set rootChildrenIntersectEnabled(newValue) { this.getPrivate().rootChildrenIntersectEnabled = newValue }
+
+        /** Gets or sets a value indicating whether the root-item dropdowns shows on mouseenter. */
+        get hoverMenu() { return this.getPrivate().hoverMenu }
+        set hoverMenu(newValue) {
+            const __private = this.getPrivate();
+
+            __private.hoverMenu = newValue;
+        }
 
         /** Gets or sets a value indicating whether the menu is a context menu. */
         get contextMenu() { return this.getPrivate().contextMenu }

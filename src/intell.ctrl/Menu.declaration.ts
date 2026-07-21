@@ -14,8 +14,12 @@
         rootChildrenOption: intell.math.ShowAtOption;
         rootChildrenDirection: MenuChildrenDirection;
         rootChildrenIntersectEnabled: boolean;
-
+        
         contextMenu: boolean;
+        hoverMenu: boolean;
+
+        onUserFocus(): void;
+        onUserBlur(): void;
     }
 
     export interface MenuItemPrivate {

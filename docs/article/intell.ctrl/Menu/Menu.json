@@ -57,7 +57,14 @@
             "remarks": "The default value is <mark>true</mark>."
         },
 
-        
+        { 
+            "name": "hoverMenu: boolean", "type": "boolean", 
+            "description": "Gets or sets a value indicating whether the root-item dropdowns shows on mouseenter.",
+            "remarks": [
+                "<p>The default value is <mark>false</mark>.</p>",
+                "<p>When sets to <mark>true</mark>, the menu automatically receives focus when the user hovers over it. Note that this will cause other elements to lose focus.</p>"
+            ]
+        },
         { 
             "name": "contextMenu: boolean", "type": "boolean", 
             "description": "Gets or sets a value indicating whether the menu is a context menu.",
