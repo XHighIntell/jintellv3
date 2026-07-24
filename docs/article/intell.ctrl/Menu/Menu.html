@@ -4,15 +4,15 @@
 .Menu:not(.CONTEXTMENU)>.Children>.Item>.Label{user-select:none}
 .Menu:not(.CONTEXTMENU) .Children{padding:2px;border:1px solid transparent}
 .Menu:not(.CONTEXTMENU) .Children>.Intersect{display:none;position:absolute}
-.Menu:not(.CONTEXTMENU) .Item{}
+.Menu:not(.CONTEXTMENU) .Item{position:relative}
 .Menu:not(.CONTEXTMENU) .Item>.Label{display:flex;gap:.5em;align-items:center;padding:.1em .5em .1em .4em;border:1px solid transparent;cursor:pointer}
 .Menu:not(.CONTEXTMENU) .Item>.Label>.Icon{display:flex;align-items:center;text-align:center;justify-content:center;width:1.25em;height:1.25em;background-position:center;background-repeat:no-repeat}
 .Menu:not(.CONTEXTMENU) .Item>.Label>.Text{padding-right:2.5em;white-space:nowrap}
-.Menu:not(.CONTEXTMENU) .Item.HAS-CHILDREN>.Label::after{content:"";margin-left:auto;font-family:fontello}
 .Menu:not(.CONTEXTMENU) .Item>.Children{position:absolute;display:none;z-index:99}
 .Menu:not(.CONTEXTMENU) .Separator{height:1px;margin:2px 0 2px calc(12px + 1.25em)}
 .Menu:not(.CONTEXTMENU) .Item.ROOT>.Label>.Text{padding-right:0}
 .Menu:not(.CONTEXTMENU) .Item.ROOT.HAS-CHILDREN>.Label::after{content:none}
+.Menu:not(.CONTEXTMENU) .Item:not(.ROOT).HAS-CHILDREN>.Label::after{content:"";margin-left:auto;font-family:fontello}
 
 .Menu.CONTEXTMENU{position:absolute;z-index:99;outline:none}
 .Menu.CONTEXTMENU>.Children{}
@@ -37,10 +37,10 @@
 
 <style data-source="menu-light-blue">
 .Menu:not(.CONTEXTMENU).menu-light-blue{background-color:#ccd5f0}
-.Menu:not(.CONTEXTMENU).menu-light-blue .Item.ACTIVE>.Label{background-color:#b1c5ff}
+.Menu:not(.CONTEXTMENU).menu-light-blue .Item>.Children{border-color:#94a6ca;background-color:#e9eeff}
 .Menu:not(.CONTEXTMENU).menu-light-blue .Item.ROOT.ACTIVE>.Label{border-color:#94a6ca;background-color:#e9eeff}
 .Menu:not(.CONTEXTMENU).menu-light-blue .Item.ROOT:hover>.Label{border-color:#94a6ca;background-color:#e9eeff}
-.Menu:not(.CONTEXTMENU).menu-light-blue .Item>.Children{border-color:#94a6ca;background-color:#e9eeff}
+.Menu:not(.CONTEXTMENU).menu-light-blue .Item:not(.ROOT).ACTIVE>.Label{background-color:#b1c5ff}
 .Menu:not(.CONTEXTMENU).menu-light-blue .Intersect{background-color:#eaeefe}
 .Menu:not(.CONTEXTMENU).menu-light-blue .Separator{background-color:#bec3cb}
 
@@ -62,17 +62,16 @@
 <style data-source="menu-dark-blue">
 .Menu:not(.CONTEXTMENU).menu-dark-blue{background:#000}
 .Menu:not(.CONTEXTMENU).menu-dark-blue .Item>.Label>.Icon{text-shadow:0 0 1px #000}
-.Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ACTIVE>.Label{background-color:#029de5c4;box-shadow: inset #0278af 0 0 1px 1px;border-color:#0085ab;}
-.Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ROOT:hover>.Label{background-color:#ffffff33}
-.Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ROOT.ACTIVE>.Label{border-color:#0085ab;background-color:#029de5c4}
 .Menu:not(.CONTEXTMENU).menu-dark-blue .Item>.Children{border-color:#4c4c4c;background:repeating-linear-gradient(45deg, black, #101010, black 125px)}
 .Menu:not(.CONTEXTMENU).menu-dark-blue .Item>.Children::before{content:'';position:absolute;left:0;right:0;top:0;bottom:0;background:url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/facets/ripple_texture.png) no-repeat;background-size:cover;filter:invert(57%) sepia(100%) saturate(100%) hue-rotate(32deg) brightness(93%) contrast(100%);opacity:.5;pointer-events:none}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ROOT:hover>.Label{background-color:#ffffff33}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Item.ROOT.ACTIVE>.Label{border-color:#0085ab;background-color:#029de5c4}
+.Menu:not(.CONTEXTMENU).menu-dark-blue .Item:not(.ROOT).ACTIVE>.Label{background-color:#029de5c4;box-shadow: inset #0278af 0 0 1px 1px;border-color:#0085ab}
 .Menu:not(.CONTEXTMENU).menu-dark-blue .Separator{background:#ffffff36}
 
 .Menu.CONTEXTMENU.menu-dark-blue{background:#000}
 .Menu.CONTEXTMENU.menu-dark-blue .Item>.Label>.Icon{text-shadow:0 0 1px #000}
-.Menu.CONTEXTMENU.menu-dark-blue .Item.ACTIVE>.Label{background-color:#029de5c4;box-shadow: inset #0278af 0 0 1px 1px;border-color:#0085ab;}
-.Menu.CONTEXTMENU.menu-dark-blue .Item.ROOT.ACTIVE>.Label{border-color:#0085ab;background-color:#029de5c4}
+.Menu.CONTEXTMENU.menu-dark-blue .Item.ACTIVE>.Label{background-color:#029de5c4;border-color:#0085ab;box-shadow:inset #0278af 0 0 1px 1px}
 .Menu.CONTEXTMENU.menu-dark-blue .Separator{background:#ffffff36}
 .Menu.CONTEXTMENU.menu-dark-blue .Children{border-color:#4c4c4c;background:repeating-linear-gradient(45deg, black, #101010, black 125px)}
 .Menu.CONTEXTMENU.menu-dark-blue .Children::before{content:'';position:absolute;left:0;right:0;top:0;bottom:0;background:url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/facets/ripple_texture.png) no-repeat;background-size:cover;filter:invert(57%) sepia(100%) saturate(100%) hue-rotate(32deg) brightness(93%) contrast(100%);opacity:.5;pointer-events:none}
@@ -174,6 +173,7 @@
                     }
                 ]
             });
+            menu1.add({ icon: 'class://icon-link-ext', text: 'Link', href: '/' });
 
             document.addEventListener('menuclick', function(e) {
                 console.log('menuclick', e);

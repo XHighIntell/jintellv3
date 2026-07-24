@@ -2,8 +2,6 @@
 /* ┌┐└┘─│ */
     /**Represents a spin box that displays numeric values. */
     export class MenuItem {
-        
-
         /**Initializes a new instance of the Numeric class from element.
         *@param element The element for which to create Numeric.*/
         constructor(element?: HTMLElement) {
@@ -141,6 +139,27 @@
         get text() { return this.getPrivate().elementText.textContent }
         set text(newValue) { this.getPrivate().elementText.textContent = newValue }
 
+        /** Gets or sets the href of the element label. If href is not null or empty, the element label becomes an HTMLAnchorElement; otherwise, it becomes an HTMLDivElement. */
+        get href() { return (this.getPrivate().elementLabel as HTMLAnchorElement).href }
+        set href(newValue: string) {
+            const __private = this.getPrivate();
+
+            // If newValue == null, change elementLabel to a HTMLDivElement
+            // If newValue != null, change elementLabel to a HTMLAnchorElement
+
+            if (newValue == null || newValue == "") {
+                // exit if elementLabel is already a HTMLDivElement
+                if (__private.elementLabel instanceof HTMLDivElement) return;
+
+                __private.elementLabel = MenuItem.#changeTagName(__private.elementLabel, 'div');
+            }
+            else {
+                if (__private.elementLabel instanceof HTMLAnchorElement == false) __private.elementLabel = MenuItem.#changeTagName(__private.elementLabel, 'a');
+
+                (__private.elementLabel as HTMLAnchorElement).href = newValue;
+            }
+        }
+
         /** Gets or sets the title of the element label. */
         get title() { return this.getPrivate().elementLabel.title }
         set title(newValue) { this.getPrivate().elementLabel.title = newValue }
@@ -239,7 +258,7 @@
         }
 
         /** Adds a new menu to the end of the list for this menu. This method removes the menu from its current parent, if one exists, before adding it to the new parent. */
-        add(modifiers: MenuItemAddModifiers): MenuItem;
+        add(modifiers: MenuItemAddModifiers | string): MenuItem;
         add(item: MenuItem): void;
         add(item: any) {
             if (item instanceof MenuItem) this.#addItem(item);
@@ -252,6 +271,7 @@
                 if (modifiers.icon != null) item.icon = modifiers.icon;
                 if (modifiers.class != null) item.element.classList.add(...modifiers.class.split(' '));
                 if (modifiers.text != null) item.text = modifiers.text;
+                if (modifiers.href != null) item.href = modifiers.href;
                 if (modifiers.title != null) item.title = modifiers.title;
                 if (modifiers.disabled != null) item.disabled = modifiers.disabled;
                 if (modifiers.children != null) modifiers.children.forEach(child => item.add(child));
@@ -269,8 +289,12 @@
             // adds the new item into list
             const __private = this.getPrivate();
             __private.children.push(item);
+
+            // When predefine is true, the menu will attempt to keep the element order unchanged
+            // by only call elementChildren.append on necessary
             if (predefine == false) __private.elementChildren.append(item.element);
             else if (__private.elementChildren.contains(item.element) == false) __private.elementChildren.append(item.element)
+
             __private.element.classList.toggle(Menu.HAS_CHILDREN_CLASS, true);
 
             // sets the new parent to the item
@@ -586,6 +610,20 @@
                     return new DOMRect(x, y, right - x, bottom - y);
                 }
             }
+        }
+
+        /** Changes the element's tag name by replacing it with a new element.
+         * @returns Returns a newly created element with the specified tag name. */
+        static #changeTagName<K extends keyof HTMLElementTagNameMap>(element: HTMLElement, tagName: K): HTMLElementTagNameMap[K] {
+            if (element.tagName == tagName.toUpperCase()) return element as any;
+
+            const e = document.createElement(tagName);
+
+            e.classList.add(...element.classList.values());
+            e.append(...element.children);
+            element.replaceWith(e);
+
+            return e;
         }
 
         //@ts-ignore

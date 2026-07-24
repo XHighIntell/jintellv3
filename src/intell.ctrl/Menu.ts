@@ -137,6 +137,7 @@
                 if (modifiers.class != null) item.element.classList.add(...modifiers.class.split(' '));
                 if (modifiers.text != null) item.text = modifiers.text;
                 if (modifiers.title != null) item.title = modifiers.title;
+                if (modifiers.href != null) item.href = modifiers.href;
                 if (modifiers.disabled != null) item.disabled = modifiers.disabled;
                 if (modifiers.children != null) modifiers.children.forEach(child => item.add(child));
                 
@@ -316,6 +317,10 @@
                         if (activeItem.children.length > 0) activeItem.children[0].active = true;
                         else {
                             activeItem.internalDispatchMenuClickEvent();
+
+                            const href = activeItem.href;
+                            if (href != null) location.href = href;
+
                             activeItem.getMenu()?.element.blur();
                         }
                     }

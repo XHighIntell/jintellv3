@@ -61,11 +61,14 @@
         /** Initializes the specified value for the menu text. */
         text?: string;
 
+        /** If href is not null, the element's label is replaced with an anchor element. */
+        href?: string; 
+
         /** Initializes the specified value for the menu title. */
         title?: string;
 
         disabled?: boolean;
-        children?: MenuItemAddModifiers[];
+        children?: (MenuItemAddModifiers | string)[];
     }
     export type MenuChildrenDirection = "row" | "column";
 }
