@@ -1,13 +1,22 @@
 ﻿<div class="title">OverlayProgress Demo</div>
 
 <style data-source="Overlay-Progress">
-.Overlay-Progress{position:fixed;left:0;right:0;top:0;bottom:0;z-index:1100;pointer-events:none}
-.Overlay-Progress{display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;padding:20px 20px}
+.Overlay-Progress{}
 .Overlay-Progress>.Item{display:flex;align-items:center;gap:.5em;margin:1px 0;padding:4px 10px;pointer-events:all;font-size:1.2em;border-radius:2px;transition:opacity .5s 1s}
 .Overlay-Progress>.Item .State{position:relative;display:flex;align-items:center;justify-content:center;width:1em}
 .Overlay-Progress>.Item.DONE .State::before{content:'\E82E';font-size:.8em;font-family:fontello}
 .Overlay-Progress>.Item.FAILED .State::before{content:'\F128';font-family:fontello}
 .Overlay-Progress>.Item.FADING{opacity:0} 
+</style>
+
+<style data-source="overlay-progress-inline">
+.overlay-progress-inline{display:flex;flex-direction:column;align-items:flex-start}
+.overlay-progress-inline>.Item{flex-direction:row-reverse}
+</style>
+
+<style data-source="overlay-progress-fixed">
+.overlay-progress-fixed{position:fixed;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;padding:20px 20px;z-index:1100;pointer-events:none}
+.overlay-progress-fixed{}
 </style>
 
 <style data-source="overlay-progress-light-blue">
@@ -46,6 +55,23 @@
         </div>
     </div>
 </div>
+<div class="code-block" data-source-id="overlay-progress-inline">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">overlay-progress-inline</div>
+        </div>
+    </div>
+</div>
+<div class="code-block" data-source-id="overlay-progress-fixed">
+    <div class="code-block-header">
+        <div class="label">
+            <i class="icon icon-stylesheet"></i>
+            <div class="name">overlay-progress-fixed</div>
+        </div>
+    </div>
+</div>
+
 <div class="code-block" data-source-id="overlay-progress-light-blue">
     <div class="code-block-header">
         <div class="label">
@@ -75,38 +101,41 @@
     });
 </script>
 
-
 <div class="example">
+    <div class="title">Inline</div>
     <div data-source="Example1">
-        <div id="overlay-progress1" class="Overlay-Progress overlay-progress-dark-blue"></div>
-        <button id="button1">Do Task 1 (2s)</button>
-        <button id="button2">Do Task 2 (2-7s)</button>
-        <button id="button3">Do Task 3 (40s)</button>
-        <button id="button4">Fail Task 1 (2s)</button>
+        <div class="actions">
+            <button class="action" data-task="task1">Do Task 1 (2s)</button>
+            <button class="action" data-task="task2">Do Task 2 (2-7s)</button>
+            <button class="action" data-task="task3">Do Task 3 (40s)</button>
+            <button class="action" data-task="task4">Fail Task 1 (2s)</button>
+        </div>
+        <div id="overlay-progress1" class="Overlay-Progress overlay-progress-inline overlay-progress-dark-blue"></div>
 
         <script>
             const overlayProgress1 = new intell.ctrl.OverlayProgress(document.getElementById('overlay-progress1'));
 
-            document.getElementById('button1').addEventListener('click', function() {
-                overlayProgress1.displayProgress('Fetching Machine Configs', async function() {
-                    await intell.wait(2000);
-                });
-            });
-            document.getElementById('button2').addEventListener('click', function() {
-                overlayProgress1.displayProgress('Fetching Account', async function() {
-                    await intell.wait(2000 + Math.random() * 5000);
-                });
-            });
-            document.getElementById('button3').addEventListener('click', function() {
-                overlayProgress1.displayProgress('Uploading Files', async function() {
-                    await intell.wait(40000);
-                });
-            });
-            document.getElementById('button4').addEventListener('click', function() {
-                overlayProgress1.displayProgress('Deleting Files', async function() {
-                    await intell.wait(2000);
-                    throw new Error('testing task');
-                });
+            document.querySelector('[data-source=Example1]').addEventListener('click', e => {
+                const target = e.target;
+                const name = target.getAttribute('data-task');
+
+                if (name == 'task1')
+                    overlayProgress1.displayProgress('Fetching Machine Configs', async () => {
+                        await intell.wait(2000);
+                    });
+                else if (name == 'task2')
+                    overlayProgress1.displayProgress('Fetching Account', async () => {
+                        await intell.wait(2000 + Math.random() * 5000);
+                    });
+                else if (name == 'task3')
+                    overlayProgress1.displayProgress('Uploading Files', async () => {
+                        await intell.wait(40000);
+                    });
+                else if (name == 'task4')
+                    overlayProgress1.displayProgress('Deleting Files', async () => {
+                        await intell.wait(2000);
+                        throw new Error('testing task');
+                    });
             });
         </script>
     </div>
@@ -115,12 +144,57 @@
         <div class="code-block-header">
             <div class="label">
                 <i class="icon icon-interactive-window"></i>
-                <div class="name">Source code - displayProgress</div>
+                <div class="name">Source code - Inline</div>
             </div>
         </div>
     </div>
+</div>
 
+<div class="example">
+    <div class="title">Position: Fixed</div>
+    <div data-source="Example2">
+        <div class="actions">
+            <button class="action" data-task="task1">Do Task 1 (2s)</button>
+            <button class="action" data-task="task2">Do Task 2 (2-7s)</button>
+            <button class="action" data-task="task3">Do Task 3 (40s)</button>
+            <button class="action" data-task="task4">Fail Task 1 (2s)</button>
+        </div>
+        <div id="overlay-progress2" class="Overlay-Progress overlay-progress-fixed overlay-progress-dark-blue"></div>
 
+        <script>
+            const overlayProgress2 = new intell.ctrl.OverlayProgress(document.getElementById('overlay-progress2'));
 
+            document.querySelector('[data-source=Example2]').addEventListener('click', e => {
+                const target = e.target;
+                const name = target.getAttribute('data-task');
 
+                if (name == 'task1')
+                    overlayProgress2.displayProgress('Fetching Machine Configs', async () => {
+                        await intell.wait(2000);
+                    });
+                else if (name == 'task2')
+                    overlayProgress2.displayProgress('Fetching Account', async () => {
+                        await intell.wait(2000 + Math.random() * 5000);
+                    });
+                else if (name == 'task3')
+                    overlayProgress2.displayProgress('Uploading Files', async () => {
+                        await intell.wait(40000);
+                    });
+                else if (name == 'task4')
+                    overlayProgress2.displayProgress('Deleting Files', async () => {
+                        await intell.wait(2000);
+                        throw new Error('testing task');
+                    });
+            });
+        </script>
+    </div>
+
+    <div class="code-block" data-source-id="Example2">
+        <div class="code-block-header">
+            <div class="label">
+                <i class="icon icon-interactive-window"></i>
+                <div class="name">Source code - Overlay</div>
+            </div>
+        </div>
+    </div>
 </div>

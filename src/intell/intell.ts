@@ -1,6 +1,6 @@
 ﻿namespace intell {
     /** Gets the version of the library. */
-    export const version = '3.0.0';
+    export const version = '3.1.12';
 
     export class EventRegister<T extends (this: any, ...args: any)=>any> {
         constructor(target?: ThisParameterType<T>, option?: EventRegisterOption) {
@@ -151,5 +151,31 @@
 
             document.head.appendChild(element);
         });
+    }
+
+    /**Writes the signature of the library to the console. */
+    export function signature(debug: boolean = false) {
+        const style1 = "color:#00d7fb;font-weight:bolder;font-size:30px;-webkit-text-stroke-width:1px;-webkit-text-stroke-color:#007b8f;text-decoration:underline;text-decoration-color:#ddd";
+        const style2 = "color:#000;font-weight:bolder;font-size:15px";
+        const style3 = "color:#000;font-weight:bolder;font-size:15px";
+        const styleVersion = "margin-left:5px;color:#8f8f8f;font-weight:bolder;font-size:15px";
+
+        if (debug == false) {
+            console.log(`%cjintell%c by %cX High Intell\r\n%cv${intell.version}`, style1, style2, style3, styleVersion);
+        }
+        else {
+            document.body.innerHTML = `
+            <span class="a">jintell</span>
+            <span class="b">by</span>
+            <span class="c">X High Intell</span>
+            <span class="d">v${intell.version}</span>
+            <style>
+                body{display:block;padding:0 20px;background:#fff;font-family:monospace}
+                .a{${style1}}
+                .b{${style2}}
+                .c{${style3}}
+                .d{${styleVersion};display:block}
+            </style>`;
+        }
     }
 }

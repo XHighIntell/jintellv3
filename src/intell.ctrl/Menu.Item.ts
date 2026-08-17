@@ -1,6 +1,6 @@
 ﻿namespace intell.ctrl {
 /* ┌┐└┘─│ */
-    /**Represents a spin box that displays numeric values. */
+    /**Represents a MenuItem. */
     export class MenuItem {
         /**Initializes a new instance of the Numeric class from element.
         *@param element The element for which to create Numeric.*/

@@ -2,7 +2,7 @@
     const localeDecimalSeparator = (0.1).toLocaleString().substring(1, 2);   // "." in en-US
     const localeThousandSeparator = (1000).toLocaleString().substring(1, 2); // "," in en-US
 
-    /** Represents an overlay progress box that displays ongoing tasks. */
+    /** Represents a spin box that displays numeric value. */
     export class Numeric {
 
         /** Initializes a new numeric box.*/

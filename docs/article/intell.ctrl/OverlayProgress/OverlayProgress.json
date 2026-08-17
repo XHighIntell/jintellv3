@@ -5,7 +5,6 @@
     
     "properties": [
         { "name": "readonly element: HTMLElement", "type": "HTMLElement", "description": "Gets the root element of the control." },
-        { "name": "fadeOutTime: number", "type": "number", "description": "Gets or sets the fade‑out duration of the animation." }
     ],
 
     "methods": [
@@ -29,7 +28,7 @@
              }
         },
         {
-            "name": "displayProgress&lt;T&gt;(name: string, task: () => Promise&lt;T&gt;): Promise&lt;T&gt;",
+            "name": "displayProgress&lt;T&gt;(name: string, task: (progressItem: OverlayProgressItem) => Promise&lt;T&gt;): Promise&lt;T&gt;",
             "description": "Creates an overlay progress UI and attaches a promise to it.",
             "parameters": [
                 {
@@ -42,7 +41,8 @@
                     "type": "Promise&lt;T&gt;",
                     "description": "The promise task attach to it."
                 }
-            ]
+            ],
+            "remarks": "The <mark>OverlayProgressItem</mark> passed as the first parameter of <mark>task</mark>, offers greater flexibility for customization."
         }
     ],
     
